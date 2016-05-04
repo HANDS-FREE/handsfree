@@ -14,11 +14,11 @@
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
     -->
 
-    <rosparam file="$(find handfree_2dnav)/move_base_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find handfree_2dnav)/move_base_config/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find handfree_2dnav)/move_base_config/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find handfree_2dnav)/move_base_config/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find handfree_2dnav)/move_base_config/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/base_local_planner_params.yaml" command="load" />
     <!--
     <rosparam file="$(find navigation_stage)/move_base_config/dwa_local_planner_params.yaml" command="load" />
     -->

@@ -2,7 +2,7 @@
 <package>
   <name>handsfree_gazebo</name>
   <version>0.1.0</version>
-  <description>The handfree_gazebo store the urdf and gazebo config for handsfree robot system
+  <description>The handsfree_gazebo store the urdf and gazebo config for handsfree robot system
   </description>
 
 

@@ -19,7 +19,5 @@
     type="state_publisher" >
   <remap from="/joint_states" to="/mobile_base/joint_states"/>
   </node>
-  
-  <!-- include file="$(find hokuyo_node)/hokuyo_test.launch" /--> -
- 
+
 </launch>

@@ -133,16 +133,17 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         }
     }
 
-    hardware_interface::JointStateHandle head1_state_handle("servo_1", &head1_servo1_pos_, &head1_servo1_vel_, &head1_servo1_eff_);
-    jnt_state_interface_.registerHandle(head1_state_handle);
-    hardware_interface::JointHandle head1_handle(head1_state_handle, &head1_servo1_cmd_);
-    servo_pos_interface_.registerHandle(head1_handle);
+    hardware_interface::JointStateHandle head1_servo1_state_handle("servo_1", &head1_servo1_pos_, &head1_servo1_vel_, &head1_servo1_eff_);
+    jnt_state_interface_.registerHandle(head1_servo1_state_handle);
+    hardware_interface::JointHandle head1_servo1_handle(head1_servo1_state_handle, &head1_servo1_cmd_);
+    servo_pos_interface_.registerHandle(head1_servo1_handle);
 
-    hardware_interface::JointStateHandle head2_state_handle("servo_2", &head1_servo2_pos_, &head1_servo2_vel_, &head1_servo2_eff_);
-    jnt_state_interface_.registerHandle(head2_state_handle);
-    hardware_interface::JointHandle head2_handle(head2_state_handle, &head1_servo1_cmd_);
-    servo_pos_interface_.registerHandle(head2_handle);
+    hardware_interface::JointStateHandle head1_servo2_state_handle("servo_2", &head1_servo2_pos_, &head1_servo2_vel_, &head1_servo2_eff_);
+    jnt_state_interface_.registerHandle(head1_servo2_state_handle);
+    hardware_interface::JointHandle head1_servo2_handle(head1_servo2_state_handle, &head1_servo2_cmd_);
+    servo_pos_interface_.registerHandle(head1_servo2_handle);
 
+    registerInterface(&jnt_state_interface_);
     registerInterface(&servo_pos_interface_);
 
     if (hf_hw_.initialize_ok())
@@ -153,7 +154,6 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         ROS_ERROR("hf link initialized failed, please check the hardware");
     }
 }
-
 
 void HF_HW_ros::mainloop()
 {
@@ -187,7 +187,7 @@ void HF_HW_ros::mainloop()
         hf_hw_.updateCommand(READ_MOTOR_SPEED, count);
         hf_hw_.updateCommand(READ_GLOBAL_COORDINATE, count);
         hf_hw_.updateCommand(READ_ROBOT_SPEED, count);
-        //hf_hw_.updateCommand(READ_HEAD_1, count);
+        hf_hw_.updateCommand(READ_HEAD_1, count);
 
         readBufferUpdate();
 
@@ -195,7 +195,7 @@ void HF_HW_ros::mainloop()
 
         //hf_hw_.updateCommand(SET_MOTOR_SPEED, count);
         hf_hw_.updateCommand(SET_ROBOT_SPEED, count);
-        //hf_hw_.updateCommand(SET_HEAD_1, count);
+        hf_hw_.updateCommand(SET_HEAD_1, count);
 
         writeBufferUpdate();
         loop.sleep();

@@ -5,7 +5,6 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /NavFn Plan1
         - /Odometry1/Status1
       Splitter Ratio: 0.5
     Tree Height: 531
@@ -56,15 +55,17 @@ Visualization Manager:
       Enabled: true
       Name: Map
       Topic: /map
+      Unreliable: false
       Value: true
     - Alpha: 0.7
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Map
       Topic: /move_base_node/local_costmap/costmap
-      Value: false
+      Unreliable: false
+      Value: true
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -78,6 +79,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Topic: /move_base_node/TrajectoryPlannerROS/global_plan
+      Unreliable: false
       Value: true
     - Alpha: 1
       Buffer Length: 1
@@ -92,6 +94,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Topic: /move_base_node/TrajectoryPlannerROS/local_plan
+      Unreliable: false
       Value: true
     - Alpha: 1
       Buffer Length: 1
@@ -106,6 +109,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Topic: /move_base_node/NavfnROS/plan
+      Unreliable: false
       Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
@@ -133,6 +137,7 @@ Visualization Manager:
       Size (m): 0.1
       Style: Flat Squares
       Topic: /scan
+      Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -151,9 +156,17 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_laser_link:
-          Value: true
         base_link:
+          Value: true
+        camera_depth_frame:
+          Value: true
+        camera_depth_optical_frame:
+          Value: true
+        camera_link:
+          Value: true
+        camera_rgb_frame:
+          Value: true
+        camera_rgb_optical_frame:
           Value: true
         laser_link:
           Value: true
@@ -184,8 +197,13 @@ Visualization Manager:
         map:
           odom:
             base_link:
-              base_laser_link:
-                {}
+              camera_link:
+                camera_depth_frame:
+                  camera_depth_optical_frame:
+                    {}
+                camera_rgb_frame:
+                  camera_rgb_optical_frame:
+                    {}
               laser_link:
                 {}
               servo_1_link:
@@ -221,6 +239,7 @@ Visualization Manager:
       Enabled: true
       Name: Robot Footprint
       Topic: /move_base_node/local_costmap/footprint
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
@@ -246,16 +265,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 16.8713
+      Distance: 19.1201
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 3.82559
-        Y: -0.175298
-        Z: -2.92405
+        X: 0.590094
+        Y: -0.0383343
+        Z: -3.07278
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5248

@@ -1,7 +1,7 @@
 <launch>
-  <!--param name="/use_sim_time" value="false" /-->
+
   <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0.20 0 0 0 0 0 base_link laser 50" />
-  <node pkg="tf" type="static_transform_publisher" name="link2_broadcaster" args="0 0 0 0 0 0 base_link camera_link 50" />
   <!-- Run the Hokuyo laser scanner node -->
   <node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node"/>
+
 </launch>

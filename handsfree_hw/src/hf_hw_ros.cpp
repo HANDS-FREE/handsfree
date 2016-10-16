@@ -34,6 +34,8 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
 
     x_ = y_ = theta_ = x_cmd_ = y_cmd_ = theta_cmd_ = 0.0;
     x_vel_ = y_vel_ = theta_vel_ = 0.0;
+    head1_servo1_cmd_ = head1_servo2_cmd_  = head2_servo1_cmd_ = head2_servo2_cmd_ = 0.0;
+    head1_servo1_pos_ = head1_servo2_pos_ = head1_servo1_vel_ = head2_servo1_vel_ = head1_servo1_eff_ = head2_servo1_eff_ = 0;
 
     //register the hardware interface on the robothw
     hardware_interface::BaseStateHandle base_state_handle("mobile_base", &x_, &y_, &theta_, &x_vel_, &y_vel_, &theta_vel_);
@@ -42,7 +44,6 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
     hardware_interface::BaseVelocityHandle base_handle(base_state_handle, &x_cmd_, &y_cmd_, &theta_cmd_);
     base_velocity_interface_.registerHandle(base_handle);
     registerInterface(&base_velocity_interface_);
-
 
     if (base_mode_ == "3omni-wheel")
     {
@@ -176,28 +177,22 @@ void HF_HW_ros::mainloop()
         if (hf_hw_.updateCommand(READ_ROBOT_SYSTEM_INFO, count))
         {
             std::cout<< "spend time is  "<< (ros::Time::now() - currentTime).toSec()<<std::endl;
-            ros::Time currentTime = ros::Time::now();
-            handsfree_msgs::robot_state state;
-            state.battery_voltage = hf_hw_.getRobotAbstract()->robot_parameters.robot_body_radius;
-            state.cpu_temperature = hf_hw_.getRobotAbstract()->robot_system_info.cpu_temperature;
-            state.cpu_usage = hf_hw_.getRobotAbstract()->robot_system_info.cpu_usage;
-            state.system_time = hf_hw_.getRobotAbstract()->robot_system_info.system_time;
-            robot_state_publisher_.publish(state);
+            currentTime = ros::Time::now();
+            robot_state_publisher_.publish(robot_state);
         }
         hf_hw_.updateCommand(READ_MOTOR_SPEED, count);
         hf_hw_.updateCommand(READ_GLOBAL_COORDINATE, count);
         hf_hw_.updateCommand(READ_ROBOT_SPEED, count);
         hf_hw_.updateCommand(READ_HEAD_1, count);
-
         readBufferUpdate();
 
         cm.update(ros::Time::now(), ros::Duration(1 / controller_freq_));
 
-        //hf_hw_.updateCommand(SET_MOTOR_SPEED, count);
+        ROS_INFO("head1_servo1_cmd_ = %.4f  head1_servo2_cmd_=%.4f" , head1_servo1_cmd_ ,head1_servo2_cmd_);
+        writeBufferUpdate();
         hf_hw_.updateCommand(SET_ROBOT_SPEED, count);
         hf_hw_.updateCommand(SET_HEAD_1, count);
 
-        writeBufferUpdate();
         loop.sleep();
         count++;
     }

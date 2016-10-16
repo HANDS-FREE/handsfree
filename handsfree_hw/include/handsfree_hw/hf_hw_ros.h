@@ -69,6 +69,8 @@ private:
     double controller_freq_;
 
     //hardware resource
+    handsfree_msgs::robot_state robot_state;
+
     std::vector<double> wheel_pos_, wheel_vel_, wheel_eff_, wheel_cmd_;
     std::vector<double> arm_pos_  , arm_vel_  , arm_eff_, arm_cmd_;
     double x_, y_, theta_, x_cmd_, y_cmd_, theta_cmd_;
@@ -78,11 +80,9 @@ private:
     double head2_servo1_pos_, head2_servo1_vel_, head2_servo1_eff_;
     double head1_servo1_cmd_, head1_servo2_cmd_;
 
-
     double head1_servo2_pos_, head1_servo2_vel_, head1_servo2_eff_;
     double head2_servo2_pos_, head2_servo2_vel_, head2_servo2_eff_;
     double head2_servo1_cmd_, head2_servo2_cmd_;
-
 
     hardware_interface::JointStateInterface jnt_state_interface_;
     hardware_interface::PositionJointInterface servo_pos_interface_;
@@ -131,6 +131,11 @@ private:
         wheel_pos_[1] = hf_hw_.getRobotAbstract()->measure_motor_mileage.servo2;
         wheel_pos_[2] = hf_hw_.getRobotAbstract()->measure_motor_mileage.servo3;
 
+        robot_state.battery_voltage = hf_hw_.getRobotAbstract()->robot_parameters.robot_body_radius;
+        robot_state.cpu_temperature = hf_hw_.getRobotAbstract()->robot_system_info.cpu_temperature;
+        robot_state.cpu_usage = hf_hw_.getRobotAbstract()->robot_system_info.cpu_usage;
+        robot_state.system_time = hf_hw_.getRobotAbstract()->robot_system_info.system_time;
+
         if (with_arm_)
         {
             arm_pos_[0] = hf_hw_.getRobotAbstract()->measure_arm1_state.servo1;
@@ -145,12 +150,22 @@ private:
         wheel_vel_[1] = hf_hw_.getRobotAbstract()->measure_motor_speed.servo2;
         wheel_vel_[2] = hf_hw_.getRobotAbstract()->measure_motor_speed.servo3;
 
-        //        hf_hw_.getRobotAbstract()->expect_head1_state.pitch = head1_servo2_pos_;
-        //        hf_hw_.getRobotAbstract()->expect_head1_state.yaw   = head1_servo1_pos_;
-        //        hf_hw_.getRobotAbstract()->expect_head2_state.pitch = head2_servo2_pos_;
-        //        hf_hw_.getRobotAbstract()->expect_head2_state.yaw   = head2_servo1_pos_;
-    }
+        head1_servo1_pos_ = hf_hw_.getRobotAbstract()->measure_head1_state.pitch ;
+        head1_servo1_vel_ = 0 ;
+        head1_servo1_eff_ = 0 ;
 
+        head1_servo2_pos_ = hf_hw_.getRobotAbstract()->measure_head1_state.yaw ;
+        head1_servo2_vel_ = 0 ;
+        head1_servo2_eff_ = 0 ;
+
+        head2_servo1_pos_ = hf_hw_.getRobotAbstract()->measure_head2_state.pitch ;
+        head2_servo1_vel_ = 0 ;
+        head2_servo1_eff_ = 0 ;
+
+        head2_servo2_pos_ = hf_hw_.getRobotAbstract()->measure_head2_state.yaw ;
+        head2_servo2_vel_ = 0 ;
+        head2_servo2_eff_ = 0 ;
+    }
 };
 
 }

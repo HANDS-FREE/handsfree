@@ -1,6 +1,6 @@
 <launch>
   
-  <node pkg="rbx2_ar_tags" name="ar_follower" type="ar_follower.py" clear_params="true" output="screen">
+  <node pkg="handsfree_ar_tags" name="ar_follower" type="ar_follower.py" clear_params="true" output="screen">
   <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
 
     <rosparam>

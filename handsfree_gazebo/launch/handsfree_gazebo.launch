@@ -1,0 +1,23 @@
+<launch>
+  <include
+    file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf/handsfree_gazebo.urdf.xarco" />
+
+<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model mobile_base" />
+
+  <rosparam file="$(find handsfree_gazebo)/config/config.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/mobile_base" args="joint_state_controller mobile_base_controller servo1_position_controller servo2_position_controller"/>
+
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="state_publisher" >
+  <remap from="/joint_states" to="/mobile_base/joint_states"/>
+   </node>
+
+</launch>

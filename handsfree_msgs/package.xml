@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>handsfree_msgs</name>
+  <version>0.1.0</version>
+  <description>The handfree_msgs 
+  </description>
+
+  <maintainer email="luke_liao@126.com">luke_liao</maintainer>
+
+<license>BSD</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+<run_depend>message_runtime</run_depend>
+<run_depend>message_generation</run_depend>
+
+
+  <export>
+
+  </export>
+</package>

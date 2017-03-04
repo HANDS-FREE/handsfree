@@ -1,0 +1,34 @@
+mobile_base:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 20  
+
+#  joint1_position_controller:
+#    type: velocity_controllers/JointVelocityController
+#    joint: wheel1
+
+#  joint2_position_controller:
+#    type: velocity_controllers/JointVelocityController
+#    joint: wheel2
+
+#  joint3_position_controller:
+#    type: velocity_controllers/JointVelocityController
+#    joint: wheel3
+
+  servo1_position_controller:
+    type: position_controllers/JointPositionController
+    joint: servo_1
+
+  servo2_position_controller:
+    type: position_controllers/JointPositionController
+    joint: servo_2
+
+  
+
+  mobile_base_controller:
+#    type: "omni_triangle_controller/OmniDriveController"
+    type: base_simple_controller/BaseSimpleController
+    wheel1: 'wheel1'
+    wheel2: 'wheel2'
+    wheel3: 'wheel3'

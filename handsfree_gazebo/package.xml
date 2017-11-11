@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>handsfree_gazebo</name>
+  <version>0.1.0</version>
+  <description>The handsfree_gazebo store the urdf and gazebo config for handsfree robot system
+  </description>
+
+
+  <maintainer email="luke_liao@126.com">luke_liao</maintainer>
+
+<license>BSD</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

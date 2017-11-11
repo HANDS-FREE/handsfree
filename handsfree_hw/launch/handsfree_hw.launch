@@ -1,0 +1,17 @@
+<launch>
+
+  <node name="handsfree_hw_node" pkg="handsfree_hw" type="handsfree_hw_node" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf/handsfree.urdf.xarco" />
+
+  <rosparam file="$(find handsfree_hw)/config/config.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/mobile_base" args="joint_state_controller servo1_position_controller servo2_position_controller mobile_base_controller"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
+  <remap from="/joint_states" to="/mobile_base/joint_states"/>
+  </node>
+
+</launch>

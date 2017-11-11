@@ -1,7 +1,13 @@
 /*
- * Copyright (c) 2014, RoboPeak
- * All rights reserved.
+ *  RPLIDAR SDK
  *
+ *  Copyright (c) 2009 - 2014 RoboPeak Team
+ *  http://www.robopeak.com
+ *  Copyright (c) 2014 - 2016 Shanghai Slamtec Co., Ltd.
+ *  http://www.slamtec.com
+ *
+ */
+/*
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
  *
@@ -24,14 +30,6 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- */
-/*
- *  RoboPeak LIDAR System
- *  Serial Driver Interface
- *
- *  Copyright 2009 - 2014 RoboPeak Team
- *  http://www.robopeak.com
- * 
  */
 
 #pragma once 
@@ -70,6 +68,9 @@ public:
     virtual int waitforrecv(_u32 timeout = -1, size_t * returned_size = NULL) = 0;
 
     virtual size_t rxqueue_count() = 0;
+
+    virtual void setDTR() = 0;
+    virtual void clearDTR() = 0;
 
     virtual bool isOpened()
     {

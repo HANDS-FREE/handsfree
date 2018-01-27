@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
 include_directories(
   ${RPLIDAR_SDK_PATH}/include
   ${RPLIDAR_SDK_PATH}/src
+  ${catkin_INCLUDE_DIRS}
 )
 
 catkin_package()
@@ -27,3 +28,14 @@ target_link_libraries(rplidarNode ${catkin_LIBRARIES})
 
 add_executable(rplidarNodeClient src/client.cpp)
 target_link_libraries(rplidarNodeClient ${catkin_LIBRARIES})
+
+install(TARGETS rplidarNode rplidarNodeClient
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch rviz sdk
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  USE_SOURCE_PERMISSIONS
+)

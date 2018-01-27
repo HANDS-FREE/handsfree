@@ -1,45 +1,41 @@
 /*
- * Copyright (c) 2014, RoboPeak
- * All rights reserved.
+ *  RPLIDAR ROS NODE
  *
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, 
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice, 
- *    this list of conditions and the following disclaimer in the documentation 
- *    and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
- * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR 
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *  Copyright (c) 2009 - 2014 RoboPeak Team
+ *  http://www.robopeak.com
+ *  Copyright (c) 2014 - 2016 Shanghai Slamtec Co., Ltd.
+ *  http://www.slamtec.com
  *
  */
 /*
- *  RoboPeak LIDAR System
- *  RPlidar ROS Node
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
  *
- *  Copyright 2009 - 2014 RoboPeak Team
- *  http://www.robopeak.com
- * 
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
-
-
 
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
-
-#include "rplidar.h" //RPLIDAR standard sdk, all-in-one header
+#include "std_srvs/Empty.h"
+#include "rplidar.h"
 
 #ifndef _countof
 #define _countof(_Array) (int)(sizeof(_Array) / sizeof(_Array[0]))
@@ -49,11 +45,13 @@
 
 using namespace rp::standalone::rplidar;
 
-void publish_scan(ros::Publisher *pub, 
-                  rplidar_response_measurement_node_t *nodes, 
+RPlidarDriver * drv = NULL;
+
+void publish_scan(ros::Publisher *pub,
+                  rplidar_response_measurement_node_t *nodes,
                   size_t node_count, ros::Time start,
-                  double scan_time, bool inverted, 
-                  float angle_min, float angle_max, 
+                  double scan_time, bool inverted,
+                  float angle_min, float angle_max,
                   std::string frame_id)
 {
     static int scan_count = 0;
@@ -63,25 +61,33 @@ void publish_scan(ros::Publisher *pub,
     scan_msg.header.frame_id = frame_id;
     scan_count++;
 
-    scan_msg.angle_min = angle_min;
-    scan_msg.angle_max = angle_max;
-    scan_msg.angle_increment = 
+    bool reversed = (angle_max > angle_min);
+    if ( reversed ) {
+      scan_msg.angle_min =  M_PI - angle_max;
+      scan_msg.angle_max =  M_PI - angle_min;
+    } else {
+      scan_msg.angle_min =  M_PI - angle_min;
+      scan_msg.angle_max =  M_PI - angle_max;
+    }
+    scan_msg.angle_increment =
         (scan_msg.angle_max - scan_msg.angle_min) / (double)(node_count-1);
 
     scan_msg.scan_time = scan_time;
     scan_msg.time_increment = scan_time / (double)(node_count-1);
-
     scan_msg.range_min = 0.15;
-    scan_msg.range_max = 6.;
+    scan_msg.range_max = 8.0;
 
+    scan_msg.intensities.resize(node_count);
     scan_msg.ranges.resize(node_count);
-    if (!inverted) { // assumes scan window at the top
+    bool reverse_data = (!inverted && reversed) || (inverted && !reversed);
+    if (!reverse_data) {
         for (size_t i = 0; i < node_count; i++) {
             float read_value = (float) nodes[i].distance_q2/4.0f/1000;
             if (read_value == 0.0)
                 scan_msg.ranges[i] = std::numeric_limits<float>::infinity();
             else
                 scan_msg.ranges[i] = read_value;
+            scan_msg.intensities[i] = (float) (nodes[i].sync_quality >> 2);
         }
     } else {
         for (size_t i = 0; i < node_count; i++) {
@@ -90,26 +96,41 @@ void publish_scan(ros::Publisher *pub,
                 scan_msg.ranges[node_count-1-i] = std::numeric_limits<float>::infinity();
             else
                 scan_msg.ranges[node_count-1-i] = read_value;
+            scan_msg.intensities[node_count-1-i] = (float) (nodes[i].sync_quality >> 2);
         }
     }
-    sensor_msgs::LaserScan laser;
-    laser = scan_msg;
-    for (size_t i = 0;i < 180;i++){
-           laser.ranges[i] = scan_msg.ranges[i + 180];
+
+    pub->publish(scan_msg);
+}
+
+bool getRPLIDARDeviceInfo(RPlidarDriver * drv)
+{
+    u_result     op_result;
+    rplidar_response_device_info_t devinfo;
+
+    op_result = drv->getDeviceInfo(devinfo);
+    if (IS_FAIL(op_result)) {
+        if (op_result == RESULT_OPERATION_TIMEOUT) {
+            fprintf(stderr, "Error, operation time out.\n");
+        } else {
+            fprintf(stderr, "Error, unexpected error, code: %x\n", op_result);
+        }
+        return false;
     }
-    for (size_t i = 180; i < 360;i++){
-           laser.ranges[i] = scan_msg.ranges[i - 180];
+
+    // print out the device serial number, firmware and hardware version number..
+    printf("RPLIDAR S/N: ");
+    for (int pos = 0; pos < 16 ;++pos) {
+        printf("%02X", devinfo.serialnum[pos]);
     }
-    laser.intensities.resize(node_count);
-    for (size_t i = 0; i < node_count; i++) {
-        laser.intensities[i] = (float)0;
-    }
-    for (size_t i = 0; i < 360; i++ ){
-	if (!(i > 90 && i < 270)) laser.ranges[i] = std::numeric_limits<float>::infinity();
-    }
-    laser.angle_min = -(scan_msg.angle_min + scan_msg.angle_max)/2;
-    laser.angle_max = (scan_msg.angle_min + scan_msg.angle_max)/2;
-    pub->publish(laser);
+
+    printf("\n"
+           "Firmware Ver: %d.%02d\n"
+           "Hardware Rev: %d\n"
+           , devinfo.firmware_version>>8
+           , devinfo.firmware_version & 0xFF
+           , (int)devinfo.hardware_version);
+    return true;
 }
 
 bool checkRPLIDARHealth(RPlidarDriver * drv)
@@ -136,6 +157,29 @@ bool checkRPLIDARHealth(RPlidarDriver * drv)
     }
 }
 
+bool stop_motor(std_srvs::Empty::Request &req,
+                               std_srvs::Empty::Response &res)
+{
+  if(!drv)
+       return false;
+
+  ROS_DEBUG("Stop motor");
+  drv->stop();
+  drv->stopMotor();
+  return true;
+}
+
+bool start_motor(std_srvs::Empty::Request &req,
+                               std_srvs::Empty::Response &res)
+{
+  if(!drv)
+       return false;
+  ROS_DEBUG("Start motor");
+  drv->startMotor();
+  drv->startScan();;
+  return true;
+}
+
 int main(int argc, char * argv[]) {
     ros::init(argc, argv, "rplidar_node");
 
@@ -146,19 +190,21 @@ int main(int argc, char * argv[]) {
     bool angle_compensate = true;
 
     ros::NodeHandle nh;
-    ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("base_scan", 1000);
+    ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1000);
     ros::NodeHandle nh_private("~");
     nh_private.param<std::string>("serial_port", serial_port, "/dev/ttyUSB0"); 
     nh_private.param<int>("serial_baudrate", serial_baudrate, 115200); 
     nh_private.param<std::string>("frame_id", frame_id, "laser_frame");
-    nh_private.param<bool>("inverted", inverted, "false");
-    nh_private.param<bool>("angle_compensate", angle_compensate, "true");
+    nh_private.param<bool>("inverted", inverted, false);
+    nh_private.param<bool>("angle_compensate", angle_compensate, true);
+
+    printf("RPLIDAR running on ROS package rplidar_ros\n"
+           "SDK Version: "RPLIDAR_SDK_VERSION"\n");
 
     u_result     op_result;
 
     // create the driver instance
-    RPlidarDriver * drv = 
-        RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
+    drv = RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
     
     if (!drv) {
         fprintf(stderr, "Create Driver fail, exit\n");
@@ -173,13 +219,21 @@ int main(int argc, char * argv[]) {
         return -1;
     }
 
+    // get rplidar device info
+    if (!getRPLIDARDeviceInfo(drv)) {
+        return -1;
+    }
+
     // check health...
     if (!checkRPLIDARHealth(drv)) {
         RPlidarDriver::DisposeDriver(drv);
         return -1;
     }
 
-    // start scan...
+    ros::ServiceServer stop_motor_service = nh.advertiseService("stop_motor", stop_motor);
+    ros::ServiceServer start_motor_service = nh.advertiseService("start_motor", start_motor);
+
+    drv->startMotor();
     drv->startScan();
 
     ros::Time start_scan_time;
@@ -220,8 +274,8 @@ int main(int argc, char * argv[]) {
                     }
   
                     publish_scan(&scan_pub, angle_compensate_nodes, angle_compensate_nodes_count,
-                             start_scan_time, scan_duration, inverted,  
-                             angle_min, angle_max, 
+                             start_scan_time, scan_duration, inverted,
+                             angle_min, angle_max,
                              frame_id);
                 } else {
                     int start_node = 0, end_node = 0;
@@ -236,9 +290,9 @@ int main(int argc, char * argv[]) {
                     angle_min = DEG2RAD((float)(nodes[start_node].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f);
                     angle_max = DEG2RAD((float)(nodes[end_node].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64.0f);
 
-                    publish_scan(&scan_pub, &nodes[start_node], end_node-start_node +1, 
-                             start_scan_time, scan_duration, inverted,  
-                             angle_min, angle_max, 
+                    publish_scan(&scan_pub, &nodes[start_node], end_node-start_node +1,
+                             start_scan_time, scan_duration, inverted,
+                             angle_min, angle_max,
                              frame_id);
                }
             } else if (op_result == RESULT_OPERATION_FAIL) {
@@ -246,9 +300,9 @@ int main(int argc, char * argv[]) {
                 float angle_min = DEG2RAD(0.0f);
                 float angle_max = DEG2RAD(359.0f);
 
-                publish_scan(&scan_pub, nodes, count, 
-                             start_scan_time, scan_duration, inverted,  
-                             angle_min, angle_max, 
+                publish_scan(&scan_pub, nodes, count,
+                             start_scan_time, scan_duration, inverted,
+                             angle_min, angle_max,
                              frame_id);
             }
         }
@@ -257,6 +311,8 @@ int main(int argc, char * argv[]) {
     }
 
     // done!
+    drv->stop();
+    drv->stopMotor();
     RPlidarDriver::DisposeDriver(drv);
     return 0;
 }

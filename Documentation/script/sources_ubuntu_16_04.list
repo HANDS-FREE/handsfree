@@ -1,0 +1,37 @@
+# 163
+deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse
+
+# qing hua
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+
+# zhong ke da ipv4
+# deb http://debian.ustc.edu.cn/ubuntu/ xenial main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ xenial-backports main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ xenial-proposed main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ xenial-security main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ xenial-updates main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ xenial main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-backports main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-proposed main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-security main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-updates main multiverse restricted universe
+
+

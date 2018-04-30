@@ -1,0 +1,46 @@
+#163
+deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+# deb http://mirrors.cqu.edu.cn/ubuntu/ trusty main restricted universe multiverse
+# deb http://mirrors.cqu.edu.cn/ubuntu/ trusty-security main restricted universe multiverse
+# deb http://mirrors.cqu.edu.cn/ubuntu/ trusty-updates main restricted universe multiverse
+# deb http://mirrors.cqu.edu.cn/ubuntu/ trusty-proposed main restricted universe multiverse
+# deb http://mirrors.cqu.edu.cn/ubuntu/ trusty-backports main restricted universe multiverse
+# deb-src http://mirrors.cqu.edu.cn/ubuntu/ trusty main restricted universe multiverse
+# deb-src http://mirrors.cqu.edu.cn/ubuntu/ trusty-security main restricted universe multiverse
+# deb-src http://mirrors.cqu.edu.cn/ubuntu/ trusty-updates main restricted universe multiverse
+# deb-src http://mirrors.cqu.edu.cn/ubuntu/ trusty-proposed main restricted universe multiverse
+# deb-src http://mirrors.cqu.edu.cn/ubuntu/ trusty-backports main restricted universe multiverse
+
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-security main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-updates main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-backports main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-proposed main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-security main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-updates main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-backports main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-proposed main restricted universe multiverse
+
+#zhong ke da ipv4
+# deb http://debian.ustc.edu.cn/ubuntu/ trusty main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ trusty-backports main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ trusty-proposed main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ trusty-security main multiverse restricted universe
+# deb http://debian.ustc.edu.cn/ubuntu/ trusty-updates main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ trusty main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-backports main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-proposed main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-security main multiverse restricted universe
+# deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-updates main multiverse restricted universe
+

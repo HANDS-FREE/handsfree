@@ -47,6 +47,7 @@ HF_HW::HF_HW(std::string url, std::string config_addr)
             std::cout<< temp << hflink_command_set_[i] << hflink_freq_[i]<<std::endl;
         }
         file_.close();
+        std::cerr << "config file opened succeed" <<std::endl;
         initialize_ok_ = port_->initialize_ok();
     } else
     {

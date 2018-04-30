@@ -24,15 +24,7 @@ TransportSerial::TransportSerial() :
     Transport("serial:///dev/ttyUSB0")
 {
     params_.serialPort = "/dev/ttyUSB0";
-    if (!initializeSerial())
-    {
-        std::cerr << "serial Transport initialize failed ,please check your system" <<std::endl;
-        initialize_ok_ = false;
-    } else
-    {
-        std::cout << "transport initialize ready" <<std::endl;
-        initialize_ok_ = true;
-    }
+    initializeSerial();
 }
 
 TransportSerial::TransportSerial(std::string url) :
@@ -156,8 +148,12 @@ bool TransportSerial::initializeSerial()
     {
         std::cerr << "Failed to open the serial port " << std::endl;
         std::cerr << "Error info is "<< e.what() << std::endl;
+        initialize_ok_ = false;
         return false;
     }
+
+    std::cerr << "transport initialize ready" <<std::endl;
+    initialize_ok_ = true;
 
     temp_read_buf_.resize(1024, 0);
     try

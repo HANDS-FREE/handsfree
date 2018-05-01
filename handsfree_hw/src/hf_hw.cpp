@@ -15,7 +15,6 @@
 * Description: define the handfree pc software interface
 ***********************************************************************************************************************/
 
-
 #include <handsfree_hw/hf_hw.h>
 
 namespace handsfree_hw {

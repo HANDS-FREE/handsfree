@@ -4,7 +4,17 @@ int main(int argc, char** argv)
 {
     ros::init(argc, argv, "robothw");
     ros::NodeHandle nh("handsfree");
-    handsfree_hw::HF_HW_ros hf(nh, "serial:///dev/ttyUSB0", "/home/kedou/ros_workspace/mobile_robot_ws/src/handsfree/handsfree_hw/config.txt");
+
+    FILE *pf = popen("rospack find handsfree_hw", "r");
+    char res[1024];
+    fread(res,1024, 1, pf);
+    pclose(pf);
+    std::string configfile=res;
+    configfile.erase(configfile.end() - 1);
+    configfile=configfile+"/config.txt";
+    std::cerr << "config path:" << configfile <<std::endl;
+
+    handsfree_hw::HF_HW_ros hf(nh, "serial:///dev/ttyUSB0", configfile);
     hf.mainloop();
     return 0;
 }

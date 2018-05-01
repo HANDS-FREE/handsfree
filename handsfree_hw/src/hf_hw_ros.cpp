@@ -153,7 +153,7 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         ROS_INFO("system initialized succeed, ready for communication");
     } else
     {
-        ROS_ERROR("hf link initialized failed, please check the hardware");
+        ROS_ERROR("hf link initialized failed, please check the serial port of the openre board,for details,please see: http://wiki.handsfree.org.cn/");
     }
 }
 

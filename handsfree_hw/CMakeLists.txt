@@ -10,7 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   handsfree_msgs
 )
-
+set(config_path \"${CMAKE_CURRENT_SOURCE_DIR}\")
+add_definitions(-Dconfig_path=${config_path})
 catkin_package(   
   INCLUDE_DIRS include
 #  LIBRARIES handsfree_hw

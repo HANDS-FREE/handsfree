@@ -26,7 +26,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: RPLidarLaserScan
 Visualization Manager:
   Class: ""
   Displays:
@@ -74,13 +74,34 @@ Visualization Manager:
       Size (m): 0.03
       Style: Squares
       Topic: /scan
+      Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        laser:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        base_link:
+          laser:
+            {}
+      Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: laser
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -96,17 +117,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 11.1184
+      Distance: 5.07531
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
       Focal Point:
         X: -0.0344972
         Y: 0.065886
         Z: 0.148092
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.615399
+      Pitch: 0.535399
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.82358
+      Yaw: 5.36358
     Saved: ~
 Window Geometry:
   Displays:
@@ -124,5 +150,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1215
-  X: 65
-  Y: 24
+  X: 55
+  Y: 14

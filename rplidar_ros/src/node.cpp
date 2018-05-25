@@ -63,13 +63,13 @@ void publish_scan(ros::Publisher *pub,
     scan_count++;
 
     bool reversed = (angle_max > angle_min);
-    if ( reversed ) {
-      scan_msg.angle_min =  M_PI - angle_max;
-      scan_msg.angle_max =  M_PI - angle_min;
-    } else {
-      scan_msg.angle_min =  M_PI - angle_min;
-      scan_msg.angle_max =  M_PI - angle_max;
-    }
+//    if ( reversed ) {
+//      scan_msg.angle_min =   angle_max;
+//      scan_msg.angle_max =   angle_min;
+//    } else {
+      scan_msg.angle_min =  angle_min;
+      scan_msg.angle_max =  angle_max;
+//    }
     scan_msg.angle_increment =
         (scan_msg.angle_max - scan_msg.angle_min) / (double)(node_count-1);
 

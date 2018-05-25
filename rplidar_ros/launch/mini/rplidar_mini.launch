@@ -1,0 +1,20 @@
+<launch>
+
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0.075 0 0 0 0 0 base_link laser 50" />
+
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+  <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>
+  <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
+  <!--param name="serial_baudrate"     type="int"    value="256000"--><!--A3 -->
+  <param name="frame_id"            type="string" value="laser"/>
+  <param name="inverted"            type="bool"   value="false"/>
+  <param name="angle_compensate"    type="bool"   value="true"/>
+  <remap from="scan" to="base_scan"/>
+  </node>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+  <rosparam command="load" file="$(find rplidar_ros)/launch/stone_v2/laser_filter_stone_v2.yaml" />
+  <remap from="scan" to="base_scan"/>
+  <remap from="scan_filtered" to="scan"/>
+  </node>
+</launch>

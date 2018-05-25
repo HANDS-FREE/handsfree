@@ -1,0 +1,29 @@
+#Independent settings for the global planner's costmap. Detailed descriptions of these parameters can be found at http://www.ros.org/wiki/costmap_2d
+
+global_costmap:
+  #Set the global and robot frames for the costmap
+  global_frame: /map
+  robot_base_frame: base_link
+
+  #Set the update and publish frequency of the costmap
+#  update_frequency: 5.0
+#  publish_frequency: 0.0
+
+  #We'll use a map served by the map_server to initialize this costmap
+#  static_map: true
+#  rolling_window: false
+
+  update_frequency: 1.0
+  publish_frequency: 0.5
+
+  #We'll configure this costmap to be a rolling window... meaning it is always
+  #centered at the robot
+  static_map: true
+ # rolling_window: true
+ # width: 6.0
+ # height: 6.0
+ # resolution: 0.025
+ # origin_x: 0.0
+ # origin_y: 0.0
+
+

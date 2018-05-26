@@ -16,15 +16,13 @@ mobile_base:
 #    type: velocity_controllers/JointVelocityController
 #    joint: wheel3
 
-  servo1_position_controller:
+  pitch_position_controller:
     type: position_controllers/JointPositionController
     joint: servo_1
 
-  servo2_position_controller:
+  yaw_position_controller:
     type: position_controllers/JointPositionController
     joint: servo_2
-
-  
 
   mobile_base_controller:
 #    type: "omni_triangle_controller/OmniDriveController"

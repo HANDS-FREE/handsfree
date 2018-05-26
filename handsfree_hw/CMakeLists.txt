@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   handsfree_msgs
 )
+
 set(config_path \"${CMAKE_CURRENT_SOURCE_DIR}\")
 add_definitions(-DCONFIG_PATH=${config_path})
 catkin_package(   
@@ -19,17 +20,14 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
+execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/env.sh)
+
 include_directories(
   include 
   ${catkin_INCLUDE_DIRS}
   include/sdk/hf_link/
   include/sdk/robot_abstract/
 )
-
-message("------- copying configure file to target path......")
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config.txt
-     DESTINATION ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION})
-message("+++++++ finish it!")
 
 add_executable(handsfree_hw_node src/main.cpp src/transport_serial.cpp include/sdk/hf_link/hf_link.cpp include/sdk/hf_link/hf_link_state_machine.cpp src/hf_hw.cpp src/hf_hw_ros.cpp)
 

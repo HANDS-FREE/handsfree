@@ -1,7 +1,8 @@
 <launch>
+
   <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
-  <include file="$(find rplidar_ros)/launch/stone_v3/rplidar_stone_v3.launch" />
-  <include file="$(find handsfree_2dnav)/launch/move_base_amcl_stone_v3.launch" />
+  <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+  <include file="$(find handsfree_2dnav)/launch/move_base_amcl.launch" />
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_2dnav)/rviz/HANDSFREE_Robot.rviz" />
 </launch>

@@ -1,9 +1,0 @@
-<launch>
-  <include file="$(find handsfree_hw)/launch/handsfree_hw.launch">
-  <include file="$(find rplidar_ros)/launch/stone_v2/rplidar_stone_v2.launch">
-  <include file="$(find handsfree_2dnav)/launch/gmapping_stone_v2.launch">
-
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_2dnav)/rviz/HANDSFREE_Robot.rviz" />
-
-  <include file="$(find handsfree_hw)/launch/keyboard_teleop.launch">
-</launch>

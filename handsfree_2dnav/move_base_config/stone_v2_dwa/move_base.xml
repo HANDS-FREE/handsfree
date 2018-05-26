@@ -3,14 +3,12 @@
   Example move_base configuration. Descriptions of parameters, as well as a full list of all amcl parameters, can be found at http://www.ros.org/wiki/move_base.
 -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
-    <param name="shutdown_costmaps" value="false" />
-    <param name="controller_frequency" value="10" />
-    <param name="planner_patience" value="5.0" />
-    <param name="controller_patience" value="15.0" />
-    <param name="conservative_reset_dist" value="3.0" />
-    <param name="planner_frequency" value="5.0" />
-    <param name="oscillation_timeout" value="10.0" />
-    <param name="oscillation_distance" value="0.22" />
+    <param name="footprint_padding" value="0.01" />
+    <param name="controller_frequency" value="5" />
+    <param name="controller_patience" value="3.0" />
+
+    <param name="oscillation_timeout" value="30.0" />
+    <param name="oscillation_distance" value="0.5" />
 
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
 

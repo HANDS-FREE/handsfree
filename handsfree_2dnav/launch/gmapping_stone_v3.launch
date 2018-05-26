@@ -1,4 +1,0 @@
-<launch>
-  <include file="$(find handsfree_2dnav)/move_base_config/stone_v3/slam_gmapping.xml"/> 
-  <include file="$(find handsfree_2dnav)/move_base_config/stone_v3/move_base.xml"/>
-</launch>

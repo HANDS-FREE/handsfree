@@ -1,7 +1,0 @@
-<launch>
-  <master auto="start"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find handsfree_2dnav)/map/zhaowendao.yaml" respawn="false" >
-  </node>
-  <include file="$(find handsfree_2dnav)/move_base_config/stone_v2/amcl_node.xml"/> 
-  <include file="$(find handsfree_2dnav)/move_base_config/stone_v2/move_base.xml"/>
-</launch>

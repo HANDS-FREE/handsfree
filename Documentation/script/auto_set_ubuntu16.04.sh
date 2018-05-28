@@ -15,9 +15,8 @@ $install_command ia32-libs*
 echo "building tools & librarys"
 
 $install_command vim-common vim-doc vim-gtk vim-scripts build-essential bin86  g++ gcc libstdc++5 
-
+$install_command classicmenu-indicator indicator-multiload tree nautilus-open-terminal cutecom meld
 $install_command ack-grep cmake cmake-qt-gui git subversion mercurial yum openssh-server openssh-client
-
 $install_command libncurses5 libncurses5-dev mesa-utils libglu1-mesa freeglut3 freeglut3-dev libxmu-dev libxmu-headers libcairo2 libcairo2-dev python-cairo
 
 # gtk

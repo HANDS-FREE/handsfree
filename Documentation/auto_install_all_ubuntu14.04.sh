@@ -12,7 +12,7 @@ sudo cp ./script/sources_ubuntu_14_04.list /etc/apt/sources.list
 sudo apt-get update
 echo 设置 HandsFree 开发环境
 sleep 1
-sh ./script/auto_set_ubuntu16.04.sh
+sh ./script/auto_set_ubuntu14.04.sh
 echo 安装 ROS 基本环境
 sleep 1
 sh ./script/ros_kinetic_base.sh

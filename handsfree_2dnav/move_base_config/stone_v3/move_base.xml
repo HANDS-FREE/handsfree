@@ -2,6 +2,9 @@
 <!--
   Example move_base configuration. Descriptions of parameters, as well as a full list of all amcl parameters, can be found at http://www.ros.org/wiki/move_base.
 -->
+
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+
   <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
     <param name="shutdown_costmaps" value="false" />
     <param name="controller_frequency" value="10" />
@@ -14,13 +17,13 @@
 
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
 
-    <rosparam file="$(find handsfree_2dnav)/move_base_config/stone_v2/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find handsfree_2dnav)/move_base_config/stone_v2/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find handsfree_2dnav)/move_base_config/stone_v2/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find handsfree_2dnav)/move_base_config/stone_v2/global_costmap_params.yaml" command="load" />
-    <!--rosparam file="$(find handsfree_2dnav)/move_base_config/stone_v2/base_local_planner_params.yaml" command="load" /-->
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/global_costmap_params.yaml" command="load" />
+    <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/base_local_planner_params.yaml" command="load" /-->
     
-    <rosparam file="$(find handsfree_2dnav)/move_base_config/stone_v2/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/dwa_local_planner_params.yaml" command="load" />
 
   <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
   <remap from="/odom"    to="/mobile_base/mobile_base_controller/odom"/> 

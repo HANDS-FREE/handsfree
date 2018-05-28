@@ -2,6 +2,7 @@
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(find handsfree_2dnav)/map/zhaowendao_p.yaml" respawn="false" >
+    <param name="frame_id" value="/map"/>
   </node>
 
   <include file="$(find handsfree_2dnav)/move_base_config/$(arg model)/amcl_node.xml"/> 

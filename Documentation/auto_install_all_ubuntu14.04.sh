@@ -15,10 +15,10 @@ sleep 1
 sh ./script/auto_set_ubuntu14.04.sh
 echo 安装 ROS 基本环境
 sleep 1
-sh ./script/ros_kinetic_base.sh
+sh ./script/ros_indigo_base.sh
 echo 安装 ROS 扩展环境
 sleep 1
-sh ./script/ros_kinetic_ext.sh
+sh ./script/ros_indigo_ext.sh
 
 echo 安装 HandsFree ROS 
 source ~/.bashrc 

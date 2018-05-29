@@ -1,9 +1,9 @@
 # HANDS FREE ROS DEMO 
 
-### Environment ###
+## Environment 
 we recommend that you test code on the pc before transplant to TK1 or TX1   
-* 1. Make sure you install ROS and carefully read the [Beginner Level Tutorials]( http://wiki.ros.org/ROS/Tutorials )   
-* 2. run Documentation/environment_config.sh to install some dependent packages     
+* 1. Make sure you install ROS and carefully read the [Beginner Level Tutorials](http://wiki.ros.org/ROS/Tutorials)   
+* 2. Follow [HandsFree Tutorials](http://wiki.hfreetech.org/docs/FAQ/environment_config.html) to install some dependent packages     
 * 3. Compilation : catkin_make      
 * 4.  run example 
 
@@ -12,9 +12,13 @@ we recommend that you test code on the pc before transplant to TK1 or TX1
         
  then you can remote control robot.
 
-### Installation from Scratch ###
-There is now an install.sh script(in Documentation), which can be executed (bash install.sh). It installs everything required.
+##  Community: 
+* [HandsFree Github](https://github.com/HANDS-FREE)   
+* [HandsFree Website](http://www.hfreetech.org/)   
+* [HandsFree Wiki](http://wiki.hfreetech.org/) ,  [Old Version Wiki](http://wiki.handsfree.org.cn/)  
+* [HandsFree baiduyun](https://pan.baidu.com/s/1WTEuCW87K9-HUubpUM5dDw#list/path=%2F)     
+* [BUY Robot](https://shop145029875.taobao.com/?spm=a1z10.3-c.0.0.zpwB3d)     
+* QQ Group: 521037187(Hands Free Community)   
+* Email: hands_free@126.com   
 
-The script is short and not complicated, so you can also use it as a manual.
 
-If you want to use the install script, it is sufficient to [download it directly](https://raw.githubusercontent.com/HANDS-FREE/handsfree/master/Documentation/install.sh). There is no need to clone this repository then, as the script will do that for you.

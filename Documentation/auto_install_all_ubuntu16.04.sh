@@ -33,3 +33,5 @@ echo "source ~/handsfree/handsfree_ros_ws/devel/setup.sh" >> ~/.bashrc
 source ~/.bashrc
 echo HandsFree 相关程序已经安装完毕
 echo 安装路径为：~/handsfree
+
+sudo cp /opt/ros/kinetic/share/laser_filters/laser_filters_plugins.xml /opt/ros/kinetic/share/laser_filters_jsk_patch/

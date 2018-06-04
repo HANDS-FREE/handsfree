@@ -4,8 +4,11 @@
   <version>0.1.0</version>
   <description>The base_simple_controller for base_velocity controller </description>
 
+  <maintainer email="hands_free@126.com">HandsFree</maintainer>
+  <license>BSD</license>
+  <url type="website">http://wiki.hfreetech.org</url>
+  <url type="bugtracker">https://github.com/HANDS-FREE/handsfree/issues</url>
   <maintainer email="liao@126.com">liao</maintainer>
-
 
   <license>BSD</license>
 

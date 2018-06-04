@@ -1,18 +1,14 @@
 <?xml version="1.0"?>
 <package>
   <name>handsfree_ar_tags</name>
-  <version>0.0.0</version>
+  <version>0.1.0</version>
+  <description>HandsFree - AR Tags</description>
 
-  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
-  <!-- Example:  -->
-  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <description>ROS By Example Vol 2 - AR Tags</description>
-
-  <maintainer email="patrick@pirobot.org">Patrick Goebel</maintainer>
+  <maintainer email="hands_free@126.com">HandsFree</maintainer>
   <license>BSD</license>
-  <url type="website">http://ros.org/wiki/rbx2_ar_tags</url>
-  <url type="bugtracker">https://github.com/pirobot/rbx2/issues</url>
-  <author email="patrick@pirobot.org">Patrick Goebel</author>
+  <url type="website">http://wiki.hfreetech.org</url>
+  <url type="bugtracker">https://github.com/HANDS-FREE/handsfree/issues</url>
+  <author email="315261982@qq.com">WenKe Ma</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>ar_track_alvar</build_depend>

@@ -5,9 +5,11 @@
   <description>The handsfree_hw package for hflink communication with embeded system ,ros_control frame 
   </description>
 
-  <maintainer email="luke_liao@126.com">luke_liao</maintainer>
-
-<license>BSD</license>
+  <maintainer email="hands_free@126.com">Patrick Goebel</maintainer>
+  <license>BSD</license>
+  <url type="website">http://wiki.hfreetech.org</url>
+  <url type="bugtracker">https://github.com/HANDS-FREE/handsfree/issues</url>
+  <author email="315261982@qq.com">WenKe Ma</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>controller_manager</build_depend>
@@ -23,9 +25,7 @@
   <run_depend>roscpp</run_depend>
   <run_depend>std_msgs</run_depend>
 
-
   <export>
-
 
   </export>
 </package>

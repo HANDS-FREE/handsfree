@@ -24,7 +24,6 @@ sleep 1
 sh ./ros_indigo_ext.sh
 
 echo 安装 HandsFree ROS 
-source ~/.bashrc 
 sleep 1
 cd ~/handsfree/handsfree_ros_ws/src/
 catkin_init_workspace
@@ -32,7 +31,7 @@ sleep 1
 cd ~/handsfree/handsfree_ros_ws
 catkin_make
 echo "source ~/handsfree/handsfree_ros_ws/devel/setup.sh" >> ~/.bashrc
-source ~/.bashrc
+bash ~/handsfree/handsfree_ros_ws/devel/setup.sh
 echo HandsFree 相关程序已经安装完毕
 echo 安装路径为：~/handsfree
 

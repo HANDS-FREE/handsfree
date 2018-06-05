@@ -47,4 +47,5 @@ ros-indigo-laptop-battery-monitor ros-indigo-ar-track-alvar* \
 ros-indigo-map-server ros-indigo-move-base* \
 ros-indigo-simple-grasping
 
+bash /opt/ros/indigo/setup.bash
 #libopencv-dev python-opencv  ros-kinetic-vision-opencv

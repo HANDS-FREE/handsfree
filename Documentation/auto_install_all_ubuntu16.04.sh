@@ -24,7 +24,6 @@ sleep 1
 sh ./ros_kinetic_ext.sh
 
 echo 安装 HandsFree ROS 
-source ~/.bashrc 
 sleep 1
 cd ~/handsfree/handsfree_ros_ws/src/
 catkin_init_workspace
@@ -32,11 +31,9 @@ sleep 1
 cd ~/handsfree/handsfree_ros_ws
 catkin_make
 echo "source ~/handsfree/handsfree_ros_ws/devel/setup.sh" >> ~/.bashrc
-source ~/.bashrc
+bash ~/handsfree/handsfree_ros_ws/devel/setup.sh
 echo HandsFree 相关程序已经安装完毕
 echo 安装路径为：~/handsfree
-
-sudo cp /opt/ros/kinetic/share/laser_filters/laser_filters_plugins.xml /opt/ros/kinetic/share/laser_filters_jsk_patch/
 
 cd ~/handsfree/handsfree_ros_ws/src/Documentation/script
 sudo cp ./60-persistent-serial.rules /etc/udev/rules.d/

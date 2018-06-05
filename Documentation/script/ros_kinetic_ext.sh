@@ -48,4 +48,5 @@ ros-kinetic-laptop-battery-monitor ros-kinetic-ar-track-alvar* \
 ros-kinetic-map-server ros-kinetic-move-base* \
 ros-kinetic-simple-grasping ros-kinetic-manipulation-msgs
 
+bash /opt/ros/kinetic/setup.bash
 #libopencv-dev python-opencv  ros-kinetic-vision-opencv

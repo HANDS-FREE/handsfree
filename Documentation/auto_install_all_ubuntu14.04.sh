@@ -7,6 +7,8 @@ cd ~/handsfree/handsfree_ros_ws/
 echo 设置 HandsFree 安装路径为： ~/handsfree
 git clone https://github.com/HANDS-FREE/handsfree.git src
 sleep 1
+cd ~/handsfree/handsfree_ros_ws/src
+git checkout 3.2
 cd ~/handsfree/handsfree_ros_ws/src/Documentation/script
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo cp ./sources_ubuntu_14_04.list /etc/apt/sources.list

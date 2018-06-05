@@ -1,0 +1,11 @@
+ACTION!="add", GOTO="persistent_serial_end"
+SUBSYSTEM!="tty", GOTO="persistent_serial_end"
+KERNEL!="ttyUSB[0-9]*", GOTO="persistent_serial_end"
+
+# This is old 11.10 style: IMPORT="usb_id --export %p"
+IMPORT{builtin}="path_id"
+ENV{ID_SERIAL}=="Silicon_Labs_HandsFree_USB_to_UART_Bridge_Controller_0001",SYMLINK="HFRobot",SYMLINK+="ttyUSB001" , OWNER="handsfree"
+ENV{ID_SERIAL}=="Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001",SYMLINK="rplidar"  , SYMLINK+="ttyUSB002" , OWNER="handshree"
+ENV{ID_SERIAL}=="Silicon_Labs_rplidar_USB_to_UART_Bridge_Controller_0001",SYMLINK="rplidar"  , SYMLINK+="ttyUSB002" , OWNER="handshree"
+
+LABEL="persistent_serial_end"

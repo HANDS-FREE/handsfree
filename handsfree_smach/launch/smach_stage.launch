@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find handsfree_stage)/launch/handsfree_stage.launch"/> 
+  <node name="handsfree_smach"   pkg="handsfree_smach"  type="smach_demo.py" output="screen" />
+</launch>

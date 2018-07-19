@@ -4,16 +4,16 @@
   <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>
   </node>
 
-  <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf/handsfree.urdf.xarco" />
+  <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf_stone_v3/gazebo.urdf.xarco" />
 
   <rosparam file="$(find handsfree_hw)/config/config.yaml" command="load"/>
 
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/mobile_base" args="joint_state_controller pitch_position_controller yaw_position_controller mobile_base_controller"/>
+    output="screen" ns="/mobile_base" args="joint_state_controller mobile_base_controller pitch_position_controller yaw_position_controller"/>
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
-  <remap from="/joint_states" to="/mobile_base/joint_states"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <remap from="/joint_states" to="/mobile_base/joint_states"/>
   </node>
 
 </launch>

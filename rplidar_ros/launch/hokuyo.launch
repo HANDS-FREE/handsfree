@@ -1,0 +1,20 @@
+<!-- -->
+
+<launch>
+
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+  <arg name="laser_scan" default="scan" />
+  
+  <include file="$(find rplidar_ros)/launch/robot_tf/$(arg model)_tf.xml" />
+
+  <!-- Run the Hokuyo laser scanner node -->
+  <node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node">
+  <remap from="scan" to="base_$(arg laser_scan)"/>
+  </node>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+  <rosparam command="load" file="$(find rplidar_ros)/launch/yaml/hokuyo/laser_filter_$(arg model).yaml" />
+  <remap from="scan" to="base_$(arg laser_scan)"/>
+  <remap from="scan_filtered" to="$(arg laser_scan)"/>
+  </node>
+</launch>

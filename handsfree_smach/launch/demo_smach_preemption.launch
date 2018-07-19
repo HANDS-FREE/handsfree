@@ -1,0 +1,7 @@
+<launch>
+    <include file="$(find handsfree_stage)/launch/stage_simple_room.launch"/>
+    <node name="laser_detection_demo" pkg="handsfree_smach" type="laser_detection.py" output="screen"/>
+	<node name="smach_preemption_demo" pkg="handsfree_smach" type="smach_preemption.py" output="screen">
+      <param name="name_robot" value="robot_0"/>
+	</node>	 
+</launch>

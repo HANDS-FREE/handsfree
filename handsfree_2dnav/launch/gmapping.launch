@@ -2,5 +2,4 @@
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
 
   <include file="$(find handsfree_2dnav)/move_base_config/$(arg model)/slam_gmapping.xml"/> 
-  <include file="$(find handsfree_2dnav)/move_base_config/$(arg model)/move_base.xml"/>
 </launch>

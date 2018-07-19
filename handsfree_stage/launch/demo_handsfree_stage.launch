@@ -1,0 +1,33 @@
+<!-- -->
+
+<launch> 
+
+  <param name="/use_sim_time" value="true"/>
+  <arg name="initial_pose_x" default="9.93"/>
+  <arg name="initial_pose_y" default="21.18"/>
+  <arg name="initial_pose_a" default="0"/>
+  <arg name="map_name" default="handsfree_room"/>
+  <arg name="model" default="stone_v3"/>
+    
+  <node name="stage" pkg="stage_ros" type="stageros" args="$(find handsfree_stage)/world/$(arg map_name).world">
+    <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
+    <remap from="/odom"    to="/mobile_base/mobile_base_controller/odom"/> 
+    <remap from="/base_scan"    to="/scan"/> 
+  </node>
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find handsfree_stage)/world/$(arg map_name).yaml" respawn="false" >
+    <param name="frame_id" value="map"/>
+  </node>
+  
+  <include file="$(find handsfree_2dnav)/move_base_config/$(arg model)/amcl_node.xml">
+    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/> 
+  </include>
+
+  <include file="$(find handsfree_2dnav)/move_base_config/move_base.xml">
+    <arg name="model" value="$(arg model)"/> 
+  </include>  
+  
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_stage)/rviz/navigation.rviz" />
+</launch>

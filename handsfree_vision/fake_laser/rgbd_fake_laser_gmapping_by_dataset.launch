@@ -1,0 +1,25 @@
+<!--
+  Copyright 2018 The HandsFree
+-->
+
+<launch>
+
+  <param name="/use_sim_time" value="true" />
+
+  <node name="playbag" pkg="rosbag" type="play"
+      args="--clock -r 5 $(find handsfree_dataset)/rosbags/handsfree_room_2018_06_09.bag" >
+  <remap from="scan" to="/lidar_scan" />  
+  </node>
+
+  <!-- Run the depthimage_to_laserscan node -->
+  <node name="squash_depth_camera" pkg="depthimage_to_laserscan"
+      type="depthimage_to_laserscan">
+    <remap from="image" to="/camera/depth/image_raw" />
+    <remap from="camera_info" to="/camera/depth/camera_info" />
+  </node>
+
+  <include file="$(find handsfree_2dnav)/launch/gmapping.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_vision)/rviz/rgbd_fake_laser_gmapping_by_xtion.rviz" />
+
+</launch>

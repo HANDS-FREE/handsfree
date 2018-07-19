@@ -1,0 +1,7 @@
+<launch>
+
+  <include file="$(find handsfree_camera)/rgb-d/test_kinect.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_camera)/rviz/view_kinect.rviz" />
+
+</launch>

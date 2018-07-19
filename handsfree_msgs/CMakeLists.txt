@@ -3,6 +3,7 @@ project(handsfree_msgs)
 
 find_package(catkin REQUIRED COMPONENTS
   message_generation
+  actionlib_msgs
   sensor_msgs
   std_msgs
 )
@@ -22,16 +23,15 @@ find_package(catkin REQUIRED COMPONENTS
 
  generate_messages(
    DEPENDENCIES
-   sensor_msgs   std_msgs
+   sensor_msgs std_msgs actionlib_msgs
  )
 
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES handsfree_msgs
-  CATKIN_DEPENDS message_generation sensor_msgs std_msgs 
+  CATKIN_DEPENDS message_generation sensor_msgs std_msgs actionlib_msgs
   DEPENDS system_lib
 )
-
 
 include_directories(
   ${catkin_INCLUDE_DIRS}

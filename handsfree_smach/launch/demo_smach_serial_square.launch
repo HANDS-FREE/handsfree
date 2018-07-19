@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find handsfree_stage)/launch/stage_simple_room.launch"/>
+    <node name="smach_serial_square_demo" pkg="handsfree_smach" type="smach_serial_square.py" output="screen">
+    <param name="name_robot" value="robot_0"/>
+	</node>	 
+</launch>

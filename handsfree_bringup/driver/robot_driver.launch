@@ -1,0 +1,15 @@
+<!-- -->
+
+<launch>
+
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+  
+  <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
+
+  <!-- Run the Hokuyo laser scanner node -->
+  <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+ 
+  <!-- load the rgbd driver -->
+  <include file="$(find handsfree_camera)/rgb-d/xtion.launch" /> 
+
+</launch>

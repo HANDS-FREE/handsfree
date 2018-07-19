@@ -1,0 +1,15 @@
+<!--
+  Copyright 2018 The HandsFree
+-->
+
+<launch>
+
+  <!-- load the rgbd driver -->
+  <include file="$(find handsfree_camera)/rgb-d/xtion.launch" /> 
+
+  <!-- Run the depthimage_to_laserscan node -->
+  <include file="$(find handsfree_vision)/fake_laser/fake_laser_by_xtion.launch" /> 
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_vision)/rviz/rgbd_fake_laser_by_xtion.rviz" />
+
+</launch>

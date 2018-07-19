@@ -1,0 +1,20 @@
+<!--
+  Copyright 2018 The HandsFree
+-->
+
+<launch>
+
+  <!-- load the handsfree robot driver -->
+  <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
+
+  <!-- load the rgbd driver -->
+  <include file="$(find handsfree_camera)/rgb-d/kinect.launch" /> 
+
+  <!-- Run the depthimage_to_laserscan node -->
+  <include file="$(find handsfree_vision)/fake_laser/fake_laser_by_kinect.launch" /> 
+
+  <include file="$(find handsfree_2dnav)/launch/gmapping.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_vision)/rviz/rgbd_fake_laser_gmapping_by_kinect.rviz" />
+
+</launch>

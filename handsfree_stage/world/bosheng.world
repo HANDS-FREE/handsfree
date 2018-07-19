@@ -1,0 +1,92 @@
+define obstacle model
+(
+  size [0.500 0.500 0.500]
+  gui_nose 0
+)
+
+define topurg ranger
+(
+  sensor( 			
+  range [ 0.0  80.0 ]
+  fov 180.0
+  samples 360
+  )
+  # generic model properties
+  color "black"
+  size [ 0.070 0.070 0.050 ]
+)
+
+define erratic position
+(
+  pose [ 0.0 0.0 0.0 0.0 ]
+  size [0.400 0.400 1.00]
+  origin [-0.050 0.000 0.000 0.000]
+  gui_nose 1
+  drive "diff"
+  
+  # This block approximates a circular shape of a Robot
+  block( points 16
+      point[0] [ 0.225 0.000 ]
+      point[1] [ 0.208 0.086 ]
+      point[2] [ 0.159 0.159 ]
+      point[3] [ 0.086 0.208 ]
+      point[4] [ 0.000 0.225 ]
+      point[5] [ -0.086 0.208 ]
+      point[6] [ -0.159 0.159 ]
+      point[7] [ -0.208 0.086 ]
+      point[8] [ -0.225 0.000 ]
+      point[9] [ -0.208 -0.086 ]
+      point[10] [ -0.159 -0.159 ]
+      point[11] [ -0.086 -0.208 ]
+      point[12] [ -0.000 -0.225 ]
+      point[13] [ 0.086 -0.208 ]
+      point[14] [ 0.159 -0.159 ]
+      point[15] [ 0.208 -0.086 ]
+      z [0 1]
+  )
+    
+  topurg(pose [ 0.137 0.000 -0.800 0.000 ])
+  odom_error [0.03 0.03 999999 999999 999999 0.02]
+)
+
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 0
+  gui_grid 0
+
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  laser_return 1
+)
+
+window
+( 
+  size [1150 700] 
+  rotate [4.000 26.000 ]
+  center [26.839 16.418]    # Centro da Janela no ponto central do ambiente (em metros)
+  scale 38.906        # zoom da janela
+  show_data 0
+)
+
+# load an environment bitmap
+floorplan
+( 
+  name "bosheng"
+  bitmap "bosheng.pgm"
+  size [54.400 32.000 1.000]
+  pose [ 27.200 16.000 0.000 0.000 ]
+)
+
+# throw in robots and blocks
+erratic( pose [ 31.343 23.308 0.000 -141.7] name "era" color "blue")
+obstacle( pose [ 19.956 20.576 0.000 19.572 ] name "block1" color "red")
+obstacle( pose [ 20.903 22.279 0.000 19.572 ] name "block2" color "red")
+obstacle( pose [ 22.722 22.591 0.000 19.572 ] name "block3" color "red")
+obstacle( pose [ 25.243 20.794 0.000 -34.859 ] name "block4" color "red")

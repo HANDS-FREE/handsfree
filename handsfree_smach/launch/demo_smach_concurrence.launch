@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find handsfree_stage)/launch/stage_simple_room.launch"/>
+
+ 	<node name="smach_concurrence_demo" pkg="handsfree_smach" type="smach_concurrence.py" output="screen">
+		<param name="name_robot1" value="robot_0"/>
+		<param name="name_robot2" value="robot_1"/> 	
+	</node>	 
+</launch>

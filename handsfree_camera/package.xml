@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>handsfree_camera</name>
+  <version>0.1.0</version>
+  <description>The handsfree_camera package</description>
+
+  <maintainer email="hands_free@126.com">HandsFree</maintainer>
+  <license>BSD</license>
+  <url type="website">http://wiki.hfreetech.org</url>
+  <url type="bugtracker">https://github.com/HANDS-FREE/handsfree/issues</url>
+  <author email="315261982@qq.com">WenKe Ma</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>cv_bridge</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>cv_bridge</run_depend>
+</package>

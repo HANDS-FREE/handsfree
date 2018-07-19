@@ -2,6 +2,11 @@
 <!-- 
   Example amcl configuration. Descriptions of parameters, as well as a full list of all amcl parameters, can be found at http://www.ros.org/wiki/amcl.
 -->
+
+<arg name="initial_pose_x"  default="0.0"/>
+<arg name="initial_pose_y"  default="0.0"/>
+<arg name="initial_pose_a"  default="0.0"/>
+
 <node pkg="amcl" type="amcl" name="amcl" respawn="true" output="screen">
   <!-- Publish scans from best pose at a max of 10 Hz -->
   <param name="odom_model_type" value="omni"/>
@@ -34,5 +39,8 @@
   <param name="resample_interval" value="1"/>
   <param name="recovery_alpha_slow" value="0.0"/>
   <param name="recovery_alpha_fast" value="0.0"/>
+  <param name="initial_pose_x"      value="$(arg initial_pose_x)"/>
+  <param name="initial_pose_y"      value="$(arg initial_pose_y)"/>
+  <param name="initial_pose_a"      value="$(arg initial_pose_a)"/>
 </node>
 </launch>

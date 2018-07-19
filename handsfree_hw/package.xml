@@ -5,7 +5,7 @@
   <description>The handsfree_hw package for hflink communication with embeded system ,ros_control frame 
   </description>
 
-  <maintainer email="hands_free@126.com">Patrick Goebel</maintainer>
+  <maintainer email="hands_free@126.com">HandsFree Team</maintainer>
   <license>BSD</license>
   <url type="website">http://wiki.hfreetech.org</url>
   <url type="bugtracker">https://github.com/HANDS-FREE/handsfree/issues</url>

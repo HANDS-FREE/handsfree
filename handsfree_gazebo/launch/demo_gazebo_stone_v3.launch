@@ -1,0 +1,27 @@
+<!-- -->
+
+<launch>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="true" />
+    <arg name="world_name" value="$(find handsfree_gazebo)/worlds/playground.world"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf_stone_v3/gazebo.urdf.xarco" />
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-unpause -urdf -param robot_description -model mobile_base" respawn="false" />
+
+  <rosparam file="$(find handsfree_gazebo)/config/stone_v3_config.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/mobile_base" args="joint_state_controller pitch_position_controller yaw_position_controller"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+    <remap from="/joint_states" to="/mobile_base/joint_states"/>
+  </node>
+  
+</launch>

@@ -1,0 +1,9 @@
+<library path="lib/libomni_triangle_controller">
+
+  <class name="omni_triangle_controller/OmniDriveController" type="omni_triangle_controller::OmniDriveController" base_class_type="controller_interface::ControllerBase">
+    <description>
+      The omni_triangle tracks velocity commands. It expects 3 VelocityJointInterface type of hardware interfaces.
+    </description>
+  </class>
+     
+</library>

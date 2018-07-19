@@ -24,7 +24,7 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
 {
     //get the parameter
     nh_.setCallbackQueue(&queue_);
-    base_mode_ = "3omni-wheel";
+    base_mode_ = "4omni-wheel";
     with_arm_ = false;
     controller_freq_ = 100;
     nh_.getParam("base_mode", base_mode_);
@@ -53,17 +53,17 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         wheel_eff_.resize(3,0);
         wheel_cmd_.resize(3,0);
 
-        hardware_interface::JointStateHandle wheel1_state_handle("wheel_1", &wheel_pos_[0], &wheel_vel_[0], &wheel_eff_[0]);
+        hardware_interface::JointStateHandle wheel1_state_handle("wheel1_joint", &wheel_pos_[0], &wheel_vel_[0], &wheel_eff_[0]);
         jnt_state_interface_.registerHandle(wheel1_state_handle);
         hardware_interface::JointHandle wheel1_handle(wheel1_state_handle, &wheel_cmd_[0]);
         base_vel_interface_.registerHandle(wheel1_handle);
 
-        hardware_interface::JointStateHandle wheel2_state_handle("wheel_2", &wheel_pos_[1], &wheel_vel_[1], &wheel_eff_[1]);
+        hardware_interface::JointStateHandle wheel2_state_handle("wheel2_joint", &wheel_pos_[1], &wheel_vel_[1], &wheel_eff_[1]);
         jnt_state_interface_.registerHandle(wheel2_state_handle);
         hardware_interface::JointHandle wheel2_handle(wheel2_state_handle, &wheel_cmd_[1]);
         base_vel_interface_.registerHandle(wheel2_handle);
 
-        hardware_interface::JointStateHandle wheel3_state_handle("wheel_3", &wheel_pos_[2], &wheel_vel_[2], &wheel_eff_[2]);
+        hardware_interface::JointStateHandle wheel3_state_handle("wheel3_joint", &wheel_pos_[2], &wheel_vel_[2], &wheel_eff_[2]);
         jnt_state_interface_.registerHandle(wheel3_state_handle);
         hardware_interface::JointHandle wheel3_handle(wheel3_state_handle, &wheel_cmd_[2]);
         base_vel_interface_.registerHandle(wheel3_handle);
@@ -77,12 +77,12 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         wheel_eff_.resize(2,0);
         wheel_cmd_.resize(2,0);
 
-        hardware_interface::JointStateHandle wheel1_state_handle("wheel1", &wheel_pos_[0], &wheel_vel_[0], &wheel_eff_[0]);
+        hardware_interface::JointStateHandle wheel1_state_handle("wheel1_joint", &wheel_pos_[0], &wheel_vel_[0], &wheel_eff_[0]);
         jnt_state_interface_.registerHandle(wheel1_state_handle);
         hardware_interface::JointHandle wheel1_handle(wheel1_state_handle, &wheel_cmd_[0]);
         base_vel_interface_.registerHandle(wheel1_handle);
 
-        hardware_interface::JointStateHandle wheel2_state_handle("wheel2", &wheel_pos_[1], &wheel_vel_[1], &wheel_eff_[1]);
+        hardware_interface::JointStateHandle wheel2_state_handle("wheel2_joint", &wheel_pos_[1], &wheel_vel_[1], &wheel_eff_[1]);
         jnt_state_interface_.registerHandle(wheel2_state_handle);
         hardware_interface::JointHandle wheel2_handle(wheel2_state_handle, &wheel_cmd_[1]);
         base_vel_interface_.registerHandle(wheel2_handle);
@@ -97,22 +97,22 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         wheel_eff_.resize(4,0);
         wheel_cmd_.resize(4,0);
 
-        hardware_interface::JointStateHandle wheel1_state_handle("wheel1", &wheel_pos_[0], &wheel_vel_[0], &wheel_eff_[0]);
+        hardware_interface::JointStateHandle wheel1_state_handle("wheel1_joint", &wheel_pos_[0], &wheel_vel_[0], &wheel_eff_[0]);
         jnt_state_interface_.registerHandle(wheel1_state_handle);
         hardware_interface::JointHandle wheel1_handle(wheel1_state_handle, &wheel_cmd_[0]);
         base_vel_interface_.registerHandle(wheel1_handle);
 
-        hardware_interface::JointStateHandle wheel2_state_handle("wheel2", &wheel_pos_[1], &wheel_vel_[1], &wheel_eff_[1]);
+        hardware_interface::JointStateHandle wheel2_state_handle("wheel2_joint", &wheel_pos_[1], &wheel_vel_[1], &wheel_eff_[1]);
         jnt_state_interface_.registerHandle(wheel2_state_handle);
         hardware_interface::JointHandle wheel2_handle(wheel2_state_handle, &wheel_cmd_[1]);
         base_vel_interface_.registerHandle(wheel2_handle);
 
-        hardware_interface::JointStateHandle wheel3_state_handle("wheel3", &wheel_pos_[2], &wheel_vel_[2], &wheel_eff_[2]);
+        hardware_interface::JointStateHandle wheel3_state_handle("wheel3_joint", &wheel_pos_[2], &wheel_vel_[2], &wheel_eff_[2]);
         jnt_state_interface_.registerHandle(wheel3_state_handle);
         hardware_interface::JointHandle wheel3_handle(wheel3_state_handle, &wheel_cmd_[2]);
         base_vel_interface_.registerHandle(wheel3_handle);
 
-        hardware_interface::JointStateHandle wheel4_state_handle("wheel4", &wheel_pos_[3], &wheel_vel_[3], &wheel_eff_[3]);
+        hardware_interface::JointStateHandle wheel4_state_handle("wheel4_joint", &wheel_pos_[3], &wheel_vel_[3], &wheel_eff_[3]);
         jnt_state_interface_.registerHandle(wheel4_state_handle);
         hardware_interface::JointHandle wheel4_handle(wheel4_state_handle, &wheel_cmd_[3]);
         base_vel_interface_.registerHandle(wheel4_handle);
@@ -135,12 +135,12 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         }
     }
 
-    hardware_interface::JointStateHandle head_servo1_state_handle("servo_1", &head_servo1_pos_, &head_servo1_vel_, &head_servo1_eff_);
+    hardware_interface::JointStateHandle head_servo1_state_handle("pitch_joint", &head_servo1_pos_, &head_servo1_vel_, &head_servo1_eff_);
     jnt_state_interface_.registerHandle(head_servo1_state_handle);
     hardware_interface::JointHandle head_servo1_handle(head_servo1_state_handle, &head_servo1_cmd_);
     servo_pos_interface_.registerHandle(head_servo1_handle);
 
-    hardware_interface::JointStateHandle head_servo2_state_handle("servo_2", &head_servo2_pos_, &head_servo2_vel_, &head_servo2_eff_);
+    hardware_interface::JointStateHandle head_servo2_state_handle("yaw_joint", &head_servo2_pos_, &head_servo2_vel_, &head_servo2_eff_);
     jnt_state_interface_.registerHandle(head_servo2_state_handle);
     hardware_interface::JointHandle head_servo2_handle(head_servo2_state_handle, &head_servo2_cmd_);
     servo_pos_interface_.registerHandle(head_servo2_handle);
@@ -153,7 +153,7 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
         ROS_INFO("system initialized succeed, ready for communication");
     } else
     {
-        ROS_ERROR("hf link initialized failed, please check the serial port of the openre board,for details,please see: http://wiki.handsfree.org.cn/");
+        ROS_ERROR("hf link initialized failed, please check the serial port of the openre board,for details,please see: http://wiki.hfreetech.org/");
     }
 }
 

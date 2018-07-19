@@ -1,0 +1,9 @@
+<launch>
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+
+  <include file="$(find handsfree_camera)/robot_tf/$(arg model)_tf.xml" /> 
+
+  <!-- Launch the freenect driver -->
+  <include file="$(find freenect_launch)/launch/examples/freenect-registered-xyzrgb.launch"/>
+
+</launch>

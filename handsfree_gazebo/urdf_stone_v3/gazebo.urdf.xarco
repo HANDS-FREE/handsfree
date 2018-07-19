@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<robot name="handsfree_stone_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Included URDF Files -->
+    <xacro:include filename="$(find handsfree_gazebo)/urdf_stone_v3/stone_v3_base.xacro" />
+    <xacro:stone_v3_base/>
+    <xacro:include filename="$(find handsfree_gazebo)/urdf_stone_v3/stone_v3_laser_head_xtion.gazebo" />
+    <xacro:stone_v3_base_gazebo/>
+
+</robot>

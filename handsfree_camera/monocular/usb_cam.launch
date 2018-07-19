@@ -1,0 +1,11 @@
+<launch>
+
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+
+  <include file="$(find handsfree_camera)/robot_tf/$(arg model)_tf.xml" /> 
+
+  <include file="$(find handsfree_camera)/monocular/logitech_usb_cam.xml">
+  <arg name="video_device" default="/dev/video1" />
+  </include>
+
+</launch>

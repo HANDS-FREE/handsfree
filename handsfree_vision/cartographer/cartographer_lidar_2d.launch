@@ -1,0 +1,27 @@
+<!--
+  Copyright 2018 The HandsFree
+-->
+
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory
+              $(find handsfree_vision)/cartographer/configuration_files
+          -configuration_basename stone_rplidar.lua"
+      output="screen">
+    <remap from="/scan" to="/scan" />
+    <remap from="/odom" to="/mobile_base/mobile_base_controller/odom" />
+    <remap from="/camera/rgb/image_raw" to="/camera/rgb/image_raw" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find handsfree_vision
+          )/cartographer/configuration_files/demo_2d.rviz" />
+  <node name="playbag" pkg="rosbag" type="play"
+      args="--clock -r 5 $(find handsfree_dataset)/rosbags/handsfree_room_2018_06_09.bag" />
+
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+</launch>

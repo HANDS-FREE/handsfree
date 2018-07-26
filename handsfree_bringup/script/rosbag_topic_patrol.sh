@@ -3,6 +3,7 @@
 rosrun dynamic_reconfigure dynparam set /camera/driver data_skip 3
 
 rosbag record -O subset /amcl/parameter_descriptions \
+/patrol_start \
 /amcl/parameter_updates \
 /amcl_pose \
 /base_pose_ground_truth \
@@ -62,6 +63,7 @@ rosbag record -O subset /amcl/parameter_descriptions \
 /patrol_nav/result \
 /patrol_nav/status \
 /patrol_points \
+/patrol_state \
 /patrol_points_array \
 /rgbd_scan_filtered \
 /rosout \

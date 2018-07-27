@@ -1,5 +1,7 @@
 *.user
 *~
 *.pyc
-./CMakeLists.txt
+Dataset/rosbags/*
+Dataset/videos/*
+
 

@@ -1,6 +1,13 @@
 #!/bin/bash
 
+cd ~
+wget https://raw.githubusercontent.com/HANDS-FREE/handsfree/master/Documentation/script/sources_ubuntu_16_04.list
+echo 更新系统源列表
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+sudo cp ./sources_ubuntu_14_04.list /etc/apt/sources.list
 sudo apt-get update
+sleep 3
+
 sudo apt-get install -y git
 sleep 3
 sh .bashrc
@@ -11,13 +18,6 @@ echo 设置 HandsFree 安装路径为： ~/handsfree
 echo 下载Github上HandsFree的代码............
 git clone https://github.com/HANDS-FREE/handsfree.git src
 echo 代码下载完毕...........
-
-echo 更新系统源列表
-sleep 3
-cd ~/handsfree/handsfree_ros_ws/src/Documentation/script
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
-sudo cp ./sources_ubuntu_16_04.list /etc/apt/sources.list
-sudo apt-get update
 
 echo 设置 HandsFree 开发环境
 sleep 3

@@ -12,15 +12,16 @@ sudo apt-get install -y git
 sleep 3
 sh .bashrc
 sleep 1
-mkdir -p ~/handsfree/handsfree_ros_ws/
-cd ~/handsfree/handsfree_ros_ws/
-echo 设置 HandsFree 安装路径为： ~/handsfree
+mkdir -p ~/handsfree/handsfree_ros_ws/src
+cd ~/handsfree/handsfree_ros_ws/src
+echo 设置 HandsFree ROS安装路径为：~/handsfree/handsfree_ros_ws/src
 echo 下载Github上HandsFree的代码............
-git clone https://github.com/HANDS-FREE/handsfree.git src
+git clone https://github.com/HANDS-FREE/handsfree.git 
 echo 代码下载完毕...........
 
 echo 设置 HandsFree 开发环境
 sleep 3
+cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script/
 sh ./ubuntu_14.04_base.sh
 echo 安装 ROS 基本环境
 sleep 3
@@ -41,8 +42,9 @@ bash ~/handsfree/handsfree_ros_ws/devel/setup.sh
 echo HandsFree 相关程序已经安装完毕
 echo 安装路径为：~/handsfree
 
-sudo cp /opt/ros/indigo/share/laser_filters/laser_filters_plugins.xml /opt/ros/indigo/share/laser_filters_jsk_patch/
-
-cd ~/handsfree/handsfree_ros_ws/src/Documentation/script
+cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script
 sudo cp ./60-persistent-serial.rules /etc/udev/rules.d/
 sudo udevadm control --reload
+
+sudo cp /opt/ros/indigo/share/laser_filters/laser_filters_plugins.xml /opt/ros/indigo/share/laser_filters_jsk_patch/
+

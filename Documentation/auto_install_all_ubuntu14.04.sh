@@ -22,7 +22,7 @@ echo 代码下载完毕...........
 echo 设置 HandsFree 开发环境
 sleep 3
 cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script/
-sh ./ubuntu_14.04_base.sh
+#sh ./ubuntu_14.04_base.sh
 echo 安装 ROS 基本环境
 sleep 3
 sh ./ros_indigo_base.sh

@@ -9,6 +9,6 @@ $install_command ros-indigo-desktop-full
 sudo rosdep init
 rosdep update
 echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
-bash /opt/ros/indigo/setup.bash
+source /opt/ros/kinetic/setup.bash
 $install_command python-rosinstall
 

@@ -9,6 +9,6 @@ $install_command ros-kinetic-desktop-full
 sudo rosdep init
 rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-bash /opt/ros/kinetic/setup.bash
+source /opt/ros/kinetic/setup.bash
 $install_command python-rosinstall python-rosinstall-generator python-wstool build-essential
 

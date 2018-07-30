@@ -7,10 +7,14 @@ sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo cp ./sources_ubuntu_16_04.list /etc/apt/sources.list
 sudo apt-get update
 sleep 3
+sudo apt-get purge libappstream3
+sleep 3
+sudo apt-get update
+sleep 3
 
 sudo apt-get install -y git
 sleep 3
-sh .bashrc
+source .bashrc
 sleep 1
 mkdir -p ~/handsfree/handsfree_ros_ws/src
 cd ~/handsfree/handsfree_ros_ws/src
@@ -45,3 +49,5 @@ echo 安装路径为：~/handsfree
 cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script
 sudo cp ./60-persistent-serial.rules /etc/udev/rules.d/
 sudo udevadm control --reload
+
+sudo usermod -a -G dialout $USER

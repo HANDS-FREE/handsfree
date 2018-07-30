@@ -2,12 +2,6 @@
 
 install_command="sudo apt-get install -y"
 
-sudo usermod -a -G dialout $USER
-
-$install_command ros-kinetic-turtlebot-bringup  ros-kinetic-openni-* ros-kinetic-openni2-* ros-kinetic-freenect-* ros-kinetic-usb-cam ros-kinetic-laser-*  ros-kinetic-audio-common ros-kinetic-slam-gmapping ros-kinetic-joystick-drivers python-rosinstall ros-kinetic-orocos-kdl ros-kinetic-python-orocos-kdl python-setuptools ros-kinetic-dynamixel-motor-*  ros-kinetic-depthimage-to-laserscan ros-kinetic-turtlebot-teleop ros-kinetic-move-base ros-kinetic-map-server ros-kinetic-fake-localization ros-kinetic-amcl git subversion mercurial
-
-$install_command  ros-kinetic-ros-controllers
-
 #rbx1-prereq.sh
 $install_command ros-kinetic-turtlebot-bringup \
  ros-kinetic-openni-* \
@@ -48,5 +42,7 @@ ros-kinetic-laptop-battery-monitor ros-kinetic-ar-track-alvar* \
 ros-kinetic-map-server ros-kinetic-move-base* \
 ros-kinetic-simple-grasping ros-kinetic-manipulation-msgs
 
-bash /opt/ros/kinetic/setup.bash
+$install_command ros-kinetic-usb-cam ros-kinetic-ros-controllers  
+
+source /opt/ros/kinetic/setup.bash
 #libopencv-dev python-opencv  ros-kinetic-vision-opencv

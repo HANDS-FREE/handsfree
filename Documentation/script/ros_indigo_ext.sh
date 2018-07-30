@@ -2,12 +2,6 @@
 
 install_command="sudo apt-get install -y"
 
-sudo usermod -a -G dialout $USER
-
-$install_command ros-indigo-turtlebot-bringup ros-indigo-turtlebot-create-desktop ros-indigo-openni-* ros-indigo-openni2-* ros-indigo-freenect-* ros-indigo-usb-cam ros-indigo-laser-* ros-indigo-hokuyo-node ros-indigo-audio-common gstreamer0.10-pocketsphinx ros-indigo-pocketsphinx ros-indigo-slam-gmapping ros-indigo-joystick-drivers python-rosinstall ros-indigo-orocos-kdl ros-indigo-python-orocos-kdl python-setuptools ros-indigo-dynamixel-motor-*  ros-indigo-depthimage-to-laserscan ros-indigo-arbotix-* ros-indigo-turtlebot-teleop ros-indigo-move-base ros-indigo-map-server ros-indigo-fake-localization ros-indigo-amcl git subversion mercurial
-
-$install_command ros-indigo-ros-controllers
-
 #rbx1-prereq.sh
 $install_command ros-indigo-turtlebot-bringup \
 ros-indigo-turtlebot-create-desktop ros-indigo-openni-* \
@@ -47,5 +41,7 @@ ros-indigo-laptop-battery-monitor ros-indigo-ar-track-alvar* \
 ros-indigo-map-server ros-indigo-move-base* \
 ros-indigo-simple-grasping
 
-bash /opt/ros/indigo/setup.bash
+$install_command ros-indigo-ros-controllers
+
+source /opt/ros/kinetic/setup.bash
 #libopencv-dev python-opencv  ros-kinetic-vision-opencv

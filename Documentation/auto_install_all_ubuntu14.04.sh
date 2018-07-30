@@ -10,7 +10,7 @@ sleep 3
 
 sudo apt-get install -y git
 sleep 3
-sh .bashrc
+source .bashrc
 sleep 1
 mkdir -p ~/handsfree/handsfree_ros_ws/src
 cd ~/handsfree/handsfree_ros_ws/src
@@ -45,6 +45,8 @@ echo 安装路径为：~/handsfree
 cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script
 sudo cp ./60-persistent-serial.rules /etc/udev/rules.d/
 sudo udevadm control --reload
+
+sudo usermod -a -G dialout $USER
 
 sudo cp /opt/ros/indigo/share/laser_filters/laser_filters_plugins.xml /opt/ros/indigo/share/laser_filters_jsk_patch/
 

@@ -27,10 +27,7 @@ find_package(catkin REQUIRED COMPONENTS
  )
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES handsfree_msgs
   CATKIN_DEPENDS message_generation sensor_msgs std_msgs actionlib_msgs
-  DEPENDS system_lib
 )
 
 include_directories(

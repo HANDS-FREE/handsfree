@@ -42,7 +42,7 @@ ros-kinetic-laptop-battery-monitor ros-kinetic-ar-track-alvar* \
 ros-kinetic-map-server ros-kinetic-move-base* \
 ros-kinetic-simple-grasping ros-kinetic-manipulation-msgs
 
-$install_command ros-kinetic-usb-cam ros-kinetic-ros-controllers  
+$install_command ros-kinetic-usb-cam ros-kinetic-ros-controllers ros-kinetic-driver-base  
 
 source /opt/ros/kinetic/setup.bash
 #libopencv-dev python-opencv  ros-kinetic-vision-opencv

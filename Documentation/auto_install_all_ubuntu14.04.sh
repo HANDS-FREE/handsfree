@@ -43,8 +43,9 @@ echo HandsFree 相关程序已经安装完毕
 echo 安装路径为：~/handsfree
 
 cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script
-sudo cp ./60-persistent-serial.rules /etc/udev/rules.d/
-sudo udevadm control --reload
+sudo cp ./handsfree-serial.rules /etc/udev/rules.d/
+sudo service udev reload
+sudo service udev restart
 
 sudo usermod -a -G dialout $USER
 

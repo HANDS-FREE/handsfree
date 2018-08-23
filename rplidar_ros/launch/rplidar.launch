@@ -4,7 +4,7 @@
   <include file="$(find rplidar_ros)/launch/robot_tf/$(arg model)_tf.xml" />
 
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
-  <param name="serial_port"         type="string" value="/dev/ttyUSB1"/>
+  <param name="serial_port"         type="string" value="/dev/rplidar"/>
   <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
   <param name="frame_id"            type="string" value="laser"/>
   <param name="inverted"            type="bool"   value="false"/>

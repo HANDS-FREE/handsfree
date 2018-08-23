@@ -1,7 +1,7 @@
 <launch>
 
   <node name="handsfree_hw_node" pkg="handsfree_hw" type="handsfree_hw_node">
-  <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>
+  <param name="serial_port"         type="string" value="/dev/HFRobot"/>
   </node>
 
   <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf_stone_v3/gazebo.urdf.xarco" />

@@ -7,7 +7,7 @@
   <arg name="initial_pose_a" default="0"/>
   <arg name="map_name" default="handsfree_room"/>
  
-  <include file="$(find handsfree_2dnav)/launch/move_base_amcl.launch">
+  <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find handsfree_2dnav)/launch/move_base_amcl.launch">
     <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>

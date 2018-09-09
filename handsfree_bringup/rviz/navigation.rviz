@@ -8,7 +8,7 @@ Panels:
         - /Marker1/Namespaces1
         - /Camera1/Visibility1
       Splitter Ratio: 0.5
-    Tree Height: 503
+    Tree Height: 523
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -17,7 +17,7 @@ Panels:
       - /2D Nav Goal1
       - /Publish Point1
     Name: Tool Properties
-    Splitter Ratio: 0.588679
+    Splitter Ratio: 0.588679016
   - Class: rviz/Views
     Expanded:
       - /Current View1
@@ -27,17 +27,17 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
     - Alpha: 0.5
-      Cell Size: 0.1
+      Cell Size: 0.100000001
       Class: rviz/Grid
       Color: 160; 160; 164
       Enabled: true
       Line Style:
-        Line Width: 0.03
+        Line Width: 0.0299999993
         Value: Lines
       Name: Grid
       Normal Cell Count: 0
@@ -49,7 +49,7 @@ Visualization Manager:
       Plane Cell Count: 100
       Reference Frame: map
       Value: true
-    - Alpha: 0.7
+    - Alpha: 0.699999988
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
@@ -57,8 +57,9 @@ Visualization Manager:
       Name: Map
       Topic: /map
       Unreliable: false
+      Use Timestamp: false
       Value: true
-    - Alpha: 0.7
+    - Alpha: 0.699999988
       Class: rviz/Map
       Color Scheme: costmap
       Draw Behind: false
@@ -66,17 +67,18 @@ Visualization Manager:
       Name: Map
       Topic: /move_base_node/local_costmap/costmap
       Unreliable: false
+      Use Timestamp: false
       Value: true
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
       Color: 255; 149; 0
       Enabled: true
-      Head Diameter: 0.3
-      Head Length: 0.2
-      Length: 0.3
+      Head Diameter: 0.300000012
+      Head Length: 0.200000003
+      Length: 0.300000012
       Line Style: Lines
-      Line Width: 0.03
+      Line Width: 0.0299999993
       Name: Global Plan
       Offset:
         X: 0
@@ -84,9 +86,9 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
-      Radius: 0.03
-      Shaft Diameter: 0.1
-      Shaft Length: 0.1
+      Radius: 0.0299999993
+      Shaft Diameter: 0.100000001
+      Shaft Length: 0.100000001
       Topic: /move_base_node/TrajectoryPlannerROS/global_plan
       Unreliable: false
       Value: true
@@ -95,11 +97,11 @@ Visualization Manager:
       Class: rviz/Path
       Color: 0; 0; 255
       Enabled: true
-      Head Diameter: 0.3
-      Head Length: 0.2
-      Length: 0.3
+      Head Diameter: 0.300000012
+      Head Length: 0.200000003
+      Length: 0.300000012
       Line Style: Lines
-      Line Width: 0.03
+      Line Width: 0.0299999993
       Name: Local Plan
       Offset:
         X: 0
@@ -107,9 +109,9 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
-      Radius: 0.03
-      Shaft Diameter: 0.1
-      Shaft Length: 0.1
+      Radius: 0.0299999993
+      Shaft Diameter: 0.100000001
+      Shaft Length: 0.100000001
       Topic: /move_base_node/TrajectoryPlannerROS/local_plan
       Unreliable: false
       Value: true
@@ -118,11 +120,11 @@ Visualization Manager:
       Class: rviz/Path
       Color: 255; 0; 0
       Enabled: true
-      Head Diameter: 0.3
-      Head Length: 0.2
-      Length: 0.3
+      Head Diameter: 0.300000012
+      Head Length: 0.200000003
+      Length: 0.300000012
       Line Style: Lines
-      Line Width: 0.03
+      Line Width: 0.0299999993
       Name: NavFn Plan
       Offset:
         X: 0
@@ -130,9 +132,9 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
-      Radius: 0.03
-      Shaft Diameter: 0.1
-      Shaft Length: 0.1
+      Radius: 0.0299999993
+      Shaft Diameter: 0.100000001
+      Shaft Length: 0.100000001
       Topic: /move_base_node/NavfnROS/plan
       Unreliable: false
       Value: true
@@ -159,115 +161,59 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.05
+      Size (m): 0.0500000007
       Style: Flat Squares
       Topic: /scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Angle Tolerance: 0.1
+    - Angle Tolerance: 0.100000001
       Class: rviz/Odometry
-      Color: 255; 25; 0
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.300000012
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: false
       Enabled: true
       Keep: 100
-      Length: 1
       Name: Odometry
-      Position Tolerance: 0.1
+      Position Tolerance: 0.100000001
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.100000001
+        Color: 255; 25; 0
+        Head Length: 0.300000012
+        Head Radius: 0.100000001
+        Shaft Length: 1
+        Shaft Radius: 0.0500000007
+        Value: Arrow
       Topic: /mobile_base/mobile_base_controller/odom
+      Unreliable: false
       Value: true
     - Class: rviz/TF
       Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_footprint:
-          Value: true
-        base_link:
-          Value: true
-        camera_depth_frame:
-          Value: true
-        camera_depth_optical_frame:
-          Value: true
-        camera_link:
-          Value: true
-        camera_rgb_frame:
-          Value: true
-        camera_rgb_optical_frame:
-          Value: true
-        caster_back_link:
-          Value: true
-        caster_front_link:
-          Value: true
-        imu_link:
-          Value: true
-        laser:
-          Value: true
-        laser_link:
-          Value: true
-        map:
-          Value: true
-        odom:
-          Value: true
-        pitch_link:
-          Value: true
-        wheel1_link:
-          Value: true
-        wheel2_link:
-          Value: true
-        xtion_depth_frame:
-          Value: true
-        xtion_depth_optical_frame:
-          Value: true
-        xtion_link:
-          Value: true
-        xtion_rgb_frame:
-          Value: true
-        xtion_rgb_optical_frame:
-          Value: true
-        yaw_link:
-          Value: true
       Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
-            base_link:
-              base_footprint:
-                {}
-              camera_link:
-                camera_depth_frame:
-                  camera_depth_optical_frame:
-                    {}
-                camera_rgb_frame:
-                  camera_rgb_optical_frame:
-                    {}
-              caster_back_link:
-                {}
-              caster_front_link:
-                {}
-              imu_link:
-                {}
-              laser:
-                {}
-              laser_link:
-                {}
-              wheel1_link:
-                {}
-              wheel2_link:
-                {}
-              yaw_link:
-                pitch_link:
-                  xtion_link:
-                    xtion_depth_frame:
-                      xtion_depth_optical_frame:
-                        {}
-                    xtion_rgb_frame:
-                      xtion_rgb_optical_frame:
-                        {}
+        {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -329,15 +275,15 @@ Visualization Manager:
       Zoom Factor: 1
     - Alpha: 1
       Axes Length: 1
-      Axes Radius: 0.1
+      Axes Radius: 0.100000001
       Class: rviz/Pose
       Color: 255; 25; 0
       Enabled: true
-      Head Length: 0.3
-      Head Radius: 0.1
+      Head Length: 0.300000012
+      Head Radius: 0.100000001
       Name: Pose
       Shaft Length: 1
-      Shaft Radius: 0.05
+      Shaft Radius: 0.0500000007
       Shape: Arrow
       Topic: /move_base_simple/goal
       Unreliable: false
@@ -365,7 +311,7 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.03
+      Size (m): 0.0299999993
       Style: Points
       Topic: /scan_multi
       Unreliable: false
@@ -396,32 +342,35 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 11.8672
+      Distance: 11.8671999
       Enable Stereo Rendering:
-        Stereo Eye Separation: 0.06
+        Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 20.3168
-        Y: 20.009
-        Z: 5.24521e-06
+        X: 20.3167992
+        Y: 20.0090008
+        Z: 5.2452101e-06
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.0500000007
+      Invert Z Axis: false
       Name: Current View
-      Near Clip Distance: 0.01
-      Pitch: 1.5698
+      Near Clip Distance: 0.00999999978
+      Pitch: 1.24479628
       Target Frame: <Fixed Frame>
       Value: ThirdPersonFollower (rviz)
-      Yaw: 1.72002
+      Yaw: 2.07502007
     Saved: ~
 Window Geometry:
   Camera:
     collapsed: false
   Displays:
     collapsed: false
-  Height: 716
+  Height: 1056
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000016a00000286fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000002540000011a00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002800000286000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000012700000286fc0200000005fb0000000c00430061006d0065007200610100000028000001460000001600fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000c00430061006d00650072006101000000280000013f0000000000000000fb0000000a0056006900650077007301000001740000013a000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004fc0000003efc0100000002fb0000000800540069006d00650000000000000004fc000002f600fffffffb0000000800540069006d00650100000000000004500000000000000000000002860000028600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000016a000003dafc020000000bfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000002540000011a00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000000280000029a000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006101000002c8000000160000001600000016fb0000000c00430061006d00650072006101000002de000000160000001600000016fb0000000c00430061006d00650072006101000002f40000010e0000001600ffffff000000010000010f000003dafc0200000005fb0000000c00430061006d0065007200610100000028000000160000001600000016fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000c00430061006d006500720061010000003e000000160000001600000016fb0000000a005600690065007700730100000054000003ae000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004fc0000003efc0100000002fb0000000800540069006d00650000000000000004fc0000030000fffffffb0000000800540069006d00650100000000000004500000000000000000000004c6000003da00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -430,6 +379,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1315
-  X: 35
-  Y: 14
+  Width: 1867
+  X: 53
+  Y: 24

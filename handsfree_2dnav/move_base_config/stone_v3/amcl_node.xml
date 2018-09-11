@@ -9,7 +9,7 @@
 
 <node pkg="amcl" type="amcl" name="amcl" respawn="true" output="screen">
   <!-- Publish scans from best pose at a max of 10 Hz -->
-  <param name="odom_model_type" value="omni"/>
+  <param name="odom_model_type" value="diff"/>
   <param name="odom_alpha5" value="0.1"/>
   <param name="transform_tolerance" value="0.2" />
   <param name="gui_publish_rate" value="10.0"/>
@@ -36,6 +36,7 @@
   <param name="update_min_d" value="0.2"/>
   <param name="update_min_a" value="0.5"/>
   <param name="odom_frame_id" value="odom"/>
+  <param name="base_frame_id" value="base_link"/>
   <param name="resample_interval" value="1"/>
   <param name="recovery_alpha_slow" value="0.0"/>
   <param name="recovery_alpha_fast" value="0.0"/>

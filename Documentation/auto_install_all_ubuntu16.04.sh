@@ -36,7 +36,7 @@ bash ./ros_kinetic_ext.sh
 
 echo 安装 HandsFree ROS 
 sleep 3
-source ~/.bashrc
+source /opt/ros/indigo/setup.bash
 cd ~/handsfree/handsfree_ros_ws/src/
 catkin_init_workspace
 sleep 3

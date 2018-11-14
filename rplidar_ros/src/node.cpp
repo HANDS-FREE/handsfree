@@ -179,6 +179,7 @@ int main(int argc, char * argv[]) {
 
     std::string serial_port;
     int serial_baudrate = 115200;
+    std::string rplidar_type;
     std::string frame_id;
     bool inverted = false;
     bool angle_compensate = true;
@@ -188,7 +189,11 @@ int main(int argc, char * argv[]) {
     ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1000);
     ros::NodeHandle nh_private("~");
     nh_private.param<std::string>("serial_port", serial_port, "/dev/ttyUSB0"); 
-    nh_private.param<int>("serial_baudrate", serial_baudrate, 115200/*256000*/);//ros run for A1 A2, change to 256000 if A3
+    //nh_private.param<int>("serial_baudrate", serial_baudrate, 115200/*256000*/);//ros run for A1 A2, change to 256000 if A3
+    nh_private.param<std::string>("rplidar_type", rplidar_type, "laser_frame");
+    if(rplidar_type == "A1" || rplidar_type == "A2") serial_baudrate = 115200;
+    else if (rplidar_type == "A3") serial_baudrate = 256000;
+    else serial_baudrate = 115200;
     nh_private.param<std::string>("frame_id", frame_id, "laser_frame");
     nh_private.param<bool>("inverted", inverted, false);
     nh_private.param<bool>("angle_compensate", angle_compensate, false);

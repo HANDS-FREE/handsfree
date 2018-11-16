@@ -17,4 +17,5 @@
   <remap from="scan" to="base_$(arg laser_scan)"/>
   <remap from="scan_filtered" to="$(arg laser_scan)"/>
   </node>
+
 </launch>

@@ -11,7 +11,7 @@ scan_filter_chain:
     max_x: 0.15
     max_y: 0.15
     max_z: 0.3
-    min_x: -0.18
+    min_x: -0.15
     min_y: -0.15
     min_z: -0.1
 

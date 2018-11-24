@@ -9,6 +9,13 @@ scan_filter_chain:
     min_x: -0.22
     min_y: -0.22
     min_z: -0.1
-
+- name: range
+  type: LaserScanRangeFilter
+  params:
+    use_message_range_limits: false
+    lower_threshold: 0.1
+    upper_threshold: 5
+    lower_replacement_value: -.inf
+    upper_replacement_value: .inf    
 
 

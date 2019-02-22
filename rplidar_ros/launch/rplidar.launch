@@ -6,7 +6,7 @@
 
   <arg name="rplidar_type" default="A2" doc="model type [A1, A2, A3]"/>
 
-  <include file="$(find rplidar_ros)/launch/robot_tf/$(arg model)_tf.xml" />
+  <include file="$(find handsfree_bringup)/robot_para/laser_tf/$(arg model)_tf.xml" /> 
 
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
   <param name="serial_port"         type="string" value="/dev/rplidar"/>
@@ -19,7 +19,7 @@
   </node>
 
   <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
-  <rosparam command="load" file="$(find rplidar_ros)/launch/yaml/rplidar/laser_filter_$(arg model).yaml" />
+  <rosparam command="load" file="$(find handsfree_bringup)/robot_para/laser_filter_yaml/rplidar/laser_filter_$(arg model).yaml" />
   <remap from="scan" to="base_scan"/>
   <remap from="scan_filtered" to="scan"/>
   </node>

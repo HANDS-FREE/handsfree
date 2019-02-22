@@ -7,7 +7,7 @@
   <param name="/use_sim_time" value="true" />
 
   <node name="playbag" pkg="rosbag" type="play"
-      args="--clock -r 5 $(find handsfree_dataset)/rosbags/handsfree_room_2018_06_09.bag" >
+      args="--clock -r 1 $(find handsfree_dataset)/rosbags/handsfree_room_2018_06_09.bag" >
   <remap from="scan" to="/lidar_scan" />  
   </node>
 
@@ -16,6 +16,10 @@
       type="depthimage_to_laserscan">
     <remap from="image" to="/camera/depth/image_raw" />
     <remap from="camera_info" to="/camera/depth/camera_info" />
+    <remap from="scan" to="scan"/>
+    <param name="range_min"  type="double" value="0.45"/>
+    <param name="range_max"  type="double" value="10"/>
+    <param name="scan_height"  type="int" value="1"/>  
   </node>
 
   <include file="$(find handsfree_2dnav)/launch/gmapping.launch" />

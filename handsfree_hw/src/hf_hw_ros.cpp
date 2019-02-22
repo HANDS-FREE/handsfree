@@ -190,7 +190,7 @@ void HF_HW_ros::mainloop()
 
         cm.update(ros::Time::now(), ros::Duration(1 / controller_freq_));
 
-        ROS_INFO("head_servo1_cmd_ = %.4f  head_servo2_cmd_=%.4f" , head_servo1_cmd_ ,head_servo2_cmd_);
+        //ROS_INFO("head_servo1_cmd_ = %.4f  head_servo2_cmd_=%.4f" , head_servo1_cmd_ ,head_servo2_cmd_);
         writeBufferUpdate();
         hf_hw_.updateCommand(SET_ROBOT_SPEED, count);
         hf_hw_.updateCommand(SET_HEAD_STATE , count);

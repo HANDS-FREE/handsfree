@@ -18,7 +18,7 @@
   </node>
 
   <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="rgbd_scan_filter">
-  <rosparam command="load" file="$(find handsfree_vision)/fake_laser/yaml/xtion/laser_filter_$(arg model).yaml" />
+  <rosparam command="load" file="$(find handsfree_bringup)/robot_para/laser_filter_yaml/xtion/laser_filter_$(arg model).yaml" />
   <remap from="scan" to="$(arg rgbd_scan)"/>
   <remap from="scan_filtered" to="$(arg rgbd_scan)_filtered"/>
   </node>

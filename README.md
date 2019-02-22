@@ -1,4 +1,4 @@
-# HANDS FREE ROS DEMO 
+# HandsFree ROS 
 
 ## Environment 
 we recommend that you test code on the x86 pc before transplant to TK1 or TX1/2   
@@ -8,16 +8,15 @@ we recommend that you test code on the x86 pc before transplant to TK1 or TX1/2
 * 4.  run example 
 
         roslaunch handsfree_hw handsfree_hw.launch      
-        roslaunch handsfree_hw  keyboard_teleop.launch      
+        roslaunch handsfree_hw keyboard_teleop.launch      
         
  then you can remote control robot.
 
 ##  Community: 
-* [HandsFree Github](https://github.com/HANDS-FREE)   
-* [HandsFree Website](http://www.zonewander.com/)   
-* [HandsFree Wiki](http://wiki.hfreetech.org/) ,  [Old Version Wiki](http://wiki.handsfree.org.cn/)  
+* [HandsFree Github](https://github.com/HANDS-FREE)    
+* [HandsFree Wiki](http://wiki.hfreetech.org/)    
 * [BUY Robot](https://shop145029875.taobao.com/?spm=a1z10.3-c.0.0.zpwB3d)     
-* QQ Group: 521037187(Hands Free Community)   
-* Email: hands_free@126.com   
+* QQ Group: 521037187(HandsFree Community)     
+* Email: hands_free@126.com     
 
 

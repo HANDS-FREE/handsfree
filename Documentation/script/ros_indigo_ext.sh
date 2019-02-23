@@ -43,5 +43,5 @@ ros-indigo-simple-grasping
 
 $install_command ros-indigo-ros-controllers
 
-source /opt/ros/kinetic/setup.bash
+source /opt/ros/indigo/setup.bash
 #libopencv-dev python-opencv  ros-kinetic-vision-opencv

@@ -1,6 +1,6 @@
 <launch>
 
-  <!-- rplidar 0.105 hokuyo 0.205-->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.205 0 0 0 0 0 base_link laser 1000" />
+  <!-- rplidar 0.105 hokuyo 0.155-->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.155 0 0 0 0 0 base_link laser 1000" />
 
 </launch>

@@ -129,6 +129,7 @@ private:
         robot_state.cpu_temperature = hf_hw_.getRobotAbstract()->system_info.cpu_temperature;
         robot_state.cpu_usage = hf_hw_.getRobotAbstract()->system_info.cpu_usage;
         robot_state.system_time = hf_hw_.getRobotAbstract()->system_info.system_time;
+        robot_state.power_remain = hf_hw_.getRobotAbstract()->system_info.power_remain;
 
         if (with_arm_)
         {

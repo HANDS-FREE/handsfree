@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    robot_state.msg
    parameters.msg
+   dissensor.msg
  )
 
 

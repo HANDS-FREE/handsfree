@@ -5,6 +5,8 @@
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
   <arg name="rgbd_scan" default="scan" />
   <arg name="scan_height" default="1" />
+  <arg name="range_min" default="0.45" />
+  <arg name="range_max" default="10" />
 
   <!-- Run the depthimage_to_laserscan node -->
   <node name="squash_depth_camera" pkg="depthimage_to_laserscan"
@@ -12,8 +14,8 @@
     <remap from="image" to="/camera/depth/image_raw" />
     <remap from="camera_info" to="/camera/depth/camera_info" />
     <remap from="scan" to="$(arg rgbd_scan)"/>
-    <param name="range_min"  type="double" value="0.45"/>
-    <param name="range_max"  type="double" value="10"/>
+    <param name="range_min"  type="double" value="$(arg range_min)"/>
+    <param name="range_max"  type="double" value="$(arg range_max)"/>
     <param name="scan_height"  type="int" value="$(arg scan_height)"/>  
   </node>
 

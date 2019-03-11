@@ -2,3 +2,4 @@ KERNEL=="ttyUSB*", ATTRS{interface}=="HandsFree USB to UART Bridge Controller", 
 KERNEL=="ttyUSB*", ATTRS{interface}=="FT232R USB UART", MODE:="0777", SYMLINK+="HFRobot"
 KERNEL=="ttyUSB*", ATTRS{interface}=="CP2102 USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar"
 KERNEL=="ttyUSB*", ATTRS{interface}=="rplidar USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar"
+KERNEL=="ttyUSB*", ATTRS{interface}=="USB <-> Serial", MODE:="0777", SYMLINK+="HFCharger"

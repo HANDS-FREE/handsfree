@@ -17,7 +17,7 @@ ros-kinetic-depthimage-to-laserscan  \
 ros-kinetic-turtlebot-teleop ros-kinetic-move-base \
 ros-kinetic-map-server ros-kinetic-fake-localization \
 ros-kinetic-amcl git subversion mercurial \
-ros-kinetic-hokuyo3d
+ros-kinetic-hokuyo3d ros-kinetic-cob-perception-msgs
 
 #rbx2-prereq.sh
 $install_command ros-kinetic-openni-camera \

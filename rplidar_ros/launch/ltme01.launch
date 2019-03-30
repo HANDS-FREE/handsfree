@@ -1,0 +1,50 @@
+<!-- -->
+
+<launch>
+
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+  <arg name="laser_scan" default="scan" />
+  
+  <include file="$(find handsfree_bringup)/robot_para/laser_tf/$(arg model)_tf.xml" /> 
+
+  <!-- Run the Hokuyo laser scanner node -->
+
+  <node pkg="ltme01_driver" type="ltme01_driver_node" name="ltme01_driver_node" output="screen">
+    <!-- IP address of LTME-01C -->
+    <param name="device" value="192.168.10.160"/>
+
+    <!-- Frame ID used by the published LaserScan messages -->
+    <param name="frame_id" value="laser"/>
+
+    <!-- Start and end angle of published scans -->
+    <!-- As LTME-01 has an FOV of 270 degrees, the minimum allowed value for angle_min is -2.356 (about -3 * pi / 4), and the maximum allowed value for angle_max is 2.356 (about 3 * pi / 4) -->
+    <!--
+    <param name="angle_min" value="-1.571"/>
+    <param name="angle_max" value="1.571"/>
+    -->
+
+    <!-- Range of angle for which data should be excluded from published scans -->
+    <!-- Leave these two parameters commented out if a full 270 degree FOV is desired -->
+    <!--
+    <param name="angle_excluded_min" value="-0.785"/>
+    <param name="angle_excluded_max" value="0.785"/>
+    -->
+
+    <!-- Minimum and maximum range value of published scans -->
+    <!-- Defaults to 0.2 and 30 respectively if not specified -->
+    <!--
+    <param name="range_min" value="0.2"/>
+    <param name="range_max" value="30"/>
+    -->
+    <remap from="scan" to="base_$(arg laser_scan)"/>
+  </node>
+
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find lslidar_n301_decoder)/launch/lslidar_n301.rviz" output="screen"/-->
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+  <rosparam command="load" file="$(find handsfree_bringup)/robot_para/laser_filter_yaml/hokuyo/laser_filter_$(arg model).yaml" />
+  <remap from="scan" to="base_$(arg laser_scan)"/>
+  <remap from="scan_filtered" to="$(arg laser_scan)"/>
+  </node >
+
+</launch>

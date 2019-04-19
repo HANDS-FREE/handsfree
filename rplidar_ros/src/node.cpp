@@ -361,8 +361,8 @@ int main(int argc, char * argv[]) {
                     //const int angle_compensate_multiple = 1;
                     const int angle_compensate_nodes_count = 360*angle_compensate_multiple;
                     int angle_compensate_offset = 0;
-                    rplidar_response_measurement_node_hq_t angle_compensate_nodes[angle_compensate_nodes_count];
-                    memset(angle_compensate_nodes, 0, angle_compensate_nodes_count*sizeof(rplidar_response_measurement_node_hq_t));
+                    std::vector<rplidar_response_measurement_node_hq_t> angle_compensate_nodes(angle_compensate_nodes_count+angle_compensate_multiple);
+                    memset(angle_compensate_nodes.data(), 0, angle_compensate_nodes.size()*sizeof(rplidar_response_measurement_node_hq_t));
 
                     int i = 0, j = 0;
                     for( ; i < count; i++ ) {
@@ -376,7 +376,7 @@ int main(int argc, char * argv[]) {
                         }
                     }
   
-                    publish_scan(&scan_pub, angle_compensate_nodes, angle_compensate_nodes_count,
+                    publish_scan(&scan_pub, angle_compensate_nodes.data(), angle_compensate_nodes_count,
                              start_scan_time, scan_duration, inverted,
                              angle_min, angle_max, max_distance,
                              frame_id);

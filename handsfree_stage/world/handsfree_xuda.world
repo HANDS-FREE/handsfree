@@ -4,12 +4,30 @@ define obstacle model
   gui_nose 0
 )
 
+define charger model
+(
+  size [0.500 0.15 0.500]
+  block( points 9
+      point[0] [ 0.225 -0.075 ]
+      point[1] [ 0.225 0.075 ]
+      point[2] [ -0.225 0.075 ]
+      point[3] [ -0.225 -0.075 ]
+      point[4] [ -0.125 -0.075 ]
+      point[5] [ -0.025 0.025 ]
+      point[6] [ 0.175 -0.075 ]
+      point[7] [ -0.225 -0.075 ]
+      point[8] [ 0.225 -0.075 ]
+      z [0 1]
+  )
+  gui_nose 0
+)
+
 define topurg ranger
 (
   sensor( 			
-  range [ 0.0  30.0 ]
-  fov 360.0
-  samples 360
+  range [ 0.1  30.0 ]
+  fov 180.0
+  samples 2000
   )
   # generic model properties
   color "black"
@@ -90,3 +108,4 @@ obstacle( pose [ 24.386 45.751 0.000 19.572 ] name "block1" color "red")
 obstacle( pose [ 18.357 26.766 0.000 19.572 ] name "block2" color "red")
 obstacle( pose [ 18.461 32.859 0.000 19.572 ] name "block3" color "red")
 obstacle( pose [ 10.429 31.958 0.000 19.572 ] name "block4" color "red")
+charger( pose [ 9.58  40.05  0.000 90.84 ] name "charger" color "yellow")

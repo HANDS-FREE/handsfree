@@ -7,7 +7,7 @@
   <arg name="node_name"             default="velocity_smoother_remote"/>
   <arg name="nodelet_manager_name"  default="nodelet_manager_remote"/>
   <arg name="config_file"           default="$(find handsfree_bringup)/robot_para/velocity_smoother/$(arg model).yaml"/>
-  <arg name="raw_cmd_vel_topic"     default="/remote/cmd_vel"/>
+  <arg name="raw_cmd_vel_topic"     default="/handsfree/remote_cmd_vel"/>
   <arg name="smooth_cmd_vel_topic"  default="/mobile_base/mobile_base_controller/cmd_vel"/>
   <arg name="robot_cmd_vel_topic"   default="/mobile_base/mobile_base_controller/cmd_vel"/>
   <arg name="odom_topic"            default="/mobile_base/mobile_base_controller/odom"/>
@@ -29,7 +29,6 @@
     <remap from="$(arg node_name)/robot_cmd_vel"  to="$(arg robot_cmd_vel_topic)"/>
     <remap from="$(arg node_name)/odometry"       to="$(arg odom_topic)"/>
   </node>
-
 
 </launch>
 

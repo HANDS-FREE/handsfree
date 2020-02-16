@@ -25,6 +25,7 @@ execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/env.sh)
 include_directories(
   include 
   ${catkin_INCLUDE_DIRS}
+  include/handsfree_hw/
   include/sdk/hf_link/
   include/sdk/robot_abstract/
 )
@@ -35,4 +36,19 @@ add_dependencies(handsfree_hw_node handsfree_msgs_gencpp)
 
 target_link_libraries(handsfree_hw_node ${catkin_LIBRARIES})
 
+install(FILES config.txt env.sh
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(DIRECTORY config launch
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(DIRECTORY include/handsfree_hw/ include/sdk
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+
+install(TARGETS handsfree_hw_node
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 

@@ -13,4 +13,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+install(DIRECTORY launch rviz world
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 

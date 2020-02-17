@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
 * Copyright (c) Hands Free Team. All rights reserved.
-* FileName: hf_link.cpp
+* FileName: 
 * Contact:  QQ Exchange Group -- 521037187
 * Version:  V2.0
 *
@@ -14,8 +14,6 @@
 *
 * Description: define handfree transport serial method
 ***********************************************************************************************************************/
-
-
 #include <handsfree_hw/transport_serial.h>
 
 namespace handsfree_hw {

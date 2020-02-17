@@ -11,8 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   handsfree_msgs
 )
 
-set(config_path \"${CMAKE_CURRENT_SOURCE_DIR}\")
-add_definitions(-DCONFIG_PATH=${config_path})
+add_definitions(-std=c++11)
+
 catkin_package(   
   INCLUDE_DIRS include
 #  LIBRARIES handsfree_hw
@@ -25,18 +25,17 @@ execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/env.sh)
 include_directories(
   include 
   ${catkin_INCLUDE_DIRS}
-  include/handsfree_hw/
-  include/sdk/hf_link/
+  include/sdk/robolink/
   include/sdk/robot_abstract/
 )
 
-add_executable(handsfree_hw_node src/main.cpp src/transport_serial.cpp include/sdk/hf_link/hf_link.cpp include/sdk/hf_link/hf_link_state_machine.cpp src/hf_hw.cpp src/hf_hw_ros.cpp)
+add_executable(handsfree_hw_node src/main.cpp src/transport_serial.cpp include/sdk/robolink/robolink.cpp include/sdk/robolink/state_machine.cpp src/hf_hw.cpp src/hf_hw_ros.cpp)
 
 add_dependencies(handsfree_hw_node handsfree_msgs_gencpp)
 
 target_link_libraries(handsfree_hw_node ${catkin_LIBRARIES})
 
-install(FILES config.txt env.sh
+install(FILES env.sh
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
@@ -44,7 +43,7 @@ install(DIRECTORY config launch
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(DIRECTORY include/handsfree_hw/ include/sdk
+install(DIRECTORY include
         DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 

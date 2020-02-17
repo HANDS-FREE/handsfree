@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
 * Copyright (c) Hands Free Team. All rights reserved.
-* FileName: hf_link.cpp
+* FileName: 
 * Contact:  QQ Exchange Group -- 521037187
 * Version:  V2.0
 *
@@ -26,7 +26,7 @@ HF_HW::HF_HW(std::string url, std::string config_addr)
     {
         port_ = boost::make_shared<TransportSerial>(url);
         time_out_ = 500;
-        hflink_ = boost::make_shared<HFLink>(&my_robot_  , 0x01 , 0x11);
+        robolink_ = boost::make_shared<RoboLink>(&my_robot_ , 0x01 , 0x11);
         timer_.reset(new boost::asio::deadline_timer(*(port_->getIOinstace()),
                                                      boost::posix_time::milliseconds(time_out_)));
     }else if (transport_method == "udp")
@@ -42,8 +42,8 @@ HF_HW::HF_HW(std::string url, std::string config_addr)
         for (int i = 0; i < LAST_COMMAND_FLAG; i++)
         {
             std::string temp;
-            file_ >> temp >> hflink_command_set_[i] >> hflink_freq_[i];
-            std::cout<< temp << hflink_command_set_[i] << hflink_freq_[i]<<std::endl;
+            file_ >> temp >> robolink_command_set_[i] >> robolink_freq_[i];
+            std::cout<< temp << robolink_command_set_[i] << robolink_freq_[i]<<std::endl;
         }
         file_.close();
         std::cerr << "config file opened succeed" <<std::endl;
@@ -53,6 +53,15 @@ HF_HW::HF_HW(std::string url, std::string config_addr)
         std::cerr << "config file can't be opened, check your system" <<std::endl;
         initialize_ok_ = false;
     }
+
+    time_out_cnt_ = 0;
+    shaking_hands_flag_ = 0;
+}
+
+void HF_HW::restartTransportSerial(std::string url)
+{
+    port_ = boost::make_shared<TransportSerial>(url);
+    usleep(10000);
 }
 
 void HF_HW::timeoutHandler(const boost::system::error_code &ec)
@@ -70,7 +79,7 @@ void HF_HW::updateRobot()
 {
     boost::asio::deadline_timer cicle_timer_(*(port_->getIOinstace()));
 
-    memset(hflink_count_, 0 ,sizeof hflink_count_);
+    memset(robolink_count_, 0 ,sizeof robolink_count_);
     int count = 0;
     while (true)
     {
@@ -79,16 +88,16 @@ void HF_HW::updateRobot()
         //  check hand shake
         checkHandshake();
         //  uodate normal data
-        memset(hflink_command_set_current_, 0, sizeof hflink_command_set_current_);
+        memset(robolink_command_set_current_, 0, sizeof robolink_command_set_current_);
         for (int i = 1; i < LAST_COMMAND_FLAG; i++)
         {
-            if (hflink_command_set_[i] != 0)
+            if (robolink_command_set_[i] != 0)
             {
                 int cnt = count % 100;
-                if (cnt %  (100 / hflink_freq_[i]) == 0)
+                if (cnt %  (100 / robolink_freq_[i]) == 0)
                 {
                     sendCommand((Command)i);
-                    hflink_command_set_current_[i] = 1;
+                    robolink_command_set_current_[i] = 1;
                 }
             }
         }
@@ -101,7 +110,7 @@ void HF_HW::updateRobot()
             for (int i = 0; i < data.size(); i++)
             {
                 //std::cout<<"get byte   :"<< data[i]<< std::endl;
-                if (hflink_->byteAnalysisCall(data[i]))
+                if (robolink_->byteAnalysisCall(data[i]))
                 {
                     // all receive package ack arrived
                     uint8_t temp = 1;
@@ -132,10 +141,10 @@ bool HF_HW::updateCommand(const Command &command, int count)
     boost::asio::deadline_timer cicle_timer_(*(port_->getIOinstace()));
     cicle_timer_.expires_from_now(boost::posix_time::millisec(time_out_));
     // update command set  data from embedded system
-    if (hflink_command_set_[command] != 0)
+    if (robolink_command_set_[command] != 0)
     {
         int cnt = count % 100;
-        if (cnt %  (100 / hflink_freq_[command]) == 0)
+        if (cnt %  (100 / robolink_freq_[command]) == 0)
         {
             sendCommand(command);
         } else
@@ -144,24 +153,29 @@ bool HF_HW::updateCommand(const Command &command, int count)
             return false;
         }
     }
+    else return false;
+
     Buffer data = port_->readBuffer();
     ack_ready_ = false;
     while (!ack_ready_)
     {
         for (int i = 0; i < data.size(); i++)
         {
-            if (hflink_->byteAnalysisCall(data[i]))
+            if (robolink_->byteAnalysisCall(data[i]))
             {
                 // one package ack arrived
                 ack_ready_ = true;
+                time_out_cnt_ = 0;
             }
         }
         data = port_->readBuffer();
         if (cicle_timer_.expires_from_now().is_negative())
         {
-            std::cerr<<"Timeout continue skip this package"<<std::endl;
+            time_out_cnt_++;
+            std::cerr<<"Timeout continue skip this package time_out_cnt_= " << time_out_cnt_ <<std::endl;
             return false;
         }
+        usleep(500);
     }
     return true;
 }

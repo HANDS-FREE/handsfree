@@ -3,7 +3,8 @@
 <launch>
 
   <node name="handsfree_hw_node" pkg="handsfree_hw" type="handsfree_hw_node">
-  <param name="serial_port"         type="string" value="/dev/HFRobot"/>
+  <param name="serial_port" type="string" value="/dev/HFRobot"/>
+  <param name="robolink_config_file" type="string" value="$(find handsfree_hw)/config/robolink_config.txt"/>
   </node>
 
   <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf_stone_v3/gazebo.urdf.xarco" />

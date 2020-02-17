@@ -1,0 +1,17 @@
+std_msgs/Header header
+uint8 local_time_valid
+uint16 local_time_year
+uint8 local_time_month
+uint8 local_time_date
+uint8 local_time_week
+uint8 local_time_hour
+uint8 local_time_min
+uint8 local_time_sec
+
+uint8 work_time1_sec
+uint8 work_time1_min
+uint8 work_time1_hour
+
+uint8 work_time2_sec
+uint8 work_time2_min
+uint8 work_time2_hour

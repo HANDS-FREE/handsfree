@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    robot_state.msg
+   robot_time.msg
    parameters.msg
    dissensor.msg
  )

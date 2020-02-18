@@ -371,15 +371,12 @@ void HF_HW_ros::mainloop()
     hw_spinner.start();
 
     int count = 0;
-    ros::Time currentTime = ros::Time::now();
 
     while (ros::ok())
     {
         hf_hw_.checkHandshake();
         if (hf_hw_.updateCommand(GET_SYSTEM_INFO, count))
         {
-            std::cout<< "spend time is  "<< (ros::Time::now() - currentTime).toSec()<<std::endl;
-            currentTime = ros::Time::now();
             robot_state_publisher_.publish(robot_state);
             robot_time_publisher_.publish(robot_time);
         }

@@ -1,3 +1,4 @@
+ACTION=="add", SUBSYSTEM=="usb-serial", DRIVER=="ftdi_sio", ATTR{latency_timer}="1"
 KERNEL=="ttyUSB*", ATTRS{interface}=="HandsFree USB to UART Bridge Controller", MODE:="0777", SYMLINK+="HFRobot"
 KERNEL=="ttyUSB*", ATTRS{interface}=="FT232R USB UART", MODE:="0777", SYMLINK+="HFRobot"
 KERNEL=="ttyUSB*", ATTRS{interface}=="CP2102 USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar"

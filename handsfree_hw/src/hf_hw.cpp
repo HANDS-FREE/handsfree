@@ -175,7 +175,11 @@ bool HF_HW::updateCommand(const Command &command, int count)
             std::cerr<<"Timeout continue skip this package time_out_cnt_= " << time_out_cnt_ <<std::endl;
             return false;
         }
-        usleep(500);
+        usleep(50);
+        //sleep 10us  robolink max speed: 800 package/S (stm32f103rct6) , x86_timeout_cpu: 22%
+        //sleep 50us  robolink max speed: 700 package/S (stm32f103rct6) , x86_timeout_cpu: 18%
+        //sleep 100us robolink max speed: 300 package/S (stm32f103rct6) , x86_timeout_cpu: 15%
+        //sleep 500us robolink max speed: 120 package/S (stm32f103rct6) , x86_timeout_cpu: 14%
     }
     return true;
 }

@@ -1,0 +1,41 @@
+#For full documentation of the parameters in this file, and a list of all the
+#parameters available for DWAPlannerROS, please see
+#http://www.ros.org/wiki/dwa_local_planner
+DWAPlannerROS:
+  acc_lim_th: 1.5
+  acc_lim_x: 2.0
+  acc_lim_y: 0
+
+  max_vel_x: 0.4
+  min_vel_x: 0.05
+
+  max_vel_y: 0.0
+  min_vel_y: 0.0
+
+  max_rot_vel: 1.75
+  min_rot_vel: 0.2
+
+  max_trans_vel: 0.4
+  min_trans_vel: 0.1
+
+# Goal Tolerance Parametes
+  xy_goal_tolerance: 0.10
+  yaw_goal_tolerance: 0.17
+  latch_xy_goal_tolerance: false
+
+# Forward Simulation Parameters
+  sim_time: 1.7
+  sim_granularity: 0.025
+  vx_samples: 20
+  vy_samples: 0
+  vtheta_samples: 40
+  controller_frequency: 10.0
+
+# Trajectory Scoring Parameters
+  path_distance_bias: 32.0
+  goal_distance_bias: 20.0
+  occdist_scale: 0.02
+  forward_point_distance: 0.325
+  stop_time_buffer: 0.2
+  scaling_speed: 0.25
+  max_scaling_factor: 0.2

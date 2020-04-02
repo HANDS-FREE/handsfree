@@ -22,7 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
  )
 
  generate_messages(
-   DEPENDENCIES  
+   DEPENDENCIES
    std_msgs
  )
 

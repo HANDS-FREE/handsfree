@@ -30,6 +30,8 @@
 #include <handsfree_msgs/robot_time.h>
 #include <handsfree_msgs/dissensor.h>
 #include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/Imu.h>
+
 #include <std_msgs/Float32.h>
 #include <std_msgs/Bool.h>
 #include <std_msgs/Int32.h>
@@ -65,6 +67,8 @@ private:
     void dissensorScanPub(void);
     void chargerStatePub(void);
     void hwIOStatePub(void);
+    void imuDataUpdatePub(void);
+
     bool button1_long_press_enable,button2_long_press_enable;
     bool last_thermal_infrared_status;
     void uwb_ibeacon_pub(void);
@@ -80,6 +84,7 @@ private:
     ros::Publisher dissensor_publisher_,dissensor_scan_publisher_;
     ros::Publisher charge_distance_publisher_,atuo_changer_state_publisher_,hand_changer_state_publisher_;
     ros::Publisher uwb_distance_publisher_;
+    ros::Publisher imu_publisher_;
 
     ros::Subscriber m_subWorktime;
 

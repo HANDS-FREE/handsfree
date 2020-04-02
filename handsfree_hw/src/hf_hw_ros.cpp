@@ -44,6 +44,8 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
 
     uwb_distance_publisher_ = nh_.advertise<std_msgs::Float32>("uwb_distance", 10);
 
+    imu_publisher_ = nh_.advertise<sensor_msgs::Imu>("imu", 10);
+
     x_ = y_ = theta_ = x_cmd_ = y_cmd_ = theta_cmd_ = 0.0;
     x_vel_ = y_vel_ = theta_vel_ = 0.0;
     head_servo1_cmd_ = head_servo2_cmd_  =  0.0;
@@ -321,6 +323,30 @@ void HF_HW_ros::hwIOStatePub(void)
     }
 }
 
+void HF_HW_ros::imuDataUpdatePub(void)
+{
+    sensor_msgs::Imu imu_data;
+
+    imu_data.header.stamp = ros::Time::now();
+    imu_data.header.frame_id = "base_link";
+    imu_data.orientation.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.x;
+    imu_data.orientation.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.y;
+    imu_data.orientation.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.z;
+    imu_data.orientation.w = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.w;
+    imu_data.linear_acceleration.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.x;
+    imu_data.linear_acceleration.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.y;
+    imu_data.linear_acceleration.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.z;
+    imu_data.angular_velocity.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.angular_velocity.x;
+    imu_data.angular_velocity.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.angular_velocity.y;
+    imu_data.angular_velocity.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.angular_velocity.z;
+
+    std::cout << "orientation_euler_rpy:" << " Pitch = " << hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_euler_rpy.pitch
+              << " Roll = " << hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_euler_rpy.roll
+              << " Yaw = " << hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_euler_rpy.yaw << std::endl;
+
+    imu_publisher_.publish(imu_data);
+}
+
 void HF_HW_ros::uwb_ibeacon_pub(void)
 {
     std_msgs::Float32 uwb_dis_;
@@ -375,11 +401,15 @@ void HF_HW_ros::mainloop()
     while (ros::ok())
     {
         hf_hw_.checkHandshake();
+
+        ros::Time currentTime = ros::Time::now();
         if (hf_hw_.updateCommand(GET_SYSTEM_INFO, count))
         {
+            std::cout<< "spend time is  "<< (ros::Time::now() - currentTime).toSec()<<std::endl;
             robot_state_publisher_.publish(robot_state);
             robot_time_publisher_.publish(robot_time);
         }
+
         if(hf_hw_.updateCommand(GET_SENSOR_DIS_DATA,count))
         {
             dissensor_publisher_.publish(dissensor);
@@ -388,16 +418,24 @@ void HF_HW_ros::mainloop()
             hwIOStatePub();
             uwb_ibeacon_pub();
         }
+
         hf_hw_.updateCommand(GET_MOTOR_SPEED, count);
         hf_hw_.updateCommand(GET_GLOBAL_COORDINATE, count);
         hf_hw_.updateCommand(GET_ROBOT_SPEED, count);
         hf_hw_.updateCommand(GET_HEAD_STATE, count);
+
+        if(hf_hw_.updateCommand(GET_SENSOR_IMU_DATA, count))
+        {
+            imuDataUpdatePub();
+        }
+
         readBufferUpdate();
 
         cm.update(ros::Time::now(), ros::Duration(1 / controller_freq_));
 
         //ROS_INFO("head_servo1_cmd_ = %.4f  head_servo2_cmd_=%.4f" , head_servo1_cmd_ ,head_servo2_cmd_);
         writeBufferUpdate();
+
         hf_hw_.updateCommand(SET_ROBOT_SPEED, count);
         hf_hw_.updateCommand(SET_HEAD_STATE , count);
 

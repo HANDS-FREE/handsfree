@@ -1,0 +1,8 @@
+<!-- -->
+
+<launch>
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_hw)/rviz/handsfree_hw.rviz">
+</node>
+
+</launch>

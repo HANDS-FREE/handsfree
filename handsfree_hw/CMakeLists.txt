@@ -43,7 +43,7 @@ install(DIRECTORY config launch
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(DIRECTORY include
+install(DIRECTORY include/handsfree_hw/ include/sdk
         DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 

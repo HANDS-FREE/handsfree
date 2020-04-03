@@ -64,14 +64,11 @@ public:
     void mainloop();
 
 private:
-    void dissensorScanPub(void);
-    void chargerStatePub(void);
     void hwIOStatePub(void);
     void imuDataUpdatePub(void);
 
     bool button1_long_press_enable,button2_long_press_enable;
     bool last_thermal_infrared_status;
-    void uwb_ibeacon_pub(void);
     void callBackPatrolSetWorktime(const std_msgs::Int32MultiArray::ConstPtr &msg);
     //communication with embeded system
     HF_HW hf_hw_;
@@ -80,13 +77,8 @@ private:
     ros::CallbackQueue queue_;
 
     // publish the robot state for diagnose system
-    ros::Publisher robot_state_publisher_,robot_time_publisher_,hw_control_cmd_publisher_;
-    ros::Publisher dissensor_publisher_,dissensor_scan_publisher_;
-    ros::Publisher charge_distance_publisher_,atuo_changer_state_publisher_,hand_changer_state_publisher_;
-    ros::Publisher uwb_distance_publisher_;
+    ros::Publisher robot_state_publisher_;
     ros::Publisher imu_publisher_;
-
-    ros::Subscriber m_subWorktime;
 
     //hardware resource
     handsfree_msgs::robot_state robot_state;

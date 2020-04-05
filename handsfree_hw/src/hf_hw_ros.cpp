@@ -169,7 +169,7 @@ void HF_HW_ros::imuDataUpdatePub(void)
     sensor_msgs::Imu imu_data;
 
     imu_data.header.stamp = ros::Time::now();
-    imu_data.header.frame_id = "base_link";
+    imu_data.header.frame_id = "imu_link";
     imu_data.orientation.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.x;
     imu_data.orientation.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.y;
     imu_data.orientation.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.z;

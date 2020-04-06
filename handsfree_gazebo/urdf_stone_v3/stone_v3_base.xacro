@@ -38,7 +38,7 @@
       
     <link name="imu_link"/>
     <joint name="imu_joint" type="fixed">
-      <origin xyz="0.021 0.021 0.121" rpy="0 0.01 0" />
+      <origin xyz="0.021 0.021 0.121" rpy="0 0.024 0" />
       <parent link="base_link"/>
       <child link="imu_link" />
     </joint>

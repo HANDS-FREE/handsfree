@@ -174,9 +174,9 @@ void HF_HW_ros::imuDataUpdatePub(void)
     imu_data.orientation.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.y;
     imu_data.orientation.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.z;
     imu_data.orientation.w = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.orientation_quaternion.w;
-    imu_data.linear_acceleration.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.x;
-    imu_data.linear_acceleration.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.y;
-    imu_data.linear_acceleration.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.z;
+    imu_data.linear_acceleration.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.x*9.801;
+    imu_data.linear_acceleration.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.y*9.801;
+    imu_data.linear_acceleration.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.linear_acceleration.z*9.801;
     imu_data.angular_velocity.x = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.angular_velocity.x;
     imu_data.angular_velocity.y = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.angular_velocity.y;
     imu_data.angular_velocity.z = hf_hw_.getRobotAbstract()->sensors.imu_data.imu1.angular_velocity.z;

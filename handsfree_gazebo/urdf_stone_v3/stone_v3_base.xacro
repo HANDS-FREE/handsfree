@@ -7,318 +7,343 @@
   <xacro:include filename="$(find handsfree_gazebo)/urdf_stone_v3/common_properties.xacro"/>
   
   <xacro:macro name="stone_v3_base">
-  <link name="base_footprint"/>
-  <link name="base_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.0011186 -4.317E-05 0.26842"/>
-      <mass value="9.7333"/>
-      <inertia ixx="0.1750" ixy="0.0014142857" ixz="0.000885" iyy="0.183614285" iyz="0" izz="0.1541"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL"/>
-      </geometry>
-      <material name="light_black"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="base_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="base_link"/>
-    <child link="base_footprint" />
-  </joint>
+    <link name="base_footprint"/>
+    <link name="base_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-0.0011186 -4.317E-05 0.26842"/>
+        <mass value="9.7333"/>
+        <inertia ixx="0.1750" ixy="0.0014142857" ixz="0.000885" iyy="0.183614285" iyz="0" izz="0.1541"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0.045 0 0.139"/>
+        <geometry>
+          <cylinder length="0.152" radius="0.115"/>
+        </geometry>
+        <material name="transparent_black">
+          <color rgba="0.4 0.4 0.4 0.7"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="base_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="base_footprint" />
+    </joint>
+      
+    <link name="imu_link"/>
+    <joint name="imu_joint" type="fixed">
+      <origin xyz="0.021 0.021 0.121" rpy="0 0.024 0" />
+      <parent link="base_link"/>
+      <child link="imu_link" />
+    </joint>
+      
+    <!--wheel left -->
+    <link name="wheel1_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="3.1631E-06 -7.2374E-08 -0.00032962"/>
+        <mass value="0.15338"/>
+        <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL"/>
+        </geometry>
+        <material name="blue"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="wheel1_joint" type="continuous">
+      <origin rpy="-1.5708 0 0" xyz="0 0.1025 0.0325"/>
+      <parent link="base_link"/>
+      <child link="wheel1_link"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="8.85" velocity="17.4" />
+    </joint>
     
-  <link name="imu_link"/>
-  <joint name="imu_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="base_link"/>
-    <child link="imu_link" />
-  </joint>
     
-  <!--wheel left -->
-  <link name="wheel1_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="3.1631E-06 -7.2374E-08 -0.00032962"/>
-      <mass value="0.15338"/>
-      <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL"/>
-      </geometry>
-      <material name="">
-        <color rgba="1 0.94902 0.89804 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel1_joint" type="continuous">
-    <origin rpy="-1.5708 0 0" xyz="0 0.1557 0.0124"/>
-    <parent link="base_link"/>
-    <child link="wheel1_link"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="8.85" velocity="17.4" />
-  </joint>
-  
-  
-  <!--wheel right -->
-  <link name="wheel2_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-3.1631E-06 -7.2862E-08 -0.00032962"/>
-      <mass value="0.15338"/>
-      <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL"/>
-      </geometry>
-      <material name="">
-        <color rgba="1 0.94902 0.89804 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel2_joint" type="continuous">
-    <origin rpy="1.5708 0 0" xyz="0 -0.1557 0.0124"/>
-    <parent link="base_link"/>
-    <child link="wheel2_link"/>
-    <axis xyz="0 0 -1"/>
-    <limit effort="8.85" velocity="17.4" />
-  </joint>
-  
-  
-  <link name="caster_front_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="0.0048088 0.0096311 8.3348E-16"/>
-      <mass value="0.15338"/>
-      <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <sphere radius="0.032"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <geometry>
-        <sphere radius="0.032"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </collision>  
-  </link>
-  <joint name="caster_front_joint" type="fixed">
-    <origin rpy="1.5708 0 0" xyz="0.126 0 0.0124"/>
-    <parent link="base_link"/>
-    <child link="caster_front_link"/>
-    <axis xyz="0 0 1"/>
-  </joint>
-  
-  
-  <link name="caster_back_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.0048088 0.0096311 8.3433E-16"/>
-      <mass value="0.15338"/>
-      <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <sphere radius="0.032"/>
-      </geometry>
-      <material name="grey"/>
-    </visual>
-    <collision>
-      <geometry>
-        <sphere radius="0.032"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </collision>  
-  </link>
-  <joint name="caster_back_joint" type="fixed">
-    <origin rpy="1.5708 0 0" xyz="-0.126 0 0.0124"/>
-    <parent link="base_link"/>
-    <child link="caster_back_link"/>
-    <axis xyz="0 0 1"/>
-  </joint>
-  
-  
-  <link name="laser_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.00012709 4.6538E-05 -0.011453"/>
-      <mass value="0.13632"/>
-      <inertia ixx="7.1499E-05" ixy="0" ixz="0" iyy="7.1883E-05" iyz="0" izz="4.6678E-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL"/>
-      </geometry>
-      <material name="orange"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="laser_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.145 0 0.14203"/>
-    <parent link="base_link"/>
-    <child link="laser_link"/>
-    <axis xyz="0 0 0"/>
-  </joint>
-  
-  
-  <link name="yaw_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="8.5422E-05 0.0001613 0.0023545"/>
-      <mass value="0.15082"/>
-      <inertia ixx="0.00012558" ixy="0" ixz="0" iyy="0.00012402" iyz="0" izz="0.00023372"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL"/>
-      </geometry>
-      <material name="">
-        <color rgba="0.89804 0.91765 0.92941 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="yaw_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0.894"/>
-    <parent link="base_link"/>
-    <child link="yaw_link"/>
-    <axis xyz="0 0 1"/>
-    <limit
-      upper="1"
-      lower="-1"
-      effort="0.03"
-      velocity="1" />
-  </joint>
-  
-  
-  <link name="pitch_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.00024079 -0.041896 -9.1768E-05"/>
-      <mass value="0.06208"/>
-      <inertia ixx="4.7571E-05" ixy="0" ixz="0" iyy="2.3344E-05" iyz="0" izz="3.516E-05"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL"/>
-      </geometry>
-      <material name="">
-        <color rgba="0.89804 0.91765 0.92941 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="pitch_joint" type="revolute">
-    <origin rpy="-1.5708 0 3.14159" xyz="0.01 5E-05 0.01475"/>
-    <parent link="yaw_link"/>
-    <child link="pitch_link"/>
-    <axis xyz="0 0 1"/>
-    <limit
-      upper="0.87"
-      lower="-0.52"
-      effort="0.03"
-      velocity="1" />
-  </joint>
-  
-  <link name="camera_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="-0.017766 1.5798E-06 -0.00017508"/>
-      <mass value="0.15757"/>
-      <inertia ixx="0.00039792" ixy="0" ixz="0" iyy="2.4687E-05" iyz="0" izz="0.00040604"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL"/>
-      </geometry>
-      <material name="">
-        <color rgba="0.33333 0.33333 0.33333 1"/>
-      </material>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint name="camera_joint" type="fixed">
-    <origin rpy="1.5708 3.14159 0" xyz="-0.0181 -0.08706 0.00011573"/>
-    <parent link="pitch_link"/>
-    <child link="camera_link"/>
-    <axis xyz="0 0 0"/>
-  </joint>
-  
-  <!--for xtion sensor model -->
-      <joint name="camera_depth_joint" type="fixed">
-        <origin xyz="0.0 0.049 0.0" rpy="0 0 0" />
-        <parent link="camera_link" />
-        <child link="camera_depth_frame"/>
-      </joint>
+    <!--wheel right -->
+    <link name="wheel2_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-3.1631E-06 -7.2862E-08 -0.00032962"/>
+        <mass value="0.15338"/>
+        <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL"/>
+        </geometry>
+        <material name="blue"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="wheel2_joint" type="continuous">
+      <origin rpy="1.5708 0 0" xyz="0 -0.1025 0.0325"/>
+      <parent link="base_link"/>
+      <child link="wheel2_link"/>
+      <axis xyz="0 0 -1"/>
+      <limit effort="8.85" velocity="17.4" />
+    </joint>
+    
+    
+    <link name="caster_front_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.0048088 0.0096311 8.3348E-16"/>
+        <mass value="0.15338"/>
+        <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.025 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/caster_front_link.STL"/>
+        </geometry>
+        <material name="ivory">
+          <color rgba="0.8 0.8 0.75 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <sphere radius="0.032"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>  
+    </link>
+    <joint name="caster_front_joint" type="fixed">
+      <origin rpy="${M_PI/2.0} 0 0" xyz="0.126 0 0.019"/>
+      <parent link="base_link"/>
+      <child link="caster_front_link"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+    
+    
+    <link name="caster_back_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-0.0048088 0.0096311 8.3433E-16"/>
+        <mass value="0.15338"/>
+        <inertia ixx="4.7342E-05" ixy="0" ixz="0" iyy="4.734E-05" iyz="0" izz="8.8619E-05"/>
+      </inertial>
+      <collision>
+        <geometry>
+          <sphere radius="0.032"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>  
+    </link>
+    <joint name="caster_back_joint" type="fixed">
+      <origin rpy="1.5708 0 0" xyz="-0.126 0 0.0124"/>
+      <parent link="base_link"/>
+      <child link="caster_back_link"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+    
+    
+    <link name="laser_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-0.00012709 4.6538E-05 -0.011453"/>
+        <mass value="0.13632"/>
+        <inertia ixx="7.1499E-05" ixy="0" ixz="0" iyy="7.1883E-05" iyz="0" izz="4.6678E-05"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.005 -0.03 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/a2_test_split.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="tomato">
+          <color rgba="0.54 0.21 0.148 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="laser_joint" type="fixed">
+      <origin rpy="0 0 ${M_PI}" xyz="0.12 0 0.07"/>
+      <parent link="base_link"/>
+      <child link="laser_link"/>
+      <axis xyz="0 0 0"/>
+    </joint>
+    <link name="laser"/>
+    <joint name="laser_scan_join" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0.0308"/>
+      <parent link="laser_link"/>
+      <child link="laser"/>
+    </joint>
+    <link name="fake_laser"/>
+    <joint name="fake_laser_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0.4"/>
+      <parent link="laser_link"/>
+      <child link="fake_laser"/>
+    </joint>
+    <link name="yaw_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="8.5422E-05 0.0001613 0.0023545"/>
+        <mass value="0.15082"/>
+        <inertia ixx="0.00012558" ixy="0" ixz="0" iyy="0.00012402" iyz="0" izz="0.00023372"/>
+      </inertial>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="yaw_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0 0 0.894"/>
+      <parent link="base_link"/>
+      <child link="yaw_link"/>
+      <axis xyz="0 0 1"/>
+      <limit
+        upper="1"
+        lower="-1"
+        effort="0.03"
+        velocity="1" />
+    </joint>
+    
+    
+    <link name="pitch_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-0.00024079 -0.041896 -9.1768E-05"/>
+        <mass value="0.06208"/>
+        <inertia ixx="4.7571E-05" ixy="0" ixz="0" iyy="2.3344E-05" iyz="0" izz="3.516E-05"/>
+      </inertial>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="pitch_joint" type="revolute">
+      <origin rpy="-1.5708 0 3.14159" xyz="0.01 5E-05 0.01475"/>
+      <parent link="yaw_link"/>
+      <child link="pitch_link"/>
+      <axis xyz="0 0 1"/>
+      <limit
+        upper="0.87"
+        lower="-0.52"
+        effort="0.03"
+        velocity="1" />
+    </joint>
+    
+    <link name="camera_link_xtion">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-0.017766 1.5798E-06 -0.00017508"/>
+        <mass value="0.15757"/>
+        <inertia ixx="0.00039792" ixy="0" ixz="0" iyy="2.4687E-05" iyz="0" izz="0.00040604"/>
+      </inertial>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="camera_joint_xtion" type="fixed">
+      <origin rpy="1.5708 3.14159 0" xyz="-0.0181 -0.08706 0.00011573"/>
+      <parent link="pitch_link"/>
+      <child link="camera_link_xtion"/>
+      <axis xyz="0 0 0"/>
+    </joint>
 
-      <link name="camera_depth_frame"/>
+    <link name="camera_link">
+      <visual>
+        <origin xyz="0.0149 -0.0175 0" rpy="1.570796327 0 1.570796327"/>
+        <geometry>
+          <!-- <box size="${d435_cam_width} ${d435_cam_height} ${d435_cam_depth}"/> -->
+          <mesh filename="package://realsense2_description/meshes/d435.dae" />
+          <!--<mesh filename="package://realsense2_description/meshes/d435/d435.dae" />-->
+        </geometry>
+        <material name="aluminum">
+            <color rgba="0.5 0.5 0.5 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.0175 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.02505 0.09 0.025"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <!-- The following are not reliable values, and should not be used for modeling -->
+        <mass value="0.564" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257" />
+      </inertial>
+    </link>
+    <joint name="camera_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="-0.05 0.0175 0.3495"/>
+      <parent link="base_link"/>
+      <child link="camera_link"/>
+      <axis xyz="0 0 0"/>
+    </joint>
+    <joint name="stack_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="-0.05 0 0.214"/>
+      <parent link="base_link"/>
+      <child link="stack_link"/>
+    </joint>
+    <link name="stack_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0.0615"/>
+        <geometry>
+          <cylinder length="0.123" radius="0.012"/>
+        </geometry>
+        <material name="dark"/>      
+      </visual>
+    </link>
 
-      <joint name="camera_depth_optical_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="${-M_PI/2} 0.0 ${-M_PI/2}" />
-        <parent link="camera_depth_frame" />
-        <child link="camera_depth_optical_frame"/>
-      </joint>
-
-      <link name="camera_depth_optical_frame"/>
-
-      <joint name="camera_rgb_joint" type="fixed">
-        <origin xyz="0.0 0.022 0.0" rpy="0 0 0" />
-        <parent link="camera_link" />
-        <child link="camera_rgb_frame"/>
-      </joint>
-
-      <link name="camera_rgb_frame"/>
-
-      <joint name="camera_rgb_optical_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="${-M_PI/2} 0.0 ${-M_PI/2}" />
-        <parent link="camera_rgb_frame" />
-        <child link="camera_rgb_optical_frame"/>
-      </joint>
-
-      <link name="camera_rgb_optical_frame"/>
+    <link name="openre_link">
+      <visual>
+        <origin rpy="0 0 ${M_PI/2.0}" xyz="0.025 -0.03 -0.001"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/thing1534620_arduino-uno_circuit-breadboard_cable.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="midnight_blue">
+          <color rgba="0.1 0.1 0.4375 1"/>
+        </material>
+      </visual>
+    </link>
+    <joint name="openre_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0.115"/>
+      <parent link="base_link"/>
+      <child link="openre_link"/>
+    </joint>
+    
+    <link name="pc_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/udoo_case_closed.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="dark_slate_gray">
+          <color rgba="0.18 0.31 0.31 1"/>
+        </material>
+      </visual>
+    </link>
+    <joint name="pc_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.045 0 0.15"/>
+      <parent link="base_link"/>
+      <child link="pc_link"/>
+    </joint>
   </xacro:macro>  
 </robot>
 

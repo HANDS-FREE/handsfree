@@ -39,6 +39,7 @@
 #include <std_msgs/Float32MultiArray.h>
 #include <std_msgs/Bool.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/UInt8MultiArray.h>
 #include <std_msgs/String.h>
 
 #include <controller_manager/controller_manager.h>
@@ -73,6 +74,7 @@ private:
 
     bool button1_long_press_enable,button2_long_press_enable;
     bool last_thermal_infrared_status;
+
     //communication with embeded system
     HF_HW hf_hw_;
     std::string transport_url;

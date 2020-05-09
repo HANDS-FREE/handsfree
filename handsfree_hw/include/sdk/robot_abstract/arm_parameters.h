@@ -3,34 +3,50 @@
 
 enum ArmType : unsigned char
 {
-    DOBOT1,
     DOBOT2,
+    HANDSFREE_ARM_E6,
     OTHERS_ARM
 };
 
 typedef struct{
-    float  servo1;
-    float  servo2;
-    float  servo3;
-    float  servo4;
-    float  servo5;
-    float  servo6;
-    float  servo7;
-    float  servo8;
-}__attribute__((packed)) ArmDOFVector;
+    unsigned char status; //0~7bit , 0: online/offline
+    unsigned short int voltage; //unit: 0.1v
+    short int current;  //-10000 ~ 10000 , mA
+    short int load;
+    unsigned char temperature; //unit: degree
+    unsigned short int position; //0 ~ 6.28(2*PI) unit: 0.001 radian
+    short int speed; //unit: 0.001 radian/s
+}__attribute__((packed)) ArmJointData;
 
 typedef struct{
-    float  x;
-    float  y;
-    float  z;
-    float  pitch;
-    float  roll;
-    float  yaw;
-}__attribute__((packed)) ArmPose;
+    short int  x;  //unit: 0.1mm
+    short int  y;
+    short int  z;
+    short int  pitch; //unit: 0.001 radian
+    short int  roll;
+    short int  yaw;
+}__attribute__((packed)) ArmEndPose;
+
+/*****************************************************************************************/
+
+#define ARM_MAX_DOF_NUM 8
 
 typedef struct{
+    unsigned char command;
+    unsigned short int joints_position[ARM_MAX_DOF_NUM]; //0 ~ 6.28(2*PI) unit: 0.001 radian
+    short int joints_speed[ARM_MAX_DOF_NUM]; //unit: 0.001 radian/s
+    ArmEndPose end_pose;
+    ArmEndPose griper_pose;
+}__attribute__((packed)) ArmDOFControl;
 
-}__attribute__((packed)) ArmSystem;
+typedef struct{
+    unsigned char status; //0~7bit , 0: online/offline
+    unsigned short int voltage; //unit: 0.1v
+    short int current;  //-10000 ~ 10000 , mA
+    ArmJointData servo[ARM_MAX_DOF_NUM];
+    ArmEndPose end_pose;
+    ArmEndPose griper_pose;
+}__attribute__((packed)) ArmDOFFeedBack;
 
 /*****************************************************************************************/
 
@@ -42,9 +58,8 @@ typedef struct{
 }__attribute__((packed)) ArmParameters;
 
 typedef struct{
-    ArmDOFVector expect_arm_state;
-    ArmDOFVector measure_arm_state;
-    ArmSystem system_info;
+    ArmDOFControl expect_arm_state;
+    ArmDOFFeedBack measure_arm_state;
 }__attribute__((packed)) ArmControlData;
 
 #endif // ARM_PARAMETERS_H

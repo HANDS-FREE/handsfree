@@ -196,6 +196,10 @@ unsigned char RoboLink::packageAnalysis(void)
         analysis_state=readCommandAnalysis(command_state_ , (unsigned char *)&robot->sensors.gps_data, sizeof(robot->sensors.gps_data));
         break;
 
+    case SET_IOCONTROL_DATA :
+        analysis_state=setCommandAnalysis(command_state_ , (unsigned char *)&robot->sensors.io_control_data , sizeof(robot->sensors.io_control_data));
+        break;
+
     default :
         analysis_state=0;
         break;
@@ -371,6 +375,10 @@ unsigned char RoboLink::masterSendCommand(const Command command_state)
 
     case GET_SENSOR_GPS_DATA :
         sendStruct(command_state , NULL , 0);
+        break;
+
+    case SET_IOCONTROL_DATA :
+        sendStruct(command_state , (unsigned char *)&robot->sensors.io_control_data , sizeof(robot->sensors.io_control_data) );
         break;
 
     default :

@@ -12,6 +12,9 @@ find_package(catkin REQUIRED COMPONENTS
    robot_time.msg
    parameters.msg
    dissensor.msg
+   PoseEuler.msg
+   arm_joints_state.msg
+   arm_state.msg
  )
 
 

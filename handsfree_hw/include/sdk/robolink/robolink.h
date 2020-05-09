@@ -44,6 +44,7 @@ enum Command : unsigned char
     READ_HEAD_PARAMETERS,
     READ_ARM_PARAMETERS,
     SET_SYSTEM_INFO,
+    SET_IOCONTROL_DATA,
     LAST_COMMAND_FLAG
 };
 

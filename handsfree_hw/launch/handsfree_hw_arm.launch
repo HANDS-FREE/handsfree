@@ -1,0 +1,23 @@
+<!-- -->
+
+<launch>
+
+  <node name="handsfree_hw_node_arm" pkg="handsfree_hw" type="handsfree_hw_node">
+  <param name="serial_port" type="string" value="/dev/HFRobotArm"/>
+  <param name="robolink_config_file" type="string" value="$(find handsfree_hw)/config/robolink_config_arm.txt"/>
+  
+  <param name="with_chassis" type="bool" value="false"/>
+  <param name="with_lift" type="bool" value="false"/>
+
+  <param name="with_arm" type="bool" value="true"/>
+  <param name="arm_type" type="string" value="arm_e6"/>
+
+  <param name="with_head" type="bool" value="false"/>
+  </node>
+
+  <rosparam file="$(find handsfree_hw)/config/config_arm.yaml" command="load"/>
+  <!-- load the controllers -->
+  <node name="controller_spawner_arm" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/mobile_base" args="joint_state_controller"/>
+
+</launch>

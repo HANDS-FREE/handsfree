@@ -103,11 +103,16 @@ typedef struct{
     unsigned char mqtt_command;
 }__attribute__((packed)) IOSensorData;
 
+typedef struct{
+    unsigned char expand_switch[12];
+}__attribute__((packed)) IOControlData;
+
 /*****************************************************************************************/
 typedef struct{
     IMUSensorData imu_data;
     IOSensorData disio_data;
     GPSData gps_data;
+    IOControlData io_control_data;
 }__attribute__((packed)) SensorsData;
 
 #endif // SENSOR_DATA

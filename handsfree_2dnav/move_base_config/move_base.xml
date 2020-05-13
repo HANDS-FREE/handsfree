@@ -4,20 +4,26 @@
 -->
 
   <arg name="model" default="stone_v3"/>
+  <arg name="cmd_vel_topic" default="/mobile_base/mobile_base_controller/cmd_vel"/>
+　　<arg name="odom_topic" default="/mobile_base/mobile_base_controller/odom"/>
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
     <param name="allow_unknown" value="false" />
     <param name="shutdown_costmaps" value="false" />
     <param name="controller_frequency" value="10" />
-    <param name="planner_patience" value="5.0" />
-    <param name="controller_patience" value="15.0" />
+    <param name="controller_patience" value="5.0" />
     <param name="conservative_reset_dist" value="3.0" />
+
     <param name="planner_frequency" value="5.0" />
+    <param name="planner_patience" value="5.0" />
     <param name="oscillation_timeout" value="10.0" />
     <param name="oscillation_distance" value="0.22" />
 
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <!-- param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" /-->
+
     <!-- param name="base_global_planner" value="global_planner/GlobalPlanner" / -->
+    <param name="base_global_planner" value="navfn/NavfnROS" />
 
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/costmap_common_params.yaml" command="load" ns="local_costmap" />
@@ -28,8 +34,11 @@
     <!-- rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/global_planner_params.yaml" command="load" /-->
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/dwa_local_planner_params.yaml" command="load" />
 
-  <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
-  <remap from="/odom"    to="/mobile_base/mobile_base_controller/odom"/> 
+    <!--rosparam file="$(find zhaowendao_2dnav)/move_base_config/$(arg model)/global_planner_params.yaml" command="load" /-->
+    <!--rosparam file="$(find zhaowendao_2dnav)/move_base_config/$(arg model)/navfn_global_planner_params.yaml" command="load" /-->
+
+  <remap from="/cmd_vel" to="$(arg cmd_vel_topic)"/>
+  <remap from="/odom"    to="$(arg odom_topic)"/> 
  </node>
  
 </launch>

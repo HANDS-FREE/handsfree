@@ -1,0 +1,308 @@
+<robot
+  name="mini_base">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0090244 -3.5686E-05 0.070951"
+        rpy="0 0 0" />
+      <mass
+        value="2.142" />
+      <inertia
+        ixx="0.012786"
+        ixy="4.4215E-06"
+        ixz="-0.0011675"
+        iyy="0.012104"
+        iyz="6.686E-06"
+        izz="0.011108" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel1_link">
+    <inertial>
+      <origin
+        xyz="-0.012392 -6.9389E-18 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.041952" />
+      <inertia
+        ixx="3.1261E-05"
+        ixy="1.2845E-21"
+        ixz="1.9176E-21"
+        iyy="1.8165E-05"
+        iyz="2.0339E-21"
+        izz="1.8165E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/wheel1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/wheel1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel1_joint"
+    type="continuous">
+    <origin
+      xyz="-0.045 0.11325 -0.033"
+      rpy="0 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel1_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="wheel2_link">
+    <inertial>
+      <origin
+        xyz="-0.012392 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.041952" />
+      <inertia
+        ixx="3.1261E-05"
+        ixy="-1.1493E-21"
+        ixz="3.3196E-22"
+        iyy="1.8165E-05"
+        iyz="9.5433E-22"
+        izz="1.8165E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/wheel2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/wheel2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel2_joint"
+    type="continuous">
+    <origin
+      xyz="-0.045 -0.11325 -0.033"
+      rpy="0 -2.6827E-17 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel2_link" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="caster_link">
+    <inertial>
+      <origin
+        xyz="3.7563E-11 -0.0046448 0.0082474"
+        rpy="0 0 0" />
+      <mass
+        value="0.012867" />
+      <inertia
+        ixx="2.1701E-06"
+        ixy="-3.4171E-15"
+        ixz="-2.2739E-15"
+        iyy="1.6268E-06"
+        iyz="5.0338E-07"
+        izz="1.2897E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/caster_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.55686 0.55686 0.55686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/caster_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_joint"
+    type="floating">
+    <origin
+      xyz="0.0745 0 -0.053"
+      rpy="0 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="-0.00038373 -1.8753E-06 -0.0095949"
+        rpy="0 0 0" />
+      <mass
+        value="2.3753" />
+      <inertia
+        ixx="0.07078"
+        ixy="-3.1898E-08"
+        ixz="-2.4195E-05"
+        iyy="0.07082"
+        iyz="-1.1767E-08"
+        izz="0.14151" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.43922 0.43922 0.43922 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.077 0 0.0576"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="-0.017766 1.5798E-06 -0.00017508"
+        rpy="0 0 0" />
+      <mass
+        value="0.15448" />
+      <inertia
+        ixx="0.00039012"
+        ixy="1.7892E-10"
+        ixz="4.9946E-09"
+        iyy="2.4203E-05"
+        iyz="5.1691E-09"
+        izz="0.00039808" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/xtion_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.48627 0.48627 0.48627 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://handsfree_gazebo/urdf/mini/meshes/xtion_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.087 0 0.19852"
+      rpy="0 -3.141E-17 -6.3428E-17" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

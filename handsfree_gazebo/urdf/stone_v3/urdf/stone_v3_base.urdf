@@ -22,7 +22,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -36,12 +36,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
   <link
-    name="wheel_left_link">
+    name="wheel1_link">
     <inertial>
       <origin
         xyz="3.1631E-06 -7.2374E-08 -0.00032962"
@@ -62,7 +62,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_left_link.STL" />
       </geometry>
       <material
         name="">
@@ -76,12 +76,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_left_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="wheel_left_joint"
+    name="wheel1_joint"
     type="continuous">
     <origin
       xyz="0 0.1557 0.0124"
@@ -89,12 +89,12 @@
     <parent
       link="base_link" />
     <child
-      link="wheel_left_link" />
+      link="wheel1_link" />
     <axis
       xyz="0 0 1" />
   </joint>
   <link
-    name="wheel_right_link">
+    name="wheel2_link">
     <inertial>
       <origin
         xyz="-3.1631E-06 -7.2862E-08 -0.00032962"
@@ -115,7 +115,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -129,12 +129,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_right_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="wheel_right_joint"
+    name="wheel2_joint"
     type="continuous">
     <origin
       xyz="0 -0.1557 0.0124"
@@ -142,7 +142,7 @@
     <parent
       link="base_link" />
     <child
-      link="wheel_right_link" />
+      link="wheel2_link" />
     <axis
       xyz="0 0 -1" />
   </joint>
@@ -168,7 +168,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/caster_front_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/caster_front_link.STL" />
       </geometry>
       <material
         name="">
@@ -182,7 +182,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/caster_front_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/caster_front_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -221,7 +221,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/caster_back_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/caster_back_link.STL" />
       </geometry>
       <material
         name="">
@@ -235,7 +235,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/caster_back_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/caster_back_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -274,7 +274,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/laser_link.STL" />
       </geometry>
       <material
         name="">
@@ -288,7 +288,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/laser_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -327,7 +327,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/yaw_link.STL" />
       </geometry>
       <material
         name="">
@@ -341,7 +341,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/yaw_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -383,7 +383,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/pitch_link.STL" />
       </geometry>
       <material
         name="">
@@ -397,7 +397,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/pitch_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -418,7 +418,7 @@
       velocity="0" />
   </joint>
   <link
-    name="xtion_link">
+    name="camera_link">
     <inertial>
       <origin
         xyz="-0.017766 1.5798E-06 -0.00017508"
@@ -439,7 +439,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/xtion_link.STL" />
       </geometry>
       <material
         name="">
@@ -453,12 +453,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL" />
+          filename="package://handsfree_gazebo/urdf/stone_v3/meshes/xtion_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="xtion_joint"
+    name="camera_joint"
     type="fixed">
     <origin
       xyz="0.0181 -0.08706 0.00011573"
@@ -466,7 +466,7 @@
     <parent
       link="pitch_link" />
     <child
-      link="xtion_link" />
+      link="camera_link" />
     <axis
       xyz="0 0 0" />
   </joint>

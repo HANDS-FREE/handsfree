@@ -4,7 +4,7 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="stone_v3_base"  xmlns:xacro="http://www.ros.org/wiki/xacro">  
-  <xacro:include filename="$(find handsfree_gazebo)/urdf_stone_v3/common_properties.xacro"/>
+  <xacro:include filename="$(find handsfree_gazebo)/urdf/stone_v3/common_properties.xacro"/>
   
   <xacro:macro name="stone_v3_base">
   <link name="base_footprint"/>
@@ -17,14 +17,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/base_link.STL"/>
       </geometry>
       <material name="light_black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/base_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/base_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -51,7 +51,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_left_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 0.94902 0.89804 1"/>
@@ -60,7 +60,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_left_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_left_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -83,7 +83,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_right_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 0.94902 0.89804 1"/>
@@ -92,7 +92,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/wheel_right_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/wheel_right_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -170,14 +170,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/laser_link.STL"/>
       </geometry>
       <material name="orange"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/laser_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/laser_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -198,7 +198,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/yaw_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="0.89804 0.91765 0.92941 1"/>
@@ -207,7 +207,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/yaw_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -233,7 +233,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/pitch_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="0.89804 0.91765 0.92941 1"/>
@@ -242,7 +242,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/pitch_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -267,7 +267,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/xtion_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="0.33333 0.33333 0.33333 1"/>
@@ -276,7 +276,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://handsfree_gazebo/urdf_stone_v3/meshes/xtion_link.STL"/>
+        <mesh filename="package://handsfree_gazebo/urdf/stone_v3/meshes/xtion_link.STL"/>
       </geometry>
     </collision>
   </link>

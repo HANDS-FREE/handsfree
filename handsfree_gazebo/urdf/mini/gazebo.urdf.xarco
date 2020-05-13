@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<robot name="handsfree_mini" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Included URDF Files -->
+    <xacro:include filename="$(find handsfree_gazebo)/urdf/mini/mini_base.xacro" />
+    <xacro:mini_base/>
+    <xacro:include filename="$(find handsfree_gazebo)/urdf/mini/mini_laser_head_xtion.gazebo" />
+    <xacro:mini_base_gazebo/>
+
+</robot>

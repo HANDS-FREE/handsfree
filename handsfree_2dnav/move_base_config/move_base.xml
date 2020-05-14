@@ -31,11 +31,11 @@
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/global_costmap_params.yaml" command="load" />
     
     <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/base_local_planner_params.yaml" command="load" /-->
-    <!-- rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/global_planner_params.yaml" command="load" /-->
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/dwa_local_planner_params.yaml" command="load" />
+    <!-- rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/teb_local_planner_params.yaml" command="load" /-->
 
-    <!--rosparam file="$(find zhaowendao_2dnav)/move_base_config/$(arg model)/global_planner_params.yaml" command="load" /-->
-    <!--rosparam file="$(find zhaowendao_2dnav)/move_base_config/$(arg model)/navfn_global_planner_params.yaml" command="load" /-->
+    <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/global_planner_params.yaml" command="load" /-->
+    <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/navfn_global_planner_params.yaml" command="load" /-->
 
   <remap from="/cmd_vel" to="$(arg cmd_vel_topic)"/>
   <remap from="/odom"    to="$(arg odom_topic)"/> 

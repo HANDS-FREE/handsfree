@@ -1,0 +1,6 @@
+# request
+float32 target_distance_move	# the distance need robot to move, scale is meter
+float32 target_radian_turn	# the distance need robot to turn, scale is radian
+---
+# result
+bool success			# always be true

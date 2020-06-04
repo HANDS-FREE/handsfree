@@ -22,6 +22,8 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    GetParamList.srv
    SetParamList.srv
+   SpecialTurn.srv
+   SpecialMove.srv
  )
 
  generate_messages(

@@ -1,0 +1,5 @@
+# request
+float32 target_radian_turn	# the distance need robot to turn, scale is radian
+---
+# result
+bool success			# always be true

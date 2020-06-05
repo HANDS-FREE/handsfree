@@ -110,7 +110,18 @@ class RadianTurn(object):
 
 
 def callback_turn_radian(req):
-    turn_radian.turn_to_target(radian_to_turn=req.target_radian_turn)
+    radian_to_turn=req.target_radian_turn
+    
+    while radian_to_turn > 3.14:
+        radian_to_turn = radian_to_turn - 3.14;
+        turn_radian.turn_to_target(3.14)
+
+    while radian_to_turn < -3.14:
+        radian_to_turn = radian_to_turn + 3.14;
+        turn_radian.turn_to_target(-3.14)
+
+    turn_radian.turn_to_target(radian_to_turn)
+
     return handsfree_srv.SpecialTurnResponse(True)
 
 

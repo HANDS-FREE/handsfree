@@ -1,13 +1,31 @@
-<!-- -->
-
 <launch>
 
+  <arg name="initial_pose_x" default="0"/>
+  <arg name="initial_pose_y" default="0"/>
+  <arg name="initial_pose_a" default="0"/>
+  <arg name="map_name" default="handsfree_room"/>
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
 
-  <arg name="node_name"             default="handsfree_remote_velocity_smoother"/>
-  <arg name="nodelet_manager_name"  default="nodelet_manager_handsfree_remote"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find handsfree_2dnav)/map/$(arg map_name).yaml" respawn="false" >
+  <param name="frame_id" value="map"/>
+  </node>
+
+  <include file="$(find handsfree_2dnav)/move_base_config/$(arg model)/amcl_node.xml">
+    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/> 
+  </include>
+
+  <include file="$(find handsfree_2dnav)/move_base_config/move_base.xml">
+    <arg name="model" value="$(arg model)"/> 
+    <arg name="cmd_vel_topic" value="/move_base/cmd_vel"/> 
+    <arg name="odom_topic" value="/mobile_base/mobile_base_controller/odom"/> 
+  </include>  
+
+  <arg name="node_name"             default="move_base_velocity_smoother"/>
+  <arg name="nodelet_manager_name"  default="nodelet_manager_move_base"/>
   <arg name="config_file"           default="$(find handsfree_bringup)/robot_para/velocity_smoother/$(arg model).yaml"/>
-  <arg name="raw_cmd_vel_topic"     default="/handsfree/remote_cmd_vel"/>
+  <arg name="raw_cmd_vel_topic"     default="/move_base/cmd_vel"/>
   <arg name="smooth_cmd_vel_topic"  default="/mobile_base/mobile_base_controller/cmd_vel"/>
   <arg name="robot_cmd_vel_topic"   default="/mobile_base/mobile_base_controller/cmd_vel"/>
   <arg name="odom_topic"            default="/mobile_base/mobile_base_controller/odom"/>
@@ -31,4 +49,3 @@
   </node>
 
 </launch>
-

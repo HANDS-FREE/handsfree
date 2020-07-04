@@ -1,0 +1,29 @@
+#For full documentation of the parameters in this file, and a list of all the
+#parameters available for TrajectoryPlannerROS, please see
+#http://www.ros.org/wiki/base_local_planner
+TrajectoryPlannerROS:
+  #Set the acceleration limits of the robot
+  acc_lim_x: 1.0
+  acc_lim_y: 0.0
+  acc_lim_theta: 0.6
+
+  #Set the velocity limits of the robot
+  max_vel_x: 0.3
+  min_vel_x: 0.08
+  max_vel_theta:  1.0
+  min_vel_theta: -1.0
+  min_in_place_vel_theta: 0.4
+
+  #For this example, we'll use a holonomic robot
+  holonomic_robot: false
+
+  #Set the tolerance on achieving a goal
+  xy_goal_tolerance: 0.10
+  yaw_goal_tolerance: 0.05
+
+  #We'll configure how long and with what granularity we'll forward simulate trajectories
+  sim_time: 0.8
+  sim_granularity: 0.05
+  vx_samples: 18
+  vtheta_samples: 20
+

@@ -30,12 +30,19 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
     nh_private.param<bool>("with_chassis", with_chassis_, true);
     nh_private.param<std::string>("chassis_type", chassis_type_, "stone_v3");
     nh_private.param<std::string>("chassis_base_mode", chassis_base_mode_, "4omni-wheel");
+
     nh_private.param<bool>("with_lift", with_lift_, false);
     nh_private.param<std::string>("lift_type", lift_type_, "lift_e120");
+
     nh_private.param<bool>("with_arm", with_arm_, false);
     nh_private.param<std::string>("arm_type", arm_type_, "arm_e6");
+    nh_private.param<int>("arm_type", arm_dof_, 8);
+    if(arm_dof_ < 0) arm_dof_ = 0;
+    if(arm_dof_ > 8) arm_dof_ = 8;
+
     nh_private.param<bool>("with_head", with_head_, true);
     nh_private.param<std::string>("head_type", head_type_, "head_e2");
+
     nh_private.param<double>("freq", controller_freq_, 100);
 
     x_ = y_ = theta_ = x_cmd_ = y_cmd_ = theta_cmd_ = 0.0;
@@ -129,17 +136,17 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
 
     if(with_arm_)
     {
-        arm_pos_.resize(6,0);
-        arm_vel_.resize(6,0);
-        arm_eff_.resize(6,0);
-        arm_cmd_.resize(6,0);
+        arm_pos_.resize(arm_dof_,0);
+        arm_vel_.resize(arm_dof_,0);
+        arm_eff_.resize(arm_dof_,0);
+        arm_cmd_.resize(arm_dof_,0);
 
         arm_state_publisher_ = nh_.advertise<handsfree_msgs::arm_state>("arm/arm_state", 10);
         arm_joints_pos_subscriber_ = nh_.subscribe<std_msgs::Float32MultiArray>("/handsfree/arm/set_arm_joints_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmJointsPos, this, _1));
         arm_end_pos_subscriber_ = nh_.subscribe<handsfree_msgs::PoseEuler>("/handsfree/arm/set_arm_end_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmEndPos, this, _1));
         arm_griper_pose_subscriber_ = nh_.subscribe<handsfree_msgs::PoseEuler>("/handsfree/arm/set_arm_griper_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmGriperPos, this, _1));
 
-        for (int i = 0;i < 6;i++)
+        for (int i = 0;i < arm_dof_;i++)
         {
             std::stringstream ss;
             ss << "arm" << (i + 1)<<"_joint"; //get the joint name
@@ -212,7 +219,7 @@ void HF_HW_ros::armDataUpdatePub(void)
         arm_data.voltage = hf_hw_.getRobotAbstract()->arm.measure_arm_state.voltage * 0.1;
         arm_data.current = hf_hw_.getRobotAbstract()->arm.measure_arm_state.current * 0.001;
 
-        for(unsigned char i=0; i<6 ; i++)
+        for(unsigned char i=0; i<arm_dof_ ; i++)
         {
             arm_data.joints.id.push_back(i+1);
             arm_data.joints.status.push_back(hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[i].status);
@@ -239,12 +246,19 @@ void HF_HW_ros::armDataUpdatePub(void)
         arm_data.griper_pose.yaw = hf_hw_.getRobotAbstract()->arm.measure_arm_state.griper_pose.yaw * 0.001;
 
         arm_state_publisher_.publish(arm_data);
+
+        for(unsigned char i=0; i<arm_dof_ ; i++)
+        {
+            arm_pos_[i] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[i].position / 1000.0;
+            arm_vel_[i] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[i].speed / 1000.0;
+            arm_eff_[i] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[i].load;
+        }
     }
 }
 
 void HF_HW_ros::callBackSetArmJointsPos(const std_msgs::Float32MultiArray::ConstPtr &msg)
 {
-    if(msg->data.size() < 6) return;
+    if(msg->data.size() < arm_dof_) return;
 
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.command = 1;
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_position[0] = msg->data[0] * 1000;

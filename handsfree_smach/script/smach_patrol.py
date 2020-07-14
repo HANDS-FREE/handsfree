@@ -50,7 +50,10 @@ class MoveToPoint(smach.State):
         server_movebase.send_goal(goal)
         # todo: what should robot do when failed to finish the target point?
         is_server_availabel = server_movebase.wait_for_result()
-        return 'next_point'
+        if is_server_availabel is False:
+            return 'error_exit'
+        else:
+            return 'next_point'
 
 
 if __name__ == '__main__':

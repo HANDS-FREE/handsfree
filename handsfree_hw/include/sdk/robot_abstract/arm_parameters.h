@@ -14,7 +14,7 @@ typedef struct{
     short int current;  //-10000 ~ 10000 , mA
     short int load;
     unsigned char temperature; //unit: degree
-    unsigned short int position; //0 ~ 6.28(2*PI) unit: 0.001 radian
+    short int position; //-PI ~ PI unit: 0.001 radian
     short int speed; //unit: 0.001 radian/s
 }__attribute__((packed)) ArmJointData;
 
@@ -33,7 +33,7 @@ typedef struct{
 
 typedef struct{
     unsigned char command;
-    unsigned short int joints_position[ARM_MAX_DOF_NUM]; //0 ~ 6.28(2*PI) unit: 0.001 radian
+    short int joints_position[ARM_MAX_DOF_NUM]; //-PI ~ PI unit: 0.001 radian
     short int joints_speed[ARM_MAX_DOF_NUM]; //unit: 0.001 radian/s
     ArmEndPose end_pose;
     ArmEndPose griper_pose;

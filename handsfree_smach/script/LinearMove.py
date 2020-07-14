@@ -11,8 +11,8 @@ class LinearMove(object):
         self.frame_base = rospy.get_param('~base_frame', robot_name+'/base_link')
         self.frame_odom = rospy.get_param('~odom_frame', robot_name+'/odom')
         self.velocity_topic = rospy.get_param('~vel_topic', robot_name+'/cmd_vel')
-        self.tolerance_distance = rospy.get_param('~tolerance', 0.08)
-        self.speed_linear = rospy.get_param('~speed_linear', 0.4)
+        self.tolerance_distance = rospy.get_param('~tolerance', 0.08) # m
+        self.speed_linear = rospy.get_param('~speed_linear', 0.4) # m/s
         self.rate_pub = rospy.get_param('~velocity_pub_rate', 10)
         self.rate = rospy.Rate(self.rate_pub)
         self.vel_pub = rospy.Publisher(self.velocity_topic,

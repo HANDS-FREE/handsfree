@@ -7,7 +7,7 @@ speed_lim_v: 0.6
 speed_lim_w: 1.75
 
 accel_lim_v: 1
-accel_lim_w: 2
+accel_lim_w: 1.2
 
 # Optional parameters
 frequency: 20.0

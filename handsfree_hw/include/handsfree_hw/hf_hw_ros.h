@@ -103,6 +103,7 @@ private:
     //parameter list
     std::string chassis_type_, chassis_base_mode_, lift_type_, arm_type_, head_type_;
     bool with_chassis_, with_lift_, with_arm_, with_head_;
+    int arm_dof_;
     double controller_freq_;
 
     std::vector<double> wheel_pos_, wheel_vel_, wheel_eff_, wheel_cmd_;
@@ -258,29 +259,9 @@ private:
             dissensor.mqtt_command = hf_hw_.getRobotAbstract()->sensors.disio_data.mqtt_command;
         }
 
-        if (with_arm_)
-        {
-            arm_pos_[0] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[0].position / 1000.0;
-            arm_pos_[1] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[1].position / 1000.0;
-            arm_pos_[2] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[2].position / 1000.0;
-            arm_pos_[3] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[3].position / 1000.0;
-            arm_pos_[4] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[4].position / 1000.0;
-            arm_pos_[5] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[5].position / 1000.0;
-
-            arm_vel_[0] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[0].speed / 1000.0;
-            arm_vel_[1] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[1].speed / 1000.0;
-            arm_vel_[2] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[2].speed / 1000.0;
-            arm_vel_[3] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[3].speed / 1000.0;
-            arm_vel_[4] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[4].speed / 1000.0;
-            arm_vel_[5] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[5].speed / 1000.0;
-
-            arm_eff_[0] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[0].load;
-            arm_eff_[1] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[1].load;
-            arm_eff_[2] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[2].load;
-            arm_eff_[3] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[3].load;
-            arm_eff_[4] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[4].load;
-            arm_eff_[5] = hf_hw_.getRobotAbstract()->arm.measure_arm_state.servo[5].load;
-        }
+        //if (with_arm_)
+        //{
+        //}
 
         if(with_head_)
         {

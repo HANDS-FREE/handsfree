@@ -143,8 +143,8 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
 
         arm_state_publisher_ = nh_.advertise<handsfree_msgs::arm_state>("arm/arm_state", 10);
         arm_joints_pos_subscriber_ = nh_.subscribe<std_msgs::Float32MultiArray>("/handsfree/arm/set_arm_joints_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmJointsPos, this, _1));
-        arm_end_pos_subscriber_ = nh_.subscribe<handsfree_msgs::PoseEuler>("/handsfree/arm/set_arm_end_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmEndPos, this, _1));
-        arm_griper_pose_subscriber_ = nh_.subscribe<handsfree_msgs::PoseEuler>("/handsfree/arm/set_arm_griper_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmGriperPos, this, _1));
+        //arm_end_pos_subscriber_ = nh_.subscribe<handsfree_msgs::PoseEuler>("/handsfree/arm/set_arm_end_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmEndPos, this, _1));
+        //arm_griper_pose_subscriber_ = nh_.subscribe<handsfree_msgs::PoseEuler>("/handsfree/arm/set_arm_griper_pos", 5, boost::bind(&HF_HW_ros::callBackSetArmGriperPos, this, _1));
 
         for (int i = 0;i < arm_dof_;i++)
         {

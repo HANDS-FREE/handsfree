@@ -267,6 +267,8 @@ void HF_HW_ros::callBackSetArmJointsPos(const std_msgs::Float32MultiArray::Const
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_position[3] = msg->data[3] * 1000;
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_position[4] = msg->data[4] * 1000;
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_position[5] = msg->data[5] * 1000;
+    hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_position[6] = (short int)msg->data[6];
+    hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_position[7] = (short int)msg->data[7];
 
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[0] = 0.25*1000;
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[1] = 0.25*1000;
@@ -274,6 +276,8 @@ void HF_HW_ros::callBackSetArmJointsPos(const std_msgs::Float32MultiArray::Const
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[3] = 0.25*1000;
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[4] = 0.25*1000;
     hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[5] = 0.25*1000;
+    hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[6] = 0;
+    hf_hw_.getRobotAbstract()->arm.expect_arm_state.joints_speed[7] = 0;
 
     hf_hw_.hwSendCommand(SET_ARM_STATE);
 }

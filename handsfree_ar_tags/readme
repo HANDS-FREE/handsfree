@@ -1,3 +1,0 @@
-把config/Markers_0_2.png 打压到A4纸上
-然后依次运行handsfree_hw/handsfree_hw.launch handsfree_bringup/xtion.launch handsfree_ar_tags/ar_follower.launch 节点
-然后车就可以跟踪A4纸了

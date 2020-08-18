@@ -7,7 +7,7 @@ $install_command ros-kinetic-turtlebot-bringup \
  ros-kinetic-openni-* \
 ros-kinetic-openni2-* ros-kinetic-freenect-*  \
 ros-kinetic-laser-*  \
-ros-kinetic-audio-common  \
+gstreamer1.0-pocketsphinx ros-kinetic-audio-common libasound2 \
  ros-kinetic-slam-gmapping \
 ros-kinetic-joystick-drivers python-rosinstall \
 ros-kinetic-orocos-kdl ros-kinetic-python-orocos-kdl \

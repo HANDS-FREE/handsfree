@@ -1,6 +1,12 @@
+<!-- -->
+
 <launch>
 
-  <include file="$(find handsfree_camera)/monocular/test_usb_cam.launch" />
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera_link" args="0 0 0.6 0 0 0 base_link camera_link 50" />
+
+  <include file="$(find handsfree_camera)/monocular/includes/logitech_usb_cam.xml">
+  <arg name="video_device" default="/dev/video1" />
+  </include>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_camera)/rviz/camera.rviz" />
 

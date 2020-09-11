@@ -20,10 +20,11 @@
     <param name="oscillation_distance" value="0.22" />
 
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-    <!-- param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" /-->
+    <!--param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" /-->
 
-    <!-- param name="base_global_planner" value="global_planner/GlobalPlanner" / -->
+    <!--param name="base_global_planner" value="global_planner/GlobalPlanner" /-->
     <param name="base_global_planner" value="navfn/NavfnROS" />
+    <!--param name="base_global_planner" value="segment_global_planner/SegmentGlobalPlanner" /-->
 
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/costmap_common_params.yaml" command="load" ns="local_costmap" />
@@ -32,7 +33,7 @@
     
     <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/base_local_planner_params.yaml" command="load" /-->
     <rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/dwa_local_planner_params.yaml" command="load" />
-    <!-- rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/teb_local_planner_params.yaml" command="load" /-->
+    <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/teb_local_planner_params.yaml" command="load" /-->
 
     <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/global_planner_params.yaml" command="load" /-->
     <!--rosparam file="$(find handsfree_2dnav)/move_base_config/$(arg model)/navfn_global_planner_params.yaml" command="load" /-->

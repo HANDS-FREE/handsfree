@@ -1,0 +1,22 @@
+## Install By Docker
+## https://hub.docker.com/r/mawenke/handsfree_ros
+## https://docs.docker.com/engine/install/ubuntu/
+
+## install docker on ubuntu16.04 or ubuntu18.04
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+
+sudo usermod -aG docker $USER
+
+## Remember to log out and back in for this to take effect!
+
+## install handsfree_ros 
+docker pull mawenke/handsfree_ros:v2
+
+sudo xhost +
+
+docker run -it --net=host --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --name handsfree_ros mawenke/handsfree_ros:v2 bash
+
+roslaunch handsfree_smach demo_smach_patrol.launch
+

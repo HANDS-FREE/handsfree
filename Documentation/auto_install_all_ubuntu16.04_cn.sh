@@ -50,3 +50,6 @@ echo 安装路径为：~/handsfree
 echo 设置usb规则
 cd ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/
 bash set_usb_env.sh
+
+cp ~/handsfree/handsfree_ros_ws/src/handsfree/Documentation/script/get_gazebo_model.sh ~/handsfree/
+

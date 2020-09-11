@@ -1,8 +1,0 @@
-<launch>
-
-	<!-- Launch the OpenNI2 driver -->
-	<include file="$(find handsfree_bringup)/launch/xtion.launch"/> 
-
-	<include file="$(find handsfree_ar_tags)/launch/ar_indiv_depth_camera.launch"/> 
-
-</launch>

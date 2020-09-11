@@ -6,11 +6,11 @@ find_package(catkin REQUIRED)
 
 catkin_package()
 
-install(DIRECTORY config data launch
+install(DIRECTORY config data launch rviz
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(FILES ar_tags.rviz readme
+install(FILES README.md
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 

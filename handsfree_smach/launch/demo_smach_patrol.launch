@@ -1,4 +1,21 @@
+<!-- -->
+
+<!-- 这是一个多点巡逻一键启动脚本，支持实物和仿真-->
+
 <launch>
-    <include file="$(find handsfree_stage)/launch/demo_handsfree_room_stage.launch"/>
+
+   <arg name="sim" default="true" />
+
+  　<group if="$(arg sim)"> <!-- 如果是仿真模式-->
+　　　　　<!-- 启动一个stage仿真程序，并启动定位导航相关节点-->
+   　 <include file="$(find handsfree_stage)/launch/demo_handsfree_room_stage.launch"/>
+  　</group>
+
+  　<group unless="$(arg sim)"><!-- 如果是实物模式-->
+　　　　　<!-- 启动一个实物机器人，并启动定位导航相关节点-->
+    　<include file="$(find handsfree_bringup)/demo/move_base_amcl.launch"/>
+  　</group>
+
+　　　　<!-- 启动一个多点巡逻程序，如果要用到实物中，需要修改smach_patrol.py中的points数组 -->
     <node name="smach_patrol_demo" pkg="handsfree_smach" type="smach_patrol.py" output="screen"/>
 </launch>

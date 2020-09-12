@@ -1,9 +1,13 @@
 <!-- -->
 
+<!-- 思岚Rplidar激光雷达驱动测试节点-->
+
 <launch>
 
+　　<!-- 思岚Rplidar雷达的型号，开发者需要根据对应型号修改-->
   <arg name="rplidar_type" default="A2" doc="model type [A1, A2, A3]"/>
 
+　　<!-- 发布一个测试用的雷达TF-->
   <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0 0 0 0 0 0 base_link laser 1000" />
 
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
@@ -15,5 +19,6 @@
   <param name="scan_mode"           type="string" value="Default"/> 
   </node>
 
+  <!-- 运行可视化节点，加载对应的rviz配置文件，显示雷达数据-->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rplidar_ros)/rviz/rplidar.rviz" />
 </launch>

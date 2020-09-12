@@ -1,14 +1,24 @@
 <!-- -->
 
+<!-- HandsFree机器人一键导航节点(无加减速平滑)-->
+
 <launch>
 
-  <arg name="initial_pose_x" default="10.42"/>
-  <arg name="initial_pose_y" default="43.49"/>
-  <arg name="initial_pose_a" default="0"/>
+  <!-- 设置机器人在地图中的初始位置，用于初始化导航系统-->
+  <arg name="initial_pose_x" default="8.75"/>
+  <arg name="initial_pose_y" default="10.81"/>
+  <arg name="initial_pose_a" default="1.57"/>
+
+　　<!-- 这个参数需要修改成开发者建好的目标地图，并存放在handsfree_2dnav/map目录下,默认值是HandsFree办公楼层的地图-->
   <arg name="map_name" default="handsfree_xuda"/>
 
+  <!-- 运行机器人底盘驱动节点-->
   <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
+
+  <!-- 运行激光雷达传感器驱动节点-->
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+
+  <!-- 运行(无加减速平滑)导航节点，并且传递机器人初始位置和目标地图，节点会自动加载目标地图并启动导航相关程序-->
   <include file="$(find handsfree_2dnav)/launch/move_base_amcl.launch">
     <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
     <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
@@ -16,6 +26,7 @@
     <arg name="map_name" default="$(arg map_name)"/>
   </include>
 
+  <!-- 运行可视化节点，加载对应的rviz配置文件，显示地图和机器人位置，开发者可以通过界面设置目标位置进行导航-->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_bringup)/rviz/navigation.rviz" />
   
 </launch>

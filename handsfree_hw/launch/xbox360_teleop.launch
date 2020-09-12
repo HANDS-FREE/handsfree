@@ -1,5 +1,7 @@
 <!-- -->
 
+<!-- xbox360遥控器遥控机器人节点-->
+
 <launch>
   <!--
     Push the left frontal button labeled as 'LB' to activate cmd_vel publishing.

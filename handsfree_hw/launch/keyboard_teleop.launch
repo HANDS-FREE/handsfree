@@ -1,5 +1,7 @@
 <!-- -->
 
+<!-- 电脑键盘遥控机器人节点-->
+
 <launch>
 
   <node pkg="turtlebot_teleop" type="turtlebot_teleop_key" name="turtlebot_teleop_keyboard" output="screen">

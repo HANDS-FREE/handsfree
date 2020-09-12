@@ -1,8 +1,0 @@
-<!-- -->
-
-<launch>
-  
-  <node pkg="handsfree_ar_tags" name="ar_follower" type="head_tracker.py" output="screen">
-  </node>
-
-</launch>

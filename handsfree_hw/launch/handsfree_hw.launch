@@ -1,9 +1,13 @@
 <!-- -->
 
-<launch>
+<!--　HandsFree所有机器人底盘通用的驱动节点-->
 
+<launch>
+  <!-- HandsFree机器人的驱动节点-->
   <node name="handsfree_hw_node" pkg="handsfree_hw" type="handsfree_hw_node">
-  <param name="serial_port" type="string" value="/dev/HFRobot"/>
+  <param name="serial_port" type="string" value="/dev/HFRobot"/>　<!-- HandsFree机器人USB通讯接口默认就是这个设备符-->
+
+  <!-- 加载Robolink 通讯的设置参数，包含不同数据的使能和通讯频率参数-->
   <param name="robolink_config_file" type="string" value="$(find handsfree_hw)/config/robolink_config.txt"/>
 
   <param name="with_chassis" type="bool" value="true"/>
@@ -12,12 +16,14 @@
   <param name="with_head" type="bool" value="true"/>
   </node>
 
+  <!-- 加载机器人关节的controller-->
   <rosparam file="$(find handsfree_hw)/config/config.yaml" command="load"/>
-  <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     output="screen" ns="/mobile_base" args="joint_state_controller mobile_base_controller pitch_position_controller yaw_position_controller"/>
 
+  <!-- 加载机器人的URDF模型描述文件，默认加载的是HandsFree机器人通用型号: stone_v3-->
   <param name="robot_description" command="$(find xacro)/xacro $(find handsfree_gazebo)/urdf/stone_v3/gazebo.urdf.xarco" />
+  <!-- 加载机器人robot_state_publisher , 发布TF-->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <remap from="/joint_states" to="/mobile_base/joint_states"/>
   </node>

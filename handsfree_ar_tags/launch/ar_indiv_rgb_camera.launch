@@ -1,5 +1,7 @@
 <!-- -->
 
+<!-- 只用颜色图像来识别AR Marker 3D位置和姿态-->
+
 <launch>
 	<arg name="marker_size" default="6.6" />
 	<arg name="max_new_marker_error" default="0.08" />

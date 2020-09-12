@@ -1,9 +1,12 @@
 <!-- -->
 
+<!-- 让机器人底盘跟踪AR　Marker的3D位置 -->
+
 <launch>
-  
+
   <node pkg="handsfree_ar_tags" name="ar_follower" type="ar_follower.py" clear_params="true" output="screen">
   <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
+  <!--remap from="/ar_pose_marker" to="/ar_pose_marker"/-->
 
     <rosparam>
        rate: 10

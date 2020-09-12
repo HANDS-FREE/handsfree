@@ -1,21 +1,33 @@
+<!-- -->
+
+<!-- HandsFree机器人一键导航节点(无加减速平滑)-->
+
 <launch>
 
+  <!-- 设置机器人在地图中的初始位置，用于初始化导航系统-->
   <arg name="initial_pose_x" default="0"/>
   <arg name="initial_pose_y" default="0"/>
   <arg name="initial_pose_a" default="0"/>
+
+　　<!-- 这个参数需要修改成开发者建好的目标地图，并存放在handsfree_2dnav/map目录下,默认值是HandsFree办公楼层的地图-->
   <arg name="map_name" default="handsfree_room"/>
+
+  <!-- 机器人型号环境变量，用于加载对应机器人型号的配置参数-->
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
 
+  <!-- 目标地图加载，发布地图话题-->
   <node name="map_server" pkg="map_server" type="map_server" args="$(find handsfree_2dnav)/map/$(arg map_name).yaml" respawn="false" >
   <param name="frame_id" value="map"/>
   </node>
 
+  <!-- 粒子滤波定位，发布机器人当前在地图中的位置-->
   <include file="$(find handsfree_2dnav)/move_base_config/$(arg model)/amcl_node.xml">
     <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
     <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
     <arg name="initial_pose_a" value="$(arg initial_pose_a)"/> 
   </include>
 
+  <!-- 加载move_base，实现运动规划-->
   <include file="$(find handsfree_2dnav)/move_base_config/move_base.xml">
     <arg name="model" value="$(arg model)"/> 
   </include>  

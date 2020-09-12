@@ -1,5 +1,7 @@
 <!-- -->
 
+<!-- 带加减速平滑的控制节点，通过topics: /handsfree/remote_cmd_vel 控制-->
+
 <launch>
 
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>

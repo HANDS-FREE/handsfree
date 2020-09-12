@@ -1,9 +1,13 @@
 <!-- -->
 
+<!--　HandsFree所有机械臂通用的驱动节点-->
+
 <launch>
 
   <node name="handsfree_hw_node_arm" pkg="handsfree_hw" type="handsfree_hw_node">
-  <param name="serial_port" type="string" value="/dev/HFRobotArm"/>
+  <param name="serial_port" type="string" value="/dev/HFRobotArm"/>　<!-- HandsFree机械臂USB通讯接口默认就是这个设备符-->
+
+  <!-- 加载Robolink 通讯的设置参数，包含不同数据的使能和通讯频率参数-->
   <param name="robolink_config_file" type="string" value="$(find handsfree_hw)/config/robolink_config_arm.txt"/>
   
   <param name="with_chassis" type="bool" value="false"/>
@@ -15,8 +19,8 @@
   <param name="with_head" type="bool" value="false"/>
   </node>
 
+  <!-- 加载机器人关节的controller-->
   <rosparam file="$(find handsfree_hw)/config/config_arm.yaml" command="load"/>
-  <!-- load the controllers -->
   <node name="controller_spawner_arm" pkg="controller_manager" type="spawner" respawn="false"
     output="screen" ns="/mobile_base" args="joint_state_controller"/>
 

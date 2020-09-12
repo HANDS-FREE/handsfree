@@ -1,7 +1,12 @@
 <!-- -->
 
+<!-- 把二维码识别输出的ar_track_alvar_msgs/AlvarMarkers　数据结构转化成标准Pose数据结构　geometry_msgs/PoseStamped-->
+
 <launch>
-   <node pkg="rbx2_ar_tags" name="ar_tags_cog" type="ar_tags_cog.py" clear_params="true" output="screen">
+   <node pkg="handsfree_ar_tags" name="ar_tags_cog" type="ar_tags_cog.py" clear_params="true" output="screen">
+   <!--remap from="/ar_pose_marker" to="/ar_pose_marker"/-->
+   <!--remap from="/target_pose" to="/target_pose"/-->
+
       <rosparam>
          tag_ids: [0, 1, 2]
       </rosparam>

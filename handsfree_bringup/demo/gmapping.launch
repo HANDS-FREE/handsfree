@@ -1,13 +1,21 @@
 <!-- -->
 
-<launch>
+<!-- HandsFree机器人一键建图脚本-->
 
+<launch>
+  <!-- 运行机器人底盘驱动节点-->
   <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
+
+  <!-- 运行激光雷达传感器驱动节点-->
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+
+  <!-- 运行建图节点-->
   <include file="$(find handsfree_2dnav)/launch/gmapping.launch" />
 
+  <!-- 运行可视化节点，加载对应的rviz配置文件，显示地图-->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_bringup)/rviz/gmapping.rviz" />
 
+  <!-- 开启键盘遥控节点，通过遥控机器人运动实现建图-->
   <include file="$(find handsfree_hw)/launch/keyboard_teleop.launch" />
 
 </launch>

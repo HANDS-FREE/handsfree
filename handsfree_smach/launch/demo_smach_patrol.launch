@@ -8,7 +8,7 @@
 
   　<group if="$(arg sim)"> <!-- 如果是仿真模式-->
 　　　　　<!-- 启动一个stage仿真程序，并启动定位导航相关节点-->
-   　 <include file="$(find handsfree_stage)/launch/demo_handsfree_room_stage.launch"/>
+   　 <include file="$(find handsfree_stage)/launch/demo_handsfree_xuda_stage.launch"/>
   　</group>
 
   　<group unless="$(arg sim)"><!-- 如果是实物模式-->

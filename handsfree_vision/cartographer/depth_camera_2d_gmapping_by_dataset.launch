@@ -7,7 +7,7 @@
   <param name="/use_sim_time" value="true" />
 
   <node name="playbag" pkg="rosbag" type="play"
-      args="--clock -r 5 $(find handsfree_dataset)/rosbags/handsfree_room_2018_06_09.bag" >
+      args="--clock -r 5 $(find handsfree_dataset)/rosbags/test1.bag" >
   <remap from="scan" to="/lidar_scan" />  
   </node>
 

@@ -206,9 +206,11 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_link:
+        base_footprint:
           Value: true
-        laser:
+        base_laser_link:
+          Value: true
+        base_link:
           Value: true
         map:
           Value: true
@@ -222,9 +224,10 @@ Visualization Manager:
       Tree:
         map:
           odom:
-            base_link:
-              laser:
-                {}
+            base_footprint:
+              base_link:
+                base_laser_link:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -323,16 +326,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 37.0201988
+      Distance: 97.5992966
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 15.8885937
-        Y: 15.2249718
-        Z: -2.90955949
+        X: 40.6668091
+        Y: 47.829525
+        Z: -2.88559031
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
@@ -341,7 +344,7 @@ Visualization Manager:
       Pitch: 1.56979632
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.21769261
+      Yaw: 3.13269234
     Saved: ~
 Window Geometry:
   Displays:

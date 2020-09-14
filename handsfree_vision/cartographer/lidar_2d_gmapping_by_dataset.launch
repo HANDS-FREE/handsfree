@@ -11,5 +11,5 @@
       args="-d $(find handsfree_vision
           )/rviz/gmapping_by_dataset.rviz" />
   <node name="playbag" pkg="rosbag" type="play"
-      args="--clock -r 5 $(find handsfree_dataset)/rosbags/handsfree_room_2018_06_09.bag" />
+      args="--clock -r 5 $(find handsfree_dataset)/rosbags/test1.bag" />
 </launch>

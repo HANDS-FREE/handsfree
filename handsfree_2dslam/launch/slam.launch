@@ -3,6 +3,7 @@
 <launch>
   <arg name="sim" default="true" />
   <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/> 
+  <arg name="speed_up" default="1"/>
   <arg name="open_rviz" default="true"/>
 
   <group if="$(arg sim)"> <!-- 如果是仿真模式-->
@@ -13,7 +14,7 @@
 
     <!-- 播放数据集-->
      <node name="playbag" pkg="rosbag" type="play"
-         args="--clock -r 1 $(find handsfree_dataset)/rosbags/test1.bag" />
+         args="--clock -r $(arg speed_up) $(find handsfree_dataset)/rosbags/test1.bag" />
   </group>
 
  　<group unless="$(arg sim)"><!-- 如果是实物模式-->

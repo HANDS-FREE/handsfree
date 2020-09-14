@@ -1,0 +1,36 @@
+<!-- -->
+
+<launch>
+  <arg name="sim" default="true" />
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/> 
+  <arg name="open_rviz" default="true"/>
+
+  <group if="$(arg sim)"> <!-- 如果是仿真模式-->
+    <param name="/use_sim_time" value="true" />
+　　　　　
+    <!-- 启动一个stage仿真程序，并启动定位导航相关节点-->
+  　 <!--include file="$(find handsfree_stage)/launch/demo_handsfree_xuda_stage.launch"/-->
+
+    <!-- 播放数据集-->
+     <node name="playbag" pkg="rosbag" type="play"
+         args="--clock -r 1 $(find handsfree_dataset)/rosbags/test1.bag" />
+  </group>
+
+ 　<group unless="$(arg sim)"><!-- 如果是实物模式-->
+　　　　<!-- 启动实物机器人相关节点-->
+    <!-- 运行机器人底盘驱动节点-->
+    <include file="$(find handsfree_hw)/launch/handsfree_hw.launch" />
+
+    <!-- 运行激光雷达传感器驱动节点-->
+    <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+  </group>
+
+  <!-- SLAM: Gmapping, Cartographer, Hector, Karto-->
+  <include file="$(find handsfree_2dslam)/launch/$(arg slam_methods)/slam_$(arg slam_methods).launch" />
+
+  <!-- 运行可视化节点，加载对应的rviz配置文件，显示地图-->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find handsfree_2dslam)/rviz/$(arg slam_methods).rviz"/>
+  </group>
+</launch>

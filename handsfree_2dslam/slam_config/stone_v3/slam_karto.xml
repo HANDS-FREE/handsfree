@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="slam_karto" type="slam_karto" name="slam_karto" output="screen">
+    <remap from="scan" to="scan"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="5"/>
+    <param name="resolution" value="0.05"/>
+  </node>
+</launch>

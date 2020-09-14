@@ -1,0 +1,10 @@
+<!-- -->
+
+<!-- gmapping建图节点-->
+
+<launch>
+  <!-- 机器人型号环境变量，用于加载对应机器人型号的配置参数-->
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+
+  <include file="$(find handsfree_2dslam)/slam_config/$(arg model)/slam_gmapping.xml"/> 
+</launch>

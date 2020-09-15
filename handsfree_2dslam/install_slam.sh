@@ -1,7 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
+## install cartographer by source
 
-sudo apt-get install ros-kinetic-hector-mapping
+sudo apt-get install ros-kinetic-hector-mapping ros-kinetic-slam-karto
 
-sudo apt-get install ros-kinetic-slam-karto

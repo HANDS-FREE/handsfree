@@ -1,0 +1,15 @@
+<!-- -->
+
+<launch>
+
+  <node name="recognizer" pkg="handsfree_speech" type="recognizer.py">
+    <param name="lm" value="$(find handsfree_speech)/demo/nav_cmd.lm"/>
+    <param name="dict" value="$(find handsfree_speech)/demo/nav_cmd.dic"/>
+    <param name="hmm" value="/usr/share/pocketsphinx/model/en-us/en-us"/>
+  </node>
+
+  <node name="voice_cmd_vel" pkg="handsfree_speech" type="voice_cmd_vel.py" output="screen">
+    <remap from="cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
+  </node>
+
+</launch>

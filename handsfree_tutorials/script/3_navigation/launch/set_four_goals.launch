@@ -1,0 +1,41 @@
+<!-- -->
+
+<launch>
+
+ <node pkg="handsfree_tutorials" type="set_four_goals.py" name="set_four_goals" output="screen">
+ <param name="num_of_cycles" type = "int" value="1"/>
+
+ <param name="goal1_point_x" type = "double" value="0"/>
+ <param name="goal1_point_y" type = "double" value="0"/>
+ <param name="goal1_point_z" type = "double" value="0"/>
+ <param name="goal1_quat_x" type = "double" value="0"/>
+ <param name="goal1_quat_y" type = "double" value="0"/>
+ <param name="goal1_quat_z" type = "double" value="0"/>
+ <param name="goal1_quat_w" type = "double" value="1"/> 
+
+ <param name="goal2_point_x" type = "double" value="0"/>
+ <param name="goal2_point_y" type = "double" value="0"/>
+ <param name="goal2_point_z" type = "double" value="0"/>
+ <param name="goal2_quat_x" type = "double" value="0"/>
+ <param name="goal2_quat_y" type = "double" value="0"/>
+ <param name="goal2_quat_z" type = "double" value="0"/>
+ <param name="goal2_quat_w" type = "double" value="1"/> 
+
+ <param name="goal3_point_x" type = "double" value="0"/>
+ <param name="goal3_point_y" type = "double" value="0"/>
+ <param name="goal3_point_z" type = "double" value="0"/>
+ <param name="goal3_quat_x" type = "double" value="0"/>
+ <param name="goal3_quat_y" type = "double" value="0"/>
+ <param name="goal3_quat_z" type = "double" value="0"/>
+ <param name="goal3_quat_w" type = "double" value="1"/> 
+
+ <param name="goal4_point_x" type = "double" value="0"/>
+ <param name="goal4_point_y" type = "double" value="0"/>
+ <param name="goal4_point_z" type = "double" value="0"/>
+ <param name="goal4_quat_x" type = "double" value="0"/>
+ <param name="goal4_quat_y" type = "double" value="0"/>
+ <param name="goal4_quat_z" type = "double" value="0"/>
+ <param name="goal4_quat_w" type = "double" value="1"/> 
+ </node>
+
+</launch>

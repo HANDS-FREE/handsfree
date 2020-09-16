@@ -4,7 +4,7 @@
 
 <launch>
 
-  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe etc...]"/>
 
 　　<!-- 思岚Rplidar雷达的型号，开发者需要根据对应型号修改-->
   <arg name="rplidar_type" default="A2" doc="model type [A1, A2, A3]"/>

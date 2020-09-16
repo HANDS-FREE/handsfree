@@ -1,0 +1,9 @@
+<!-- -->
+
+<launch>
+
+ <node pkg="handsfree_tutorials" type="radian_turn_by_srv.py" name="radian_turn_by_srv" output="screen">
+ <param name="speed_radian" type = "double" value="0.436"/>
+ </node>
+
+</launch>

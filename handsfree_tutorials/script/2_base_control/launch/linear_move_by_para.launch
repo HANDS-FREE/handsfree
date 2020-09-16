@@ -1,0 +1,10 @@
+<!-- -->
+
+<launch>
+
+ <node pkg="handsfree_tutorials" type="linear_move.py" name="linear_move" output="screen">
+ <param name="speed_linear" type = "double" value="0.2"/>
+ <param name="t_dis" type = "double" value="1.0"/>
+ </node>
+
+</launch>

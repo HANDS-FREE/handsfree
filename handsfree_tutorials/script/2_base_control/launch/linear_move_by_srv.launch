@@ -1,0 +1,9 @@
+<!-- -->
+
+<launch>
+
+ <node pkg="handsfree_tutorials" type="linear_move_by_srv.py" name="linear_move_by_srv" output="screen">
+ <param name="speed_linear" type = "double" value="0.2"/>
+ </node>
+
+</launch>

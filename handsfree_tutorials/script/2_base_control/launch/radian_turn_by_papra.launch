@@ -1,0 +1,10 @@
+<!-- -->
+
+<launch>
+
+ <node pkg="handsfree_tutorials" type="radian_turn.py" name="radian_turn" output="screen">
+ <param name="speed_radian" type = "double" value="0.436"/>
+ <param name="t_rad" type = "double" value="3.14"/>
+ </node>
+
+</launch>

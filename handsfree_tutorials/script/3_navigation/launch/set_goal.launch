@@ -1,0 +1,15 @@
+<!-- -->
+
+<launch>
+
+ <node pkg="handsfree_tutorials" type="set_goal.py" name="set_goal" output="screen">
+ <param name="goal_pose_x" type = "double" value="0"/>
+ <param name="goal_pose_y" type = "double" value="0"/>
+ <param name="goal_pose_z" type = "double" value="0"/>
+ <param name="goal_quat_x" type = "double" value="0"/>
+ <param name="goal_quat_y" type = "double" value="0"/>
+ <param name="goal_quat_z" type = "double" value="0"/>
+ <param name="goal_quat_w" type = "double" value="1"/> 
+ </node>
+
+</launch>

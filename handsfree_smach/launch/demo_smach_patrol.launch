@@ -13,7 +13,7 @@
 
   　<group unless="$(arg sim)"><!-- 如果是实物模式-->
 　　　　　<!-- 启动一个实物机器人，并启动定位导航相关节点-->
-    　<include file="$(find handsfree_bringup)/demo/move_base_amcl.launch"/>
+    　<include file="$(find handsfree_bringup)/demo/move_base_amcl_with_smooth.launch"/>
   　</group>
 
 　　　　<!-- 启动一个多点巡逻程序，如果要用到实物中，需要修改smach_patrol.py中的points数组 -->

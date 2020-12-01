@@ -41,19 +41,19 @@
 
 #include <tf/transform_datatypes.h>
 
-#include <urdf_parser/urdf_parser.h>
+//#include <urdf_parser/urdf_parser.h>
 
 #include <boost/assign.hpp>
 
 #include <omni_triangle_controller.h>
-
+/*
 static double euclideanOfVectors(const urdf::Vector3& vec1, const urdf::Vector3& vec2)
 {
 	return std::sqrt(std::pow(vec1.x-vec2.x,2) +
 			std::pow(vec1.y-vec2.y,2) +
 			std::pow(vec1.z-vec2.z,2));
 }
-
+*/
 /*
  * \brief Check if the link is modeled as a cylinder
  * \param link Link
@@ -280,7 +280,7 @@ void OmniDriveController::starting(const ros::Time& time)
 	// Register starting time used to keep fixed rate
 	last_state_publish_time_ = time;
 
-	state_ = RUNNING;
+	state_ = ControllerState::RUNNING;
 	odometry_.init(time);
 }
 

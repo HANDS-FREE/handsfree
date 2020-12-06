@@ -4,8 +4,8 @@
 
     <!-- Included URDF Files -->
     <xacro:include filename="$(find handsfree_gazebo)/urdf/stone_v3/stone_v3_base.xacro" />
-    <xacro:stone_v3_base/>
     <xacro:include filename="$(find handsfree_gazebo)/urdf/stone_v3/stone_v3_laser_head_xtion.gazebo" />
+    <xacro:stone_v3_base/>
     <xacro:stone_v3_base_gazebo/>
 
 </robot>

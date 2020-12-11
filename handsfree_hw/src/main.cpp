@@ -24,9 +24,10 @@ int main(int argc, char** argv)
         }
         else
         {
-           std::cerr<<"not find serial_port: "<<serial_port<<std::endl ;
+            std::cerr<<"not find serial_port: "<<serial_port<<std::endl ;
+            usleep(2000000);
         }
-        usleep(2000000);
+
     }
 
     return 0;

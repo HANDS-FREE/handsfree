@@ -69,8 +69,8 @@ public:
     void mainloop();
 
 private:
-    void imuDataUpdatePub(void);
-    void armDataUpdatePub(void);
+    void imuDataUpdatePub();
+    void armDataUpdatePub();
 
     bool button1_long_press_enable,button2_long_press_enable;
     bool last_thermal_infrared_status;

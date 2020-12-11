@@ -185,7 +185,7 @@ HF_HW_ros::HF_HW_ros(ros::NodeHandle &nh, std::string url, std::string config_ad
 }
 
 
-void HF_HW_ros::imuDataUpdatePub(void)
+void HF_HW_ros::imuDataUpdatePub()
 {
     sensor_msgs::Imu imu_data;
 
@@ -209,7 +209,7 @@ void HF_HW_ros::imuDataUpdatePub(void)
     imu_publisher_.publish(imu_data);
 }
 
-void HF_HW_ros::armDataUpdatePub(void)
+void HF_HW_ros::armDataUpdatePub()
 {
     if(with_arm_)
     {

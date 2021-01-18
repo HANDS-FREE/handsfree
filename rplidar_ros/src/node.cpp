@@ -234,6 +234,11 @@ int main(int argc, char * argv[]) {
         serial_baudrate = 256000;
         if(scan_mode == "Default") scan_mode = "Sensitivity";
     }
+    else if (rplidar_type == "S1")
+    {
+        serial_baudrate = 256000;
+        if(scan_mode == "Default") scan_mode = "DenseBoost";
+    }
     else serial_baudrate = 115200;
 
 /****************************************************/

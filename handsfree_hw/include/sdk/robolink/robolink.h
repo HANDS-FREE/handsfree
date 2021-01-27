@@ -79,12 +79,12 @@ public:
         return tx_buffer_length;
     }
 
-public: 
+public:
     //only for slave
     //command updata flag , the robot need to traverse These flag to decide update his own behavior
     unsigned char receive_package_renew[LAST_COMMAND_FLAG];
 
-public:  
+public:
     //common
     unsigned char byteAnalysisCall(const unsigned char rx_byte);
 

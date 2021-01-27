@@ -5,7 +5,9 @@ enum MotorDriverType : unsigned char
 {
     MotorDriver_PWM12_AND_IO = 0,
     MotorDriver_PWM_AND_IOAB = 1,
-    MotorDriver_ZLAC706 = 2
+    MotorDriver_ZLAC706 = 2,
+    MotorDriver_TDE124 = 3,
+    MotorDriver_SCOUT = 4,
 };
 
 typedef struct{
@@ -54,6 +56,7 @@ typedef struct {
     float pwm_dead_zone;     //when the pwm in this zone , the motor disable
     float speed_low_filter;  //0~1;  default = 0.3
     float protect_current;   //unit : A default = 1
+    float static_damping_coefficient;  //0~0.3;  default = 0.05
     MotorPID pid;
 }__attribute__((packed)) MotorParameters;
 

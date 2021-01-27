@@ -4,12 +4,13 @@
 typedef struct {
     char robot_name[24];
     char robot_description[64];
+    float firmware_version;
 }__attribute__((packed)) RobotInfo;
 
 typedef struct {
     unsigned char battery_series;
+    float battery_voltage_alarm;
     unsigned char power_remain_alarm;
-    float  battery_voltage_alarm;
 }__attribute__((packed)) SystemParameters;
 
 typedef struct{

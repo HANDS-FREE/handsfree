@@ -33,7 +33,7 @@ typedef struct{
     unsigned char online; //0bit: 6DOF  1bit: magnetometer 2bit: bar
     unsigned short int frequency[3];  //IMUSensorData update frequency(50~1000HZ) [0]: 6DOF , [1]: magnetometer , [2]: bar
     Vector3 angular_velocity;     //rad/sec , Row major about x, y, z axes
-    Vector3 linear_acceleration;  //g's Row major about x, y, z axes
+    Vector3 linear_acceleration;  //m/s^2 Row major about x, y, z axes
     Vector3 magnetometer_xyz;
     float bar_pressure;
     Quaternion orientation_quaternion; //IMU 6DOF

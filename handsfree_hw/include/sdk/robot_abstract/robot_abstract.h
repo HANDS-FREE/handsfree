@@ -31,6 +31,7 @@ public:
         radian_to_degree = 57.2958f;
         strcpy(robot_info.robot_name, "robot_name");
         strcpy(robot_info.robot_description ,  "this is a (name) robot of handsfree");
+        memset(&system_para , 0 , sizeof(system_para));
         memset(&motor_para , 0 , sizeof(motor_para));
         memset(&chassis_para , 0 , sizeof(chassis_para));
         memset(&head_para , 0 , sizeof(head_para));

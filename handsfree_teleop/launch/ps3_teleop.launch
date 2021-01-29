@@ -1,0 +1,32 @@
+<!-- -->
+
+<!--　PS3遥控器遥控机器人节点-->
+
+<launch>
+
+  <arg name="joy_dev" default="/dev/input/js0" />
+
+  <node pkg="handsfree_teleop" type="handsfree_teleop_joy" name="handsfree_teleop_joystick">
+    <param name="scale_angular" value="0.8"/>
+    <param name="scale_linear" value="0.5"/>
+    <param name="scale_channel1" value="1"/>
+    <param name="scale_channel2" value="-1"/>
+
+    <param name="axis_linear_x" value="1"/>
+    <param name="axis_linear_y" value="6"/>
+    <param name="axis_angular" value="0"/>
+
+    <param name="axis_channel1" value="3"/>
+    <param name="axis_channel2" value="4"/>
+    <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel"/>
+    <remap from="/handsfree_teleop/channel1" to="/mobile_base/yaw_position_controller/command"/>
+    <remap from="/handsfree_teleop/channel2" to="/mobile_base/pitch_position_controller/command"/>
+  
+  </node>
+
+  <node pkg="joy" type="joy_node" name="joystick">
+    <param name="dev" value="$(arg joy_dev)"/>
+    <param name="deadzone" value="0.05"/>
+  </node>
+
+</launch>

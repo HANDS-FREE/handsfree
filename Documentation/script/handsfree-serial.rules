@@ -6,5 +6,8 @@ KERNEL=="ttyUSB*", ATTRS{interface}=="HandsFree Left Arm USB to UART Bridge Cont
 KERNEL=="ttyUSB*", ATTRS{interface}=="HandsFree Right Arm USB to UART Bridge Controller", MODE:="0777", SYMLINK+="HFRobotRightArm"
 KERNEL=="ttyUSB*", ATTRS{interface}=="HandsFree Head USB to UART Bridge Controller", MODE:="0777", SYMLINK+="HFRobotHead"
 KERNEL=="ttyUSB*", ATTRS{interface}=="FT232R USB UART", MODE:="0777", SYMLINK+="HFRobot"
+
 KERNEL=="ttyUSB*", ATTRS{interface}=="CP2102 USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar"
-KERNEL=="ttyUSB*", ATTRS{interface}=="rplidar USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar"
+KERNEL=="ttyUSB*", ATTRS{interface}=="SlamTec RPlidar USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar"
+KERNEL=="ttyUSB*", ATTRS{interface}=="SlamTec Second RPlidar USB to UART Bridge Controller", MODE:="0777", SYMLINK+="rplidar2"
+

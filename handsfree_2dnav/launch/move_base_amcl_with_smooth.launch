@@ -10,7 +10,7 @@
   <arg name="initial_pose_a" default="0"/>
 
 　　<!-- 这个参数需要修改成开发者建好的目标地图，并存放在handsfree_2dnav/map目录下,默认值是HandsFree办公楼层的地图-->
-  <arg name="map_name" default="handsfree_room"/>
+  <arg name="map_name" default="handsfree_xuda"/>
 
   <!-- 机器人型号环境变量，用于加载对应机器人型号的配置参数-->
   <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>

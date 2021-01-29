@@ -8,14 +8,14 @@
 
 　　<!-- 思岚Rplidar雷达的型号，开发者需要根据对应型号修改-->
   <arg name="rplidar_type" default="A3" doc="model type [A1, A2, A3, S1]"/>
-  <arg name="laser_scan" default="scan" />
+  <arg name="laser_scan" default="scan_back" />
 
-  <include file="$(find handsfree_bringup)/robot_para/laser_tf/$(arg model)_tf.xml" /> 
+  <include file="$(find handsfree_bringup)/robot_para/laser_tf/$(arg model)_back_tf.xml" /> 
 
-  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
-  <param name="serial_port"         type="string" value="/dev/rplidar"/>　<!-- HandsFree默认把思岚雷达USB设备识别成/dev/rplidar设备符-->
+  <node name="rplidarNode_back"     pkg="rplidar_ros"  type="rplidarNode" output="screen">
+  <param name="serial_port"         type="string" value="/dev/rplidar2"/>　<!-- HandsFree默认把思岚雷达USB设备识别成/dev/rplidar设备符-->
   <param name="rplidar_type"        type="string" value="$(arg rplidar_type)"/>
-  <param name="frame_id"            type="string" value="laser"/>
+  <param name="frame_id"            type="string" value="laser_back"/>
   <param name="inverted"            type="bool"   value="false"/>
   <param name="angle_compensate"    type="bool"   value="true"/>
   <param name="scan_mode"           type="string" value="Default"/> 
@@ -23,13 +23,10 @@
   </node>
 
 　　<!-- 对雷达原始数据进行范围、噪声等相关滤波-->
-  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter_back">
   <rosparam command="load" file="$(find handsfree_bringup)/robot_para/laser_filter_yaml/rplidar/laser_filter_$(arg model).yaml" />
   <remap from="scan" to="base_$(arg laser_scan)"/>
   <remap from="scan_filtered" to="$(arg laser_scan)"/>
   </node>
 
-  <group if="$(eval arg('model') == 'octopus')">
-    <include file="$(find rplidar_ros)/launch/rplidar_back.launch"/> 
-  </group>
 </launch>

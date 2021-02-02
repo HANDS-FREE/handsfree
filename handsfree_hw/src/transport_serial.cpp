@@ -130,7 +130,8 @@ bool TransportSerial::initializeSerial()
     try
     {
         std::cout<<params_.serialPort <<std::endl;
-        port_ = boost::make_shared<boost::asio::serial_port>(boost::ref(*ios_), params_.serialPort);
+        port_ = boost::make_shared<boost::asio::serial_port>(*ios_, params_.serialPort);
+        //port_ = boost::make_shared<boost::asio::serial_port>(boost::ref(*ios_), params_.serialPort);
         port_->set_option(
                     boost::asio::serial_port::baud_rate(params_.baudRate));
         port_->set_option(

@@ -132,7 +132,7 @@ libopencv-dev python3-opencv ros-noetic-vision-opencv \
 ros-noetic-move-base \
 ros-noetic-map-server ros-noetic-fake-localization \
 ros-noetic-amcl git subversion mercurial \
-ros-noetic-hokuyo3d ros-noetic-cob-perception-msgs
+ros-noetic-hokuyo3d ros-noetic-cob-perception-msgs ros-noetic-dwa-local-planner
 
 #rbx2-prereq.sh
 $install_command ros-noetic-rosbridge-suite \

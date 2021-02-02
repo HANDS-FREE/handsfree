@@ -87,6 +87,7 @@ echo "安装 HandsFree ROS"
 sleep 3
 cd 
 source .bashrc
+source /opt/ros/$ROS_DISTRO/setup.bash
 cd ~/handsfree/handsfree_ros_ws/src/
 catkin_init_workspace
 sleep 3

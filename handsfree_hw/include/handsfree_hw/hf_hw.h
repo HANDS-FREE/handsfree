@@ -45,12 +45,12 @@ public:
     {
         return port_->getIOinstace();
     }
-
+/*
     bool reconfig()
     {
 
     }
-
+*/
     inline bool initialize_ok () const
     {
         return initialize_ok_;

@@ -59,6 +59,7 @@ public:
     {
         if(thread_.joinable())
         {
+            ios_->stop();
             thread_.join();
         }
     }

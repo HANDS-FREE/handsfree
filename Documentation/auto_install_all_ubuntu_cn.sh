@@ -25,6 +25,9 @@ ROS_DISTRO=$1
 ROS_DISTRO=${ROS_DISTRO:="kinetic"}
 ########################
 
+relesenum=`grep DISTRIB_DESCRIPTION /etc/*-release | awk -F 'Ubuntu ' '{print $2}' | awk -F ' LTS' '{print $1}'`
+echo "Your ubuntu version is $relesenum"
+
 echo "更新系统源列表"
 cd ~
 version=`lsb_release -sc`
@@ -88,6 +91,15 @@ sleep 3
 cd 
 source .bashrc
 source /opt/ros/$ROS_DISTRO/setup.bash
+sleep 1
+
+if [ "$ROS_DISTRO" = "noetic" ]
+then
+cd ~/handsfree/handsfree_ros_ws/src/handsfree
+git checkout noetic
+fi
+
+sleep 1
 cd ~/handsfree/handsfree_ros_ws/src/
 catkin_init_workspace
 sleep 3

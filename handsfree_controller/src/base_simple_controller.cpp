@@ -152,7 +152,13 @@ void BaseSimpleController::starting(const ros::Time& time)
 	handle_.setThetacmd(0.0);
 
 	last_state_publish_time_ = time;
+
+#if ROS_VERSION_MINOR < 15
 	state_ = RUNNING;
+#else
+    state_ = ControllerState::RUNNING;
+#endif
+
 }
 
 void BaseSimpleController::stopping(const ros::Time& time)

@@ -277,11 +277,16 @@ void OmniDriveController::starting(const ros::Time& time)
 {
 	brake();
 
-	// Register starting time used to keep fixed rate
-	last_state_publish_time_ = time;
+    // Register starting time used to keep fixed rate
+    last_state_publish_time_ = time;
 
-	state_ = RUNNING;
-	odometry_.init(time);
+#if ROS_VERSION_MINOR < 15
+    state_ = RUNNING;
+#else
+    state_ = ControllerState::RUNNING;
+#endif
+
+    odometry_.init(time);
 }
 
 void OmniDriveController::stopping(const ros::Time& time)

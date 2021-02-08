@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name[zh_CN]=手柄遥控
+Comment="ps3 control"
+Exec=bash -i /home/handsfree/handsfree/handsfree_ros_ws/src/handsfree/handsfree_bringup/scripts/ps3.sh
+Icon=/home/handsfree/handsfree/handsfree_ros_ws/src/handsfree/handsfree_bringup/scripts/ps3.png
+Info="Spark"
+Terminal=true
+Type=Application
+StartupNotify=true

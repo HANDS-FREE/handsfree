@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name[zh_CN]=机器人硬件检测
+Comment="robot hardware detection"
+Exec=bash -i /home/handsfree/handsfree/handsfree_ros_ws/src/handsfree/handsfree_bringup/scripts/hardware_detection.sh
+Icon=/home/handsfree/handsfree/handsfree_ros_ws/src/handsfree/handsfree_bringup/scripts/hardware_detection.png
+Info="Spark"
+Terminal=true
+Type=Application
+StartupNotify=true

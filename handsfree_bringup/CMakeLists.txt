@@ -13,7 +13,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-install(DIRECTORY demo driver robot_para rviz
+install(DIRECTORY demo robot_para rviz scripts
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 

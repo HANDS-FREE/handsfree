@@ -26,6 +26,8 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: RPLidarLaserScan
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -70,7 +72,7 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 5
-      Size (m): 0.00999999978
+      Size (m): 0.0500000007
       Style: Squares
       Topic: /scan
       Unreliable: false
@@ -117,16 +119,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.62524223
+      Distance: 10.2930737
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.0344972014
-        Y: 0.0658859983
-        Z: 0.148092002
+        X: 1.0147841
+        Y: 0.33656162
+        Z: 0.149111792
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
@@ -135,7 +137,7 @@ Visualization Manager:
       Pitch: 1.56979632
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.17540002
+      Yaw: 3.3804028
     Saved: ~
 Window Geometry:
   Displays:

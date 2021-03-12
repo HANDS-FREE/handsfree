@@ -29,7 +29,19 @@
   <remap from="scan_filtered" to="$(arg laser_scan)"/>
   </node>
 
+  <group if="$(eval arg('model') == 'thunder')">
+    <include file="$(find rplidar_ros)/launch/rplidar_back.launch"/> 
+  </group>
+
+  <group if="$(eval arg('model') == 'thunder_mini')">
+    <include file="$(find rplidar_ros)/launch/rplidar_back.launch"/> 
+  </group>
+
   <group if="$(eval arg('model') == 'octopus')">
+    <include file="$(find rplidar_ros)/launch/rplidar_back.launch"/> 
+  </group>
+
+  <group if="$(eval arg('model') == 'turtle')">
     <include file="$(find rplidar_ros)/launch/rplidar_back.launch"/> 
   </group>
 </launch>

@@ -1,0 +1,17 @@
+scan_filter_chain:
+- name: angle
+  type: laser_filters/LaserScanAngularBoundsFilter
+  params:
+    lower_angle: -1.9
+    upper_angle: 1.9
+- name: box_filter
+  type: laser_filters/LaserScanBoxFilter
+  params:
+    box_frame: base_link
+    max_x: 0.465
+    max_y: 0.3495
+    max_z: 0.6
+    min_x: -0.465
+    min_y: -0.3495
+    min_z: -0.1
+

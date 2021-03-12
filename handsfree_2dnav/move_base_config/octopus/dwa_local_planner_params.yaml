@@ -2,8 +2,8 @@
 #parameters available for DWAPlannerROS, please see
 #http://www.ros.org/wiki/dwa_local_planner
 DWAPlannerROS:
-  acc_lim_th: 1.5
-  acc_lim_x: 2.0
+  acc_lim_th: 1
+  acc_lim_x: 1.0
   acc_lim_y: 0
 
   max_vel_x: 0.4
@@ -12,10 +12,10 @@ DWAPlannerROS:
   max_vel_y: 0.0
   min_vel_y: 0.0
 
-  max_rot_vel: 1.75
+  max_rot_vel: 0.4
   min_rot_vel: 0.2
 
-  max_trans_vel: 0.4
+  max_trans_vel: 0.45
   min_trans_vel: 0.1
 
 # Goal Tolerance Parametes

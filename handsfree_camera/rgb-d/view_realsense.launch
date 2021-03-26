@@ -1,0 +1,19 @@
+<!-- -->
+
+<launch>
+
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera_link" args="0 0 0.6 0 0 0 base_link camera_link 50" />
+
+  <arg name="camera"              default="camera"/>
+  <group ns="$(arg camera)">
+    <remap from="/camera/camera/color/image_raw" to="/camera/rgb/image_raw"/>
+    <remap from="/camera/camera/color/camera_info" to="/camera/rgb/camera_info"/>
+    <remap from="/camera/camera/depth/image_rect_raw" to="/camera/depth/image_raw"/>
+    <remap from="/camera/camera/depth/camera_info" to="/camera/depth/camera_info"/>
+    <!-- Launch the realsense driver -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+  </group>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find handsfree_camera)/rviz/view_xtion.rviz" />
+
+</launch>

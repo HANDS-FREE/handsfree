@@ -1,0 +1,22 @@
+<!-- -->
+
+<launch>
+  <arg name="model" default="$(env HANDSFREE_ROBOT_MODEL)" doc="model type [mini, stone_v2, stone_v3, giraffe]"/>
+
+  <include file="$(find handsfree_bringup)/robot_para/camera_tf/$(arg model)_tf.xml" />
+  
+  <arg name="camera"              default="camera"/>
+  <group ns="$(arg camera)">
+    <remap from="/camera/camera/aligned_depth_to_color/image_raw" to="/camera/depth_registered/image_raw"/>
+    <remap from="/camera/camera/aligned_depth_to_color/camera_info" to="/camera/depth_registered/camera_info"/>
+    <remap from="/camera/camera/color/image_raw" to="/camera/rgb/image_raw"/>
+    <remap from="/camera/camera/color/camera_info" to="/camera/rgb/camera_info"/>
+    <remap from="/camera/camera/depth/image_rect_raw" to="/camera/depth/image_raw"/>
+    <remap from="/camera/camera/depth/camera_info" to="/camera/depth/camera_info"/>
+    <!-- Launch the realsense driver -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <!-- 置为 true 后，可以生成地图-->
+      <arg name="align_depth" value="true" doc="Hardware depth registration"/>
+    </include>
+  </group>
+</launch>

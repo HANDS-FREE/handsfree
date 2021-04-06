@@ -9,7 +9,7 @@
 
   <!-- Run the Hokuyo laser scanner node -->
   <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
-    <param name="ip_address" value="192.168.3.11"/>
+    <param name="ip_address" value="192.168.3.10"/>
     <param name="serial_port" value="/dev/ttyACM0"/>
     <param name="serial_baud" value="115200"/>
     <param name="frame_id" value="laser"/>

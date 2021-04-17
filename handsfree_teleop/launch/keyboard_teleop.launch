@@ -4,7 +4,7 @@
 
 <launch>
 
-  <node pkg="handsfree_teleop" type="handsfree_teleop_key" name="handsfree_teleop_keyboard" output="screen">
+  <node pkg="handsfree_teleop" type="handsfree_teleop_key.py" name="handsfree_teleop_keyboard" output="screen">
     <param name="scale_linear" value="0.3" type="double"/>
     <param name="scale_angular" value="0.5" type="double"/>
     <remap from="/cmd_vel" to="/mobile_base/mobile_base_controller/cmd_vel" />

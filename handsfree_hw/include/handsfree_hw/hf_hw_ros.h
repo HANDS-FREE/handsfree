@@ -191,7 +191,7 @@ private:
             wheel_vel_[0] = hf_hw_.getRobotAbstract()->chassis.measure_motor_speed.servo1;
             wheel_vel_[1] = hf_hw_.getRobotAbstract()->chassis.measure_motor_speed.servo2;
             wheel_vel_[2] = hf_hw_.getRobotAbstract()->chassis.measure_motor_speed.servo3;
-            wheel_vel_[4] = hf_hw_.getRobotAbstract()->chassis.measure_motor_speed.servo3;
+            wheel_vel_[3] = hf_hw_.getRobotAbstract()->chassis.measure_motor_speed.servo3;
 
             robot_time.local_time_valid = hf_hw_.getRobotAbstract()->system_info.local_time.valid;
             robot_time.local_time_year = hf_hw_.getRobotAbstract()->system_info.local_time.year;
